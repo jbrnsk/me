@@ -15,7 +15,7 @@ const styles = computed(() => {
 </script>
 
 <template>
-  <div :class="`w-[50px] h-[50px] ${styles}`">
+  <div :class="`w-[50px] h-[50px] p-1 ${styles}`">
     <slot></slot>
   </div>
 </template>

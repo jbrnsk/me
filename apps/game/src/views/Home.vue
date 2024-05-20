@@ -2,9 +2,9 @@
 import { computed, ref } from 'vue';
 import { isEqual } from 'lodash-es';
 
-// import CrazyAnimation from "@/components/CrazyAnimation.vue"
+import CrazyAnimation from "@/components/CrazyAnimation.vue"
 import FieldSquare from "@/components/FieldSquare.vue";
-import TestDude from "@/components/icons/TestDude.vue";
+import FootballPlayer from '@/components/FootballPlayer.vue'
 
 const rows = ref(11);
 const columns = ref(20);
@@ -24,14 +24,12 @@ const players = computed(() => {
       coordinates: [6,8]
     }
   }
-})
+});
 
 function hasPlayer(row: number, col: number) {
   return Object.values(players.value).some(player => {
-    console.log('what it be???', player, row, col, [row, col])
-
     return isEqual(player.coordinates, [row, col])
-  })
+  });
 }
 
 function getSquareColor(rowIndex: number, colIndex: number) {
@@ -45,13 +43,14 @@ function getSquareColor(rowIndex: number, colIndex: number) {
 
 <template>
   <div class="h-full w-full bg-cyan-50">
+<!--    <CrazyAnimation class="absolute" />-->
     <div v-for="(row) in rows" :key="row" class="flex">
       <FieldSquare v-for="(col) in columns" :key="col" :color="getSquareColor(row, col)">
-        <TestDude v-if="hasPlayer(row, col)"/>
+        <FootballPlayer v-if="hasPlayer(row, col)"/>
       </FieldSquare>
     </div>
-<!--    <CrazyAnimation />-->
   </div>
+
 </template>
 
 <style scoped>
