@@ -1,26 +1,27 @@
 {
+  "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
     "module": "ESNext",
-    "target": "es2016",
-    "lib": ["DOM", "ESNext"],
+    "moduleResolution": "Node",
     "strict": true,
-    "esModuleInterop": true,
-    "incremental": false,
-    "skipLibCheck": true,
-    "moduleResolution": "node",
+    "jsx": "preserve",
+    "allowJs": true,
+    "noImplicitThis": true,
     "resolveJsonModule": true,
-    "noUnusedLocals": true,
-    "strictNullChecks": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": [
-      "vite/client",
-      "vite-plugin-pages/client",
-      "vite-plugin-vue-layouts/client"
-    ],
-    "paths": {
-      "~/*": ["src/*"]
-    }
+    "experimentalDecorators": true,
+    "preserveValueImports": true,
+    "importsNotUsedAsValues": "error",
   },
-  "exclude": ["dist", "node_modules"]
+  "references": [
+    {
+      "path": "apps/game"
+    },
+  ]
 }
