@@ -1,33 +1,20 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
-import { isEqual } from 'lodash-es';
+import { computed, onMounted, ref } from 'vue';
+import { isEqual, throttle } from 'lodash-es';
+import {useRepo} from 'pinia-orm'
 
 import CrazyAnimation from "@/components/CrazyAnimation.vue"
 import FieldSquare from "@/components/FieldSquare.vue";
 import FootballPlayer from '@/components/FootballPlayer.vue'
+import FootballPlayerModel from '@/models/football_player'
 
 const rowCount = ref(11);
 const colCount = ref(20);
+const activePlayer = ref();
+const hoverPosition = ref();
 
 const players = computed(() => {
-  return {
-    23: {
-      coordinates: [6,12],
-      team: 'away'
-    },
-    21: {
-      coordinates: [4,12],
-      team: 'home'
-    },
-    265: {
-      coordinates: [6,11],
-      team: 'home'
-    },
-    212: {
-      coordinates: [6,8],
-      team: 'away'
-    }
-  }
+  return useRepo(FootballPlayerModel).withAllRecursive().get();
 });
 
 const rows = computed(() => {
@@ -42,12 +29,18 @@ const rows = computed(() => {
       }
     })
   })
+});
+
+const fieldStyles = computed(() => {
+  return `h-full w-full bg-cyan-50 ${activePlayer.value && 'cursor-grabbing'}`
 })
 
-
+const grabbedPlayer = computed(() => {
+  return useRepo(FootballPlayerModel).find(activePlayer.value)
+})
 
 function getPlayer(row: number, col: number) {
-  return Object.values(players.value).find(player => {
+  return players.value.find(player => {
     return isEqual(player.coordinates, [row, col])
   });
 }
@@ -59,14 +52,65 @@ function getSquareColor(rowIndex: number, colIndex: number) {
 
   return colIndex % 2 === 0 ? 'light' : 'dark'
 }
+
+function handlePlayerGrab(id: number, event: MouseEvent ) {
+  activePlayer.value = id;
+  setHoverSpritePosition(event);
+  addEventListener("mousemove", setHoverSpritePosition);
+}
+
+function handleDrop() {
+  activePlayer.value = null;
+  removeEventListener('mousemove', setHoverSpritePosition)
+}
+
+function setHoverSpritePosition(event: MouseEvent) {
+  hoverPosition.value = {
+    left: `${event.clientX-25}px`,
+    top: `${event.clientY-25}px`
+  }
+}
+
+function savePlayersToStore() {
+  useRepo(FootballPlayerModel).save([
+    {
+      coordinates: [6,12],
+      team: 'away',
+      id: 23,
+    },
+    {
+      coordinates: [4,12],
+      team: 'home',
+      id: 21
+    },
+    {
+      coordinates: [6,11],
+      team: 'home',
+      id: 265
+    },
+    {
+      coordinates: [6,8],
+      team: 'away',
+      id: 212
+    }
+  ])
+}
+
+onMounted(() => {
+  savePlayersToStore();
+})
 </script>
 
 <template>
-  <div class="h-full w-full bg-cyan-50">
-<!--    <CrazyAnimation class="absolute" />-->
+  <div :class="fieldStyles" @mouseup="handleDrop">
+    <FootballPlayer v-if="!!activePlayer" :id="grabbedPlayer.id" :style="hoverPosition" class="absolute opacity-50" :active-player-id="activePlayer" :team="grabbedPlayer.team" :type="grabbedPlayer.type" user-team="home"/>
+
+    <CrazyAnimation class="absolute pointer-events-none" />
     <div v-for="(row, rowIndex) in rows" :key="rowIndex" class="flex">
       <FieldSquare v-for="(cell) in row" :key="cell.id" :color="cell.color">
-        <FootballPlayer v-if="!!cell.currentPlayer" :team="cell.currentPlayer.team" user-team="home"/>
+        <template v-if="!!cell.currentPlayer">
+          <FootballPlayer :id="cell.currentPlayer.id" :active-player-id="activePlayer" :team="cell.currentPlayer.team" :type="cell.currentPlayer.type" user-team="home" @grab="(event) => handlePlayerGrab(cell.currentPlayer?.id, event)"/>
+        </template>
       </FieldSquare>
     </div>
   </div>

@@ -12,6 +12,8 @@
     "@vueuse/core": "^10.9.0",
     "lodash-es": "^4.17.21",
     "pinia": "^2.1.7",
+    "pinia-orm": "^1.9.1",
+    "pinia-plugin-persistedstate": "^3.2.1",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
   },
