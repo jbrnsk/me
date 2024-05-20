@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div>Hello World</div>
+  <div class="w-400 bg-red-500">Hello World</div>
 </template>
 
 <style scoped>
