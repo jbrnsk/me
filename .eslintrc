@@ -40,8 +40,8 @@
     "simple-import-sort/imports": [
       "error",
       {
-        // The default grouping, but adds regex for Backstage lib imports.
-        "groups": [["^\\u0000"], ["^node:"],  ["^vue", "^@?\\w"],  ["^(@orm-lib|@ui-lib|@chart-lib)$" , "^" ], [ "^\\."]]
+        // The default grouping, but adds regex for lib imports.
+        "groups": [["^\\u0000"], ["^node:"],  ["^vue", "^@?\\w"],  ["^(@orm-lib|@ui-lib)$" , "^" ], [ "^\\."]]
       }
     ],
     "simple-import-sort/exports": "error",
