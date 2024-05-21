@@ -5,12 +5,15 @@
 
   import FieldSquare from '@/components/FieldSquare.vue';
   import FootballPlayer from '@/components/FootballPlayer.vue';
+  import { useTeams } from '@/composables/initialize';
   import FootballPlayerModel from '@/models/football_player';
 
   const rowCount = ref(11);
   const colCount = ref(20);
   const activePlayerId = ref();
   const hoverPosition = ref();
+
+  const { savePlayersToStore } = useTeams();
 
   const players = computed(() => {
     return useRepo(FootballPlayerModel).withAllRecursive().get();
@@ -79,31 +82,6 @@
       left: `${event.clientX - 25}px`,
       top: `${event.clientY - 25}px`,
     };
-  }
-
-  function savePlayersToStore() {
-    useRepo(FootballPlayerModel).save([
-      {
-        coordinates: [6, 12],
-        team: 'away',
-        id: 23,
-      },
-      {
-        coordinates: [4, 12],
-        team: 'home',
-        id: 21,
-      },
-      {
-        coordinates: [6, 11],
-        team: 'home',
-        id: 265,
-      },
-      {
-        coordinates: [6, 8],
-        team: 'away',
-        id: 212,
-      },
-    ]);
   }
 
   onMounted(() => {
