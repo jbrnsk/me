@@ -1,7 +1,0 @@
-module.exports = {
-    plugins: [require('prettier-plugin-tailwindcss')],
-    semi: true,
-    singleQuote: true,
-    vueIndentScriptAndStyle: true,
-    htmlWhitespaceSensitivity: 'ignore',
-};
