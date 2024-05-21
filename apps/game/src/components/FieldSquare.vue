@@ -1,21 +1,22 @@
 <script lang="ts" setup>
-import {computed} from "vue";
+  import { computed } from 'vue';
 
-const props = defineProps<{
-  color: 'light' | 'dark'
-}>()
+  const props = defineProps<{
+    color: 'light' | 'dark';
+    variant: 'standard' | 'endzone';
+  }>();
 
-const styles = computed(() => {
-  if(props.color === 'light') {
-    return 'bg-green-400'
-  }
+  const styles = computed(() => {
+    if (props.color === 'light') {
+      return props.variant === 'endzone' ? 'bg-red-300' : 'bg-green-400';
+    }
 
-  return 'bg-teal-950'
-})
+    return props.variant === 'endzone' ? 'bg-gray-900' : 'bg-teal-950';
+  });
 </script>
 
 <template>
-  <div :class="`w-[50px] h-[50px] p-1 ${styles}`">
+  <div :class="`h-[50px] w-[50px] p-1 ${styles}`">
     <slot></slot>
   </div>
 </template>

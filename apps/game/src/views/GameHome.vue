@@ -24,6 +24,10 @@
         return {
           id: `${rowIndex}-${colIndex}`,
           color: getSquareColor(rowIndex, colIndex) as 'light' | 'dark',
+          variant:
+            colIndex === 0 || colIndex === 19
+              ? 'endzone'
+              : ('standard' as 'endzone' | 'standard'),
           currentPlayer,
         };
       });
@@ -126,6 +130,7 @@
         :key="cell.id"
         :ref="`square-${cell.id}`"
         :color="cell.color"
+        :variant="cell.variant"
         @mouseup.left="handleDrop(cell.id)"
       >
         <template v-if="!!cell.currentPlayer">
