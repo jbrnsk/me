@@ -11,6 +11,6 @@ import App from './App.vue';
 
 const store = createPinia().use(createORM()).use(piniaPluginPersistedState);
 
-const app = createApp(App).use(store).use(router);
+const app = createApp(App).use(router).use(store);
 
 app.mount('#app');

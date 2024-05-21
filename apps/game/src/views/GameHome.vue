@@ -3,14 +3,13 @@
   import { isEqual } from 'lodash-es';
   import { useRepo } from 'pinia-orm';
 
-  import CrazyAnimation from '@/components/CrazyAnimation.vue';
   import FieldSquare from '@/components/FieldSquare.vue';
   import FootballPlayer from '@/components/FootballPlayer.vue';
   import FootballPlayerModel from '@/models/football_player';
 
   const rowCount = ref(11);
   const colCount = ref(20);
-  const activePlayer = ref();
+  const activePlayerId = ref();
   const hoverPosition = ref();
 
   const players = computed(() => {
@@ -32,11 +31,11 @@
   });
 
   const fieldStyles = computed(() => {
-    return `h-full w-full bg-cyan-50 ${activePlayer.value && 'cursor-grabbing'}`;
+    return `h-full w-full bg-cyan-50 ${activePlayerId.value && 'cursor-grabbing'}`;
   });
 
   const grabbedPlayer = computed(() => {
-    return useRepo(FootballPlayerModel).find(activePlayer.value);
+    return useRepo(FootballPlayerModel).find(activePlayerId.value);
   });
 
   function getPlayer(row: number, col: number) {
@@ -54,14 +53,20 @@
   }
 
   function handlePlayerGrab(id: number, event: MouseEvent) {
-    activePlayer.value = id;
+    activePlayerId.value = id;
     setHoverSpritePosition(event);
     addEventListener('mousemove', setHoverSpritePosition);
   }
 
-  function handleDrop(event: MouseEvent) {
-    console.log(event.target);
-    activePlayer.value = null;
+  function handleDrop(cellId: string) {
+    const formattedCoordinates = cellId
+      .split('-')
+      .map((coordinate) => Number(coordinate));
+    useRepo(FootballPlayerModel)
+      .where('id', activePlayerId.value)
+      .update({ coordinates: formattedCoordinates });
+
+    activePlayerId.value = null;
     removeEventListener('mousemove', setHoverSpritePosition);
   }
 
@@ -105,11 +110,11 @@
 <template>
   <div :class="fieldStyles">
     <FootballPlayer
-      v-if="!!activePlayer"
+      v-if="!!activePlayerId"
       :id="grabbedPlayer.id"
       :style="hoverPosition"
       class="pointer-events-none absolute opacity-50"
-      :active-player-id="activePlayer"
+      :active-player-id="activePlayerId"
       :team="grabbedPlayer.team"
       :type="grabbedPlayer.type"
       user-team="home"
@@ -121,12 +126,12 @@
         :key="cell.id"
         :ref="`square-${cell.id}`"
         :color="cell.color"
-        @mouseup.left="handleDrop"
+        @mouseup.left="handleDrop(cell.id)"
       >
         <template v-if="!!cell.currentPlayer">
           <FootballPlayer
             :id="cell.currentPlayer.id"
-            :active-player-id="activePlayer"
+            :active-player-id="activePlayerId"
             :team="cell.currentPlayer.team"
             :type="cell.currentPlayer.type"
             user-team="home"
