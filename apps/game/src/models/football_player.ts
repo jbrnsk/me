@@ -1,7 +1,7 @@
 import { Model } from 'pinia-orm';
 import { Attr, Num, Str } from 'pinia-orm/dist/decorators';
 
-type TPlayerPosition =
+export type TPlayerPosition =
   | 'blitzer'
   | 'thrower'
   | 'catcher'
