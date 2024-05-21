@@ -25,11 +25,13 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-simple-import-sort": "^12.1.0",
+    "eslint-plugin-vue": "^9.26.0",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "game": "pnpm --filter @cyberbowl/game"
+    "game": "pnpm --filter @cyberbowl/game",
+    "website": "pnpm --filter @cyberbowl/website"
   }
 }

@@ -59,7 +59,8 @@
     addEventListener('mousemove', setHoverSpritePosition);
   }
 
-  function handleDrop() {
+  function handleDrop(event: MouseEvent) {
+    console.log(event.target);
     activePlayer.value = null;
     removeEventListener('mousemove', setHoverSpritePosition);
   }
@@ -102,20 +103,26 @@
 </script>
 
 <template>
-  <div :class="fieldStyles" @mouseup="handleDrop">
+  <div :class="fieldStyles">
     <FootballPlayer
       v-if="!!activePlayer"
       :id="grabbedPlayer.id"
       :style="hoverPosition"
-      class="absolute opacity-50"
+      class="pointer-events-none absolute opacity-50"
       :active-player-id="activePlayer"
       :team="grabbedPlayer.team"
       :type="grabbedPlayer.type"
       user-team="home"
     />
-    <CrazyAnimation class="pointer-events-none absolute" />
+    <!--    <CrazyAnimation class="pointer-events-none absolute" />-->
     <div v-for="(row, rowIndex) in rows" :key="rowIndex" class="flex">
-      <FieldSquare v-for="cell in row" :key="cell.id" :color="cell.color">
+      <FieldSquare
+        v-for="cell in row"
+        :key="cell.id"
+        :ref="`square-${cell.id}`"
+        :color="cell.color"
+        @mouseup.left="handleDrop"
+      >
         <template v-if="!!cell.currentPlayer">
           <FootballPlayer
             :id="cell.currentPlayer.id"

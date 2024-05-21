@@ -23,5 +23,8 @@
     {
       "path": "apps/game"
     },
+    {
+      "path": "apps/website"
+    }
   ]
 }

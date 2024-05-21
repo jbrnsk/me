@@ -1,8 +1,8 @@
 {
-  "name": "@cyberbowl/game",
+  "name": "@cyberbowl/website",
   "private": true,
   "scripts": {
-    "dev": "vite --port 3333 --open",
+    "dev": "vite --port 3334 --open",
     "build": "cross-env NODE_ENV=production vite-ssg build",
     "preview": "vite preview",
     "preview-https": "serve dist",
@@ -24,7 +24,6 @@
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5",
-    "url": "^0.11.3",
     "vite": "^5.2.9",
     "vite-plugin-webpackchunkname": "1.0.1",
     "vue-tsc": "^2.0.19"
