@@ -8,6 +8,8 @@ export type TPlayerPosition =
   | 'lineman'
   | 'monstrosity';
 
+export type TPlayerSkill = 'block' | 'dodge' | 'sure-hands' | 'pass';
+
 export default class FootballPlayer extends Model {
   static entity = 'football-player';
 
@@ -15,4 +17,5 @@ export default class FootballPlayer extends Model {
   @Attr(null) declare coordinates: [number, number];
   @Str(null) declare team: 'home' | 'away';
   @Str(null) declare type: TPlayerPosition;
+  @Attr(null) declare skills: TPlayerSkill[];
 }
