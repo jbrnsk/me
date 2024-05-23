@@ -22,7 +22,7 @@
       "error",
       {
         // The default grouping, but adds regex for lib imports.
-        "groups": [["^\\u0000"], ["^node:"],  ["^vue", "^@?\\w"],  ["^(@canvas-lib)$" , "^" ], [ "^\\."]]
+        "groups": [["^\\u0000"], ["^node:"],  ["^vue", "^@?\\w"],  ["^(@canvas-lib)$", "^(@config-lib)$", "^" ], [ "^\\."]]
       }
     ],
     "simple-import-sort/exports": "error",

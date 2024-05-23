@@ -70,6 +70,9 @@ importers:
         specifier: ^4.3.2
         version: 4.3.2(vue@3.4.27(typescript@5.4.5))
     devDependencies:
+      '@cyberbowl/config-lib':
+        specifier: workspace:*
+        version: link:../../packages/config-lib
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -186,6 +189,18 @@ importers:
       vue-tsc:
         specifier: ^2.0.19
         version: 2.0.19(typescript@5.4.5)
+
+  packages/config-lib:
+    dependencies:
+      autoprefixer:
+        specifier: ^10.4.19
+        version: 10.4.19(postcss@8.4.38)
+      postcss:
+        specifier: ^8.4.38
+        version: 8.4.38
+      tailwindcss:
+        specifier: ^3.4.3
+        version: 3.4.3
 
 packages:
 

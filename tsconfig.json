@@ -28,6 +28,9 @@
     },
     {
       "path": "packages/canvas-lib"
+    },
+    {
+      "path": "packages/config-lib"
     }
   ]
 }

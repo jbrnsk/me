@@ -1,5 +1,5 @@
 {
-  "name": "@backstage/ui-lib",
+  "name": "@cyberbowl/canvas-lib",
   "private": true,
   "version": "0.0.0",
   "module": "./dist/components.es.js",
