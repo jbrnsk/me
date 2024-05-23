@@ -5,6 +5,7 @@
 
   const showTitle = ref(false);
   const showScreen = ref(false);
+  const audioPlayer = ref();
 
   onMounted(() => {
     setTimeout(() => {
@@ -18,7 +19,11 @@
 </script>
 
 <template>
-  <div class="h-full">
+  <div class="h-full" @mousedown="audioPlayer.play()">
+    <audio id="music-player" ref="audioPlayer">
+      <source src="/music/Cyberbowl3930_TitleTrack.mp3" type="audio/mp3" />
+      Your browser does not support html 5 audio
+    </audio>
     <div v-if="showScreen" class="flex h-full items-center justify-center">
       <Transition>
         <span
