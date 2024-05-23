@@ -36,7 +36,7 @@
     color: 'hsl(hue,100%,light%)',
     baseLight: 50,
     addedLight: 10,
-    shadowToTimePropMult: 6,
+    shadowToTimePropMult: 1,
     baseLightInputMultiplier: 0.01,
     addedLightInputMultiplier: 0.02,
     cx: 0,

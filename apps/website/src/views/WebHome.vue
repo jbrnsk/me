@@ -1,26 +1,56 @@
 <script lang="ts" setup>
+  import { onMounted, ref } from 'vue';
+
   import { CrazyAnimation } from '@canvas-lib';
+
+  const showTitle = ref(false);
+  const showScreen = ref(false);
+
+  onMounted(() => {
+    setTimeout(() => {
+      showScreen.value = true;
+
+      setTimeout(() => {
+        showTitle.value = true;
+      }, 1000);
+    }, 3000);
+  });
 </script>
 
 <template>
-  <div class="flex h-full items-center justify-center">
-    <span
-      class="shimmer font-cyber text-cyber-pink text-shadow absolute z-10 text-5xl"
-    >
-      Cyberbowl 3090
-    </span>
-    <CrazyAnimation class="pointer-events-none absolute" />
+  <div class="h-full">
+    <div v-if="showScreen" class="flex h-full items-center justify-center">
+      <Transition>
+        <span
+          v-if="showTitle"
+          class="shimmer font-cyber text-cyber-pink text-shadow absolute z-10 text-5xl"
+        >
+          Cyberbowl 3930
+        </span>
+      </Transition>
+      <CrazyAnimation class="pointer-events-none absolute" />
+    </div>
   </div>
 </template>
 
 <style scoped>
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 2s ease-in;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
+
   .shimmer {
     padding-right: 140px;
     margin-right: -140px;
     text-shadow:
-      1px 1px 0 theme('colors.cyber.blue'),
+      1px 1px 0 theme('colors.cyber.green'),
       4px 4px 0 white,
-      4px 4px 0.2em theme('colors.cyber.pink');
+      4px 4px 0.1em theme('colors.cyber.pink');
   }
 
   .shimmer {
