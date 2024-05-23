@@ -8,10 +8,12 @@
 
   const styles = computed(() => {
     if (props.color === 'light') {
-      return props.variant === 'endzone' ? 'bg-cyber-blue' : 'bg-cyber-silver';
+      return props.variant === 'endzone' ? 'bg-cyber-blue' : 'bg-cyber-slate';
     }
 
-    return props.variant === 'endzone' ? 'bg-cyber-purple' : 'bg-gray-700';
+    return props.variant === 'endzone'
+      ? 'bg-cyber-purple'
+      : 'bg-cyber-dark-slate';
   });
 </script>
 

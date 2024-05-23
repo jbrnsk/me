@@ -24,6 +24,8 @@ module.exports = {
       colors: {
         cyber: {
           silver: '#C0C0C0',
+          slate: '#708090',
+          'dark-slate': '2F4F4F',
           bronze: '#777777',
           blue: '#00FFFF',
           green: '#39FF14',
