@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import CrazyAnimation from '@/components/CrazyAnimation.vue';
+  import { CrazyAnimation } from '@canvas-lib';
 </script>
 
 <template>

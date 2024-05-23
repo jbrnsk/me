@@ -1,4 +1,5 @@
 import vue from '@vitejs/plugin-vue';
+import path from 'path';
 import { fileURLToPath, URL } from 'url';
 import { defineConfig } from 'vite';
 import { manualChunksPlugin } from 'vite-plugin-webpackchunkname';
@@ -10,7 +11,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      },
+      '@canvas-lib': `${path.resolve(__dirname, '../../packages/canvas-lib/src')}`,
+    },
   },
   plugins: [vue(), manualChunksPlugin()],
   server: {

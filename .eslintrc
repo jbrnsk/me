@@ -22,7 +22,7 @@
       "error",
       {
         // The default grouping, but adds regex for lib imports.
-        "groups": [["^\\u0000"], ["^node:"],  ["^vue", "^@?\\w"],  ["^(@orm-lib|@ui-lib)$" , "^" ], [ "^\\."]]
+        "groups": [["^\\u0000"], ["^node:"],  ["^vue", "^@?\\w"],  ["^(@canvas-lib)$" , "^" ], [ "^\\."]]
       }
     ],
     "simple-import-sort/exports": "error",
@@ -31,7 +31,7 @@
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
     "import/no-unresolved": ["error", {
-      "ignore": ["@/", "./", "@ui-lib", "@orm-lib", "@chart-lib"]
+      "ignore": ["@/", "./", "@canvas-lib"]
     }],
     "no-unused-vars": "off"
   },

@@ -25,6 +25,9 @@
     },
     {
       "path": "apps/website"
+    },
+    {
+      "path": "packages/canvas-lib"
     }
   ]
 }
