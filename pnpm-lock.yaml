@@ -128,6 +128,9 @@ importers:
         specifier: ^4.3.2
         version: 4.3.2(vue@3.4.27(typescript@5.4.5))
     devDependencies:
+      '@cyberbowl/config-lib':
+        specifier: workspace:*
+        version: link:../../packages/config-lib
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12

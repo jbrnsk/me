@@ -1,10 +1,18 @@
 <script lang="ts" setup>
   import { onMounted, reactive, ref } from 'vue';
 
-  const props = defineProps<{
-    canvasWidth?: number;
-    canvasHeight?: number;
-  }>();
+  const props = withDefaults(
+    defineProps<{
+      canvasWidth?: number;
+      canvasHeight?: number;
+      sparkChance?: number;
+    }>(),
+    {
+      canvasWidth: window.innerWidth,
+      canvasHeight: window.innerHeight,
+      sparkChance: 0.02,
+    },
+  );
 
   const c = ref();
   const ctx = ref();
@@ -22,7 +30,7 @@
     addedTime: 10,
     dieChance: 0.05,
     spawnChance: 1,
-    sparkChance: 0,
+    sparkChance: props.sparkChance,
     sparkDist: 10,
     sparkSize: 2,
     color: 'hsl(hue,100%,light%)',
@@ -147,12 +155,9 @@
   });
 
   onMounted(() => {
-    const boundingWidth = props.canvasWidth ?? window.innerWidth;
-    const boundingHeight = props.canvasHeight ?? window.innerHeight;
-
     ctx.value = c.value.getContext('2d');
-    w.value = c.value.width = boundingWidth;
-    h.value = c.value.height = boundingHeight;
+    w.value = c.value.width = props.canvasWidth;
+    h.value = c.value.height = props.canvasHeight;
     ctx.value.fillStyle = 'black';
     ctx.value.fillRect(0, 0, w, h);
 

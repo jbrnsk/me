@@ -106,8 +106,8 @@
       class="pointer-events-none absolute -mt-[50px]"
       :canvas-width="1000"
       :canvas-height="600"
+      :spark-chance="0"
     />
-    <!--    <CrazyAnimation class="pointer-events-none absolute" />-->
     <div v-for="(row, rowIndex) in rows" :key="rowIndex" class="flex">
       <FieldSquare
         v-for="cell in row"
