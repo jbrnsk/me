@@ -25,6 +25,9 @@
         "groups": [["^\\u0000"], ["^node:"],  ["^vue", "^@?\\w"],  ["^(@canvas-lib)$", "^(@config-lib)$", "^" ], [ "^\\."]]
       }
     ],
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "varsIgnorePattern": "props"
+    }],
     "simple-import-sort/exports": "error",
     "import/first": "error",
     "import/named": "off",

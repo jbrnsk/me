@@ -14,10 +14,11 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  @apply overflow-hidden;
 }
 
 #app {
-  @apply bg-black;
+  @apply bg-black ;
 }
 
 html.dark {

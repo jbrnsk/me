@@ -26,13 +26,13 @@
   const opts = reactive({
     len: 50,
     count: 50,
-    baseTime: 10,
-    addedTime: 10,
+    baseTime: 12,
+    addedTime: 12,
     dieChance: 0.05,
     spawnChance: 1,
     sparkChance: props.sparkChance,
     sparkDist: 10,
-    sparkSize: 2,
+    sparkSize: 3,
     color: 'hsl(hue,100%,light%)',
     baseLight: 50,
     addedLight: 10,
@@ -42,7 +42,7 @@
     cx: 0,
     cy: 0,
     repaintAlpha: 0.04,
-    hueChange: 0.1,
+    hueChange: 0.3,
   });
 
   function loop() {

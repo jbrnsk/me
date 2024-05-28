@@ -4,6 +4,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   theme: {
     fontSize: {
+      xxs: '10px',
       xs: '12px',
       sm: '14px',
       base: '16px',
@@ -21,6 +22,7 @@ module.exports = {
       'md': '769px',
       'lg': '1025px',
       'xl': '1281px',
+      '2xl': '1537px'
     },
     extend: {
       colors: {
@@ -31,6 +33,9 @@ module.exports = {
           bronze: '#777777',
           blue: '#00FFFF',
           green: '#39FF14',
+          teal: '#10e09b',
+          'teal-dark': '#12c98e',
+          'teal-darker': '#0fb27e',
           gray: '#2F4F4F',
           purple: '#8A2BE2',
           pink: '#FF69B4',
