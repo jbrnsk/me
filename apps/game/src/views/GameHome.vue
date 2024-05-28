@@ -10,13 +10,13 @@
   import { useTeams } from '@/composables/initialize';
   import FootballPlayerModel from '@/models/football_player';
 
+  type TDiceResult = 1 | 2 | 3 | 4 | 5 | 6;
   const rowCount = ref(11);
   const colCount = ref(20);
   const activePlayerId = ref();
   const hoverPosition = ref();
-  const dice = ref<
-    { id: number; result: 1 | 2 | 3 | 4 | 5 | 6; isRolling: boolean }[]
-  >([
+  const diceRolling = ref(false);
+  const dice = ref<{ id: number; result: TDiceResult; isRolling: boolean }[]>([
     { id: 1, result: 1, isRolling: false },
     { id: 2, result: 4, isRolling: false },
   ]);
@@ -94,13 +94,7 @@
 
   function generateDiceResults() {
     dice.value = dice.value.map((die) => {
-      const newResult = (Math.floor(Math.random() * 6) + 1) as
-        | 1
-        | 2
-        | 3
-        | 4
-        | 5
-        | 6;
+      const newResult = (Math.floor(Math.random() * 6) + 1) as TDiceResult;
 
       return {
         ...die,
@@ -108,9 +102,12 @@
         isRolling: false,
       };
     });
+
+    diceRolling.value = false;
   }
 
   function rollDice() {
+    diceRolling.value = true;
     dice.value = dice.value.map((die) => ({ ...die, isRolling: true }));
     setTimeout(() => {
       generateDiceResults();
@@ -175,7 +172,8 @@
         />
       </div>
       <button
-        class="bg-cyber-teal text-cyber-pink font-cyber hover:bg-cyber-teal-dark active:bg-cyber-teal-darker rounded-lg p-2"
+        class="bg-cyber-teal text-cyber-pink font-cyber hover:bg-cyber-teal-dark active:bg-cyber-teal-darker rounded-lg p-2 disabled:cursor-not-allowed"
+        :disabled="diceRolling"
         @click="rollDice"
       >
         Roll Dice
