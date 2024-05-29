@@ -3,5 +3,10 @@
 </script>
 
 <template>
-  <WebNavigation></WebNavigation>
+  <div>
+    <WebNavigation />
+    <div class="mt-[90px]">
+      <slot></slot>
+    </div>
+  </div>
 </template>
