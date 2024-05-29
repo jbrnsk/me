@@ -65,4 +65,9 @@
     background-repeat: no-repeat;
     background-size: 250%;
   }
+
+  .bg-blue-500 .sprite {
+    transform: scale(-1, 1);
+    @apply -mx-[6px];
+  }
 </style>
