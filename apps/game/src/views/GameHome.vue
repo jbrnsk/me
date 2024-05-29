@@ -109,6 +109,7 @@
   function rollDice() {
     diceRolling.value = true;
     dice.value = dice.value.map((die) => ({ ...die, isRolling: true }));
+
     setTimeout(() => {
       generateDiceResults();
     }, 1500);

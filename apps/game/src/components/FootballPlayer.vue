@@ -54,6 +54,15 @@
 
 <template>
   <div :class="styles">
-    <component :is="playerComponent" @mousedown.left="handleGrab" />
+    <div :class="`sprite h-[48px] w-[48px]`" @mousedown.left="handleGrab" />
   </div>
 </template>
+
+<style scoped>
+  .sprite {
+    background-color: transparent;
+    background-image: url('/images/RobotSprite.png');
+    background-repeat: no-repeat;
+    background-size: 250%;
+  }
+</style>
