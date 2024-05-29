@@ -12,6 +12,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@canvas-lib': `${path.resolve(__dirname, '../../packages/canvas-lib/src')}`,
+      '@config-lib': `${path.resolve(__dirname, '../../packages/config-lib/src')}`,
       '@ui-lib': `${path.resolve(__dirname, '../../packages/ui-lib/src')}`,
     },
   },

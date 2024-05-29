@@ -21,6 +21,9 @@
   },
   "references": [
     {
+      "path": "apps/demo"
+    },
+    {
       "path": "apps/game"
     },
     {

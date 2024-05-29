@@ -1,186 +1,130 @@
 <script lang="ts" setup>
-  import { computed, onMounted, ref } from 'vue';
-  import { isEqual } from 'lodash-es';
-  import { useRepo } from 'pinia-orm';
+  import { nextTick, onMounted, ref } from 'vue';
 
   import { CrazyAnimation } from '@canvas-lib';
-  import FieldSquare from '@/components/FieldSquare.vue';
-  import FootballPlayer from '@/components/FootballPlayer.vue';
-  import SingleDie from '@/components/SingleDie.vue';
-  import { useTeams } from '@/composables/initialize';
-  import FootballPlayerModel from '@/models/football_player';
 
-  type TDiceResult = 1 | 2 | 3 | 4 | 5 | 6;
-  const rowCount = ref(11);
-  const colCount = ref(20);
-  const activePlayerId = ref();
-  const hoverPosition = ref();
-  const diceRolling = ref(false);
-  const dice = ref<{ id: number; result: TDiceResult; isRolling: boolean }[]>([
-    { id: 1, result: 1, isRolling: false },
-    { id: 2, result: 4, isRolling: false },
-  ]);
+  const showTitle = ref(false);
+  const showStartScreen = ref(false);
+  const showAd = ref(false);
+  const audioPlayer = ref();
 
-  const { savePlayersToStore } = useTeams();
-
-  const players = computed(() => {
-    return useRepo(FootballPlayerModel).withAllRecursive().get();
-  });
-
-  const rows = computed(() => {
-    return Array.apply(null, Array(rowCount.value)).map((row, rowIndex) => {
-      return Array.apply(null, Array(colCount.value)).map((col, colIndex) => {
-        const currentPlayer = getPlayer(rowIndex, colIndex);
-
-        return {
-          id: `${rowIndex}-${colIndex}`,
-          color: getSquareColor(rowIndex, colIndex) as 'light' | 'dark',
-          variant:
-            colIndex === 0 || colIndex === 19
-              ? 'endzone'
-              : ('standard' as 'endzone' | 'standard'),
-          currentPlayer,
-        };
-      });
-    });
-  });
-
-  const fieldStyles = computed(() => {
-    return `h-full w-full bg-cyan-50 flex flex-col items-center ${activePlayerId.value && 'cursor-grabbing'}`;
-  });
-
-  const grabbedPlayer = computed(() => {
-    return useRepo(FootballPlayerModel).find(activePlayerId.value);
-  });
-
-  function getPlayer(row: number, col: number) {
-    return players.value.find((player) => {
-      return isEqual(player.coordinates, [row, col]);
-    });
-  }
-
-  function getSquareColor(rowIndex: number, colIndex: number) {
-    if (rowIndex % 2 === 0) {
-      return colIndex % 2 === 0 ? 'dark' : 'light';
-    }
-
-    return colIndex % 2 === 0 ? 'light' : 'dark';
-  }
-
-  function handlePlayerGrab(id: number, event: MouseEvent) {
-    activePlayerId.value = id;
-    setHoverSpritePosition(event);
-    addEventListener('mousemove', setHoverSpritePosition);
-  }
-
-  function handleDrop(cellId: string) {
-    const formattedCoordinates = cellId
-      .split('-')
-      .map((coordinate) => Number(coordinate));
-    useRepo(FootballPlayerModel)
-      .where('id', activePlayerId.value)
-      .update({ coordinates: formattedCoordinates });
-
-    activePlayerId.value = null;
-    removeEventListener('mousemove', setHoverSpritePosition);
-  }
-
-  function setHoverSpritePosition(event: MouseEvent) {
-    hoverPosition.value = {
-      left: `${event.clientX - 25}px`,
-      top: `${event.clientY - 25}px`,
-    };
-  }
-
-  function generateDiceResults() {
-    dice.value = dice.value.map((die) => {
-      const newResult = (Math.floor(Math.random() * 6) + 1) as TDiceResult;
-
-      return {
-        ...die,
-        result: newResult,
-        isRolling: false,
-      };
-    });
-
-    diceRolling.value = false;
-  }
-
-  function rollDice() {
-    diceRolling.value = true;
-    dice.value = dice.value.map((die) => ({ ...die, isRolling: true }));
+  function initializeStartScreen() {
+    showStartScreen.value = true;
 
     setTimeout(() => {
-      generateDiceResults();
-    }, 1500);
+      showTitle.value = true;
+    }, 1000);
+
+    setTimeout(() => {
+      showAd.value = true;
+    }, 5000);
+
+    nextTick(() => {
+      nextTick(() => {
+        audioPlayer.value.play();
+      });
+    });
+
+    window.removeEventListener('keydown', handleKeydown);
+  }
+
+  function handleKeydown(e: KeyboardEvent) {
+    if (e.code === 'Space' || e.code === 'Enter') {
+      initializeStartScreen();
+    }
   }
 
   onMounted(() => {
-    savePlayersToStore();
+    window.addEventListener('keydown', handleKeydown);
   });
 </script>
 
 <template>
-  <div :class="fieldStyles">
-    <div class="field-container">
-      <FootballPlayer
-        v-if="!!activePlayerId"
-        :id="grabbedPlayer.id"
-        :style="hoverPosition"
-        class="pointer-events-none absolute opacity-50"
-        :active-player-id="activePlayerId"
-        :team="grabbedPlayer.team"
-        :type="grabbedPlayer.type"
-        user-team="home"
-      />
-      <CrazyAnimation
-        class="pointer-events-none absolute -mt-[50px]"
-        :canvas-width="1000"
-        :canvas-height="600"
-        :spark-chance="0"
-      />
-      <div v-for="(row, rowIndex) in rows" :key="rowIndex" class="flex">
-        <FieldSquare
-          v-for="cell in row"
-          :key="cell.id"
-          :ref="`square-${cell.id}`"
-          :color="cell.color"
-          :variant="cell.variant"
-          @mouseup.left="handleDrop(cell.id)"
+  <div class="h-full overflow-hidden" @mousedown.left="initializeStartScreen">
+    <audio id="music-player" ref="audioPlayer" loop>
+      <source src="/music/Cyberbowl3930_TitleTrack.mp3" type="audio/mp3" />
+      Your browser does not support html 5 audio
+    </audio>
+    <div v-if="showStartScreen" class="flex h-full items-center justify-center">
+      <Transition>
+        <span
+          v-if="showTitle"
+          class="shimmer font-cyber text-cyber-pink absolute z-10 text-center text-2xl sm:text-5xl xl:text-7xl"
         >
-          <template v-if="!!cell.currentPlayer">
-            <FootballPlayer
-              :id="cell.currentPlayer.id"
-              :active-player-id="activePlayerId"
-              :team="cell.currentPlayer.team"
-              :type="cell.currentPlayer.type"
-              user-team="home"
-              @grab="
-                (event) => handlePlayerGrab(cell.currentPlayer?.id ?? 0, event)
-              "
-            />
-          </template>
-        </FieldSquare>
-      </div>
+          Cyberbowl 3930
+        </span>
+      </Transition>
+      <Transition>
+        <div
+          v-if="showAd"
+          class="absolute bottom-8 z-10 max-w-[90%] sm:bottom-2 sm:right-2 2xl:right-8"
+        >
+          <div
+            class="font-cyber flex flex-col gap-2 rounded-sm bg-white py-1 text-black 2xl:bg-black 2xl:text-white"
+          >
+            <span class="blinking_text px-3 text-sm sm:text-lg xl:py-1">
+              Coming Soon!
+            </span>
+            <div
+              class="lg: text-xxs flex flex-col gap-2 border-t-2 border-solid border-gray-200 px-3 py-2 sm:text-xs lg:gap-4 xl:py-4"
+            >
+              <span class="text-cyber-pink 2xl:bg-black">
+                Follow the development on Twitch:
+              </span>
+              <a
+                href="https://www.twitch.tv/tenderrobot"
+                class="2xl:bg-black"
+                target="_blank"
+              >
+                https://www.twitch.tv/tenderrobot
+              </a>
+              <span class="text-cyber-teal 2xl:bg-black">
+                Mon-Thur 11am-4pm Central
+              </span>
+            </div>
+          </div>
+        </div>
+      </Transition>
+      <CrazyAnimation
+        class="pointer-events-none absolute"
+        :spark-chance="0.0005"
+      />
     </div>
-    <div class="mt-8 flex flex-col items-center">
-      <div class="mb-4 flex">
-        <SingleDie
-          v-for="die in dice"
-          :key="die.id"
-          :result="die.result"
-          :is-rolling="die.isRolling"
-        />
+    <div v-else class="h-full">
+      <div class="flex h-full flex-col items-center justify-center">
+        <span
+          class="blinking_text font-cyber z-10 max-w-[80%] text-center text-2xl uppercase text-white md:text-4xl xl:text-5xl"
+        >
+          Press Any Button To Continue
+        </span>
+        <span
+          class="font-cyber absolute bottom-2 right-2 z-10 text-base uppercase text-white sm:right-8 md:text-2xl xl:text-3xl"
+        >
+          Credits 0
+        </span>
       </div>
-      <button
-        class="bg-cyber-teal text-cyber-pink font-cyber hover:bg-cyber-teal-dark active:bg-cyber-teal-darker rounded-lg p-2 disabled:cursor-not-allowed"
-        :disabled="diceRolling"
-        @click="rollDice"
-      >
-        Roll Dice
-      </button>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .blinking_text {
+    animation: blinker 1.8s linear infinite;
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 2s cubic-bezier(1, 1.5, 1, 1.5);
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+  }
+</style>

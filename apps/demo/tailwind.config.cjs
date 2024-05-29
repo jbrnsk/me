@@ -4,5 +4,6 @@ module.exports = {
     content: [
         './src/**/*.{html,js,ts,jsx,tsx,vue}',
         '../../packages/canvas-lib/src/**/*.{html,js,ts,jsx,tsx,vue}',
+        '../../packages/ui-lib/src/**/*.{html,js,ts,jsx,tsx,vue}',
     ],
 };

@@ -2,7 +2,7 @@
   "name": "@cyberbowl/website",
   "private": true,
   "scripts": {
-    "dev": "vite --port 3334 --open",
+    "dev": "vite --port 3335 --open",
     "build": "vite build",
     "preview": "vite preview",
     "preview-https": "serve dist",
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@cyberbowl/config-lib": "workspace:*",
+    "@cyberbowl/ui-lib": "workspace:*",
     "@types/lodash-es": "^4.17.12",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.19",
