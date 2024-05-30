@@ -4,6 +4,6 @@
 
 <template>
   <WebPage>
-    <div>this is the page content</div>
+    <div>Blog</div>
   </WebPage>
 </template>
