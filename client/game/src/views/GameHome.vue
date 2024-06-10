@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import { nextTick, ref } from 'vue';
+  import axios from 'axios';
 
   import { CrazyAnimation } from '@canvas-lib';
 
@@ -10,6 +11,10 @@
 
   function initializeStartScreen() {
     showStartScreen.value = true;
+    axios.post('http://localhost:8080', {
+      name: 'joe',
+      mail: 'joe@gmail.com',
+    });
 
     setTimeout(() => {
       showTitle.value = true;
