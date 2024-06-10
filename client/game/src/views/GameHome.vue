@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { nextTick, onMounted, ref } from 'vue';
+  import { nextTick, ref } from 'vue';
 
   import { CrazyAnimation } from '@canvas-lib';
 
@@ -33,10 +33,6 @@
       initializeStartScreen();
     }
   }
-
-  onMounted(() => {
-    window.addEventListener('keydown', handleKeydown);
-  });
 </script>
 
 <template>

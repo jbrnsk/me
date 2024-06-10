@@ -13,3 +13,10 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+vite.config.js.timestamp-*
+docs/.vitepress/cache
+.nyc_output
+example/dist
+package-lock.json
+pnpm-lock.yaml

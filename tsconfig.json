@@ -21,19 +21,22 @@
   },
   "references": [
     {
-      "path": "apps/demo"
+      "path": "client/demo"
     },
     {
-      "path": "apps/game"
+      "path": "client/game"
     },
     {
-      "path": "apps/website"
+      "path": "client/website"
     },
     {
       "path": "packages/canvas-lib"
     },
     {
       "path": "packages/config-lib"
+    },
+    {
+      "path": "server/api"
     }
   ]
 }
