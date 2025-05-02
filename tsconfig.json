@@ -27,13 +27,13 @@
       "path": "client/apps/portfolio"
     },
     {
-      "path": "client/apps/website"
-    },
-    {
       "path": "packages/packages/canvas-lib"
     },
     {
       "path": "packages/packages/config-lib"
+    },
+    {
+      "path": "packages/packages/ui-lib"
     },
     {
       "path": "server/packages/api"

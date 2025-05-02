@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -15,14 +15,14 @@ module.exports = {
       '4xl': '40px',
       '5xl': '50px',
       '6xl': '60px',
-      '7xl': '70px'
+      '7xl': '70px',
     },
     screens: {
-      'sm': '641px',
-      'md': '769px',
-      'lg': '1025px',
-      'xl': '1281px',
-      '2xl': '1537px'
+      sm: '641px',
+      md: '769px',
+      lg: '1025px',
+      xl: '1281px',
+      '2xl': '1537px',
     },
     extend: {
       colors: {
@@ -40,12 +40,12 @@ module.exports = {
           purple: '#8A2BE2',
           pink: '#FF69B4',
           yellow: '#FFD700',
-          chrome: '#B8B8B8'
-        }
+          chrome: '#B8B8B8',
+        },
       },
       fontFamily: {
-        'cyber': ['PressStart', ...defaultTheme.fontFamily.sans],
-      }
-    }
+        cyber: ['PressStart', ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
 };

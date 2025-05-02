@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import PixelDivider from '@/components/PixelDivider.vue';
+  import { ContactLink, SectionCard } from '../../components';
 </script>
 
 <template>
@@ -122,7 +123,7 @@
         they’re still at the core of how I think.
       </p>
       <ul class="list-inside list-disc space-y-2 text-gray-300">
-        <li class="section-card">
+        <SectionCard component="li">
           Taught Unity, Swift, and game design to middle schoolers at
           <a
             href="https://www.helloworldcs.org"
@@ -133,8 +134,8 @@
             {{ 'Hello World' }}
           </a>
           in Austin (2022)
-        </li>
-        <li class="section-card">
+        </SectionCard>
+        <SectionCard component="li">
           Created a game prototype for a turn-based tactical fighting game
           called
           <a
@@ -146,8 +147,8 @@
             {{ 'Upville' }}
           </a>
           <span>, made in Unity and podcasted with a friend.</span>
-        </li>
-        <li class="section-card">
+        </SectionCard>
+        <SectionCard component="li">
           Led a team of grad school classmates to build
           <a
             href="https://dl.acm.org/doi/10.1145/2793107.2810272"
@@ -159,8 +160,8 @@
           </a>
           <span>,</span>
           an award-winning graduate game recognized at ACM SIGGRAPH.
-        </li>
-        <li class="section-card">
+        </SectionCard>
+        <SectionCard component="li">
           Published a Master's thesis on digital tools for board game
           prototyping
           <a
@@ -172,8 +173,8 @@
             {{ 'Prototype Gamer' }}
           </a>
           (Drexel, 2017)
-        </li>
-        <li class="section-card">
+        </SectionCard>
+        <SectionCard component="li">
           Accredited playtester in 5 published board games. I also founded the
           <a
             href="https://www.meetup.com/berlin-board-gamers/"
@@ -184,59 +185,54 @@
             {{ 'Berlin Board Gamers' }}
           </a>
           <span>, a ~12,000 member community still thriving today.</span>
-        </li>
+        </SectionCard>
       </ul>
     </section>
     <PixelDivider index="c" />
     <section>
-      <div class="section-card">
+      <SectionCard component="div">
         <h2
-          class="font-cyber text-cyber-teal mb-8 text-xl uppercase tracking-widest"
+          class="font-cyber text-cyber-teal mb-4 text-xl uppercase tracking-widest"
         >
           Contact
         </h2>
         <ul class="contact-links space-y-1 text-gray-300">
           <li>
-            <a href="mailto:me@josephbaranoski.com" aria-label="Email Joe">
+            <ContactLink
+              class="mt-0"
+              ariaLabel="Email Joseph"
+              href="mailto:me@josephbaranoski.com"
+            >
               Email
-            </a>
+            </ContactLink>
           </li>
           <li>
-            <a
+            <ContactLink
+              ariaLabel="GitHub Profile"
               href="https://github.com/jbrnsk"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Profile"
-              tabindex="0"
             >
               GitHub
-            </a>
+            </ContactLink>
           </li>
           <li>
-            <a
+            <ContactLink
+              ariaLabel="LinkedIn"
               href="https://www.linkedin.com/in/joseph-baranoski-9765a549/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkeIn Profile"
-              tabindex="0"
             >
               LinkedIn
-            </a>
+            </ContactLink>
           </li>
           <li>
-            <a
-              class="text-cyber-green mt-4 flex items-center hover:underline"
+            <ContactLink
+              ariaLabel="Download Résumé"
               href="/docs/JosephBaranoski_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              tabindex="0"
             >
-              <span class="-mr-1">⬇</span>
+              <span class="mr-1">⬇</span>
               Download Résumé
-            </a>
+            </ContactLink>
           </li>
         </ul>
-      </div>
+      </SectionCard>
     </section>
     <PixelDivider index="a" />
     <section class="human-bit">
@@ -261,15 +257,6 @@
 </template>
 
 <style scoped>
-  .section-card {
-    background-color: rgba(255, 255, 255, 0.03);
-    border-radius: 8px;
-    color: #cccccc;
-    margin-bottom: 0.75rem;
-    padding: 0.75rem;
-    @apply border border-neutral-700 bg-neutral-900;
-  }
-
   .human-bit {
     font-style: italic;
     color: #cccccc;
@@ -277,13 +264,6 @@
     max-width: 60ch;
     margin: 0 auto;
     padding: 2rem 1rem;
-  }
-  .contact-links a {
-    display: block;
-    margin: 0.5rem 0;
-    font-family: 'Courier New', monospace;
-    text-decoration: none;
-    @apply text-cyber-pink;
   }
 
   .contact-links a:hover {

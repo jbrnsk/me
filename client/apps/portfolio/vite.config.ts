@@ -1,5 +1,5 @@
 import vue from '@vitejs/plugin-vue';
-import path from 'path';
+import * as path from 'path';
 import { fileURLToPath, URL } from 'url';
 import { defineConfig } from 'vite';
 import { manualChunksPlugin } from 'vite-plugin-webpackchunkname';
