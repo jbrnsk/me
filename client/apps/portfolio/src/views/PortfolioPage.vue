@@ -253,6 +253,17 @@
         />
       </div>
     </section>
+    <p class="font-cyber text-cyber-blue text-xxs mt-16 text-center">
+      ©2025 Joseph Baranoski |
+      <a
+        class="underline"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/jbrnsk/me"
+      >
+        Source Code on GitHub
+      </a>
+    </p>
   </main>
 </template>
 
@@ -263,6 +274,5 @@
     text-align: center;
     max-width: 60ch;
     margin: 0 auto;
-    padding: 2rem 1rem;
   }
 </style>
