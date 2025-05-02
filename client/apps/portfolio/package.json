@@ -1,5 +1,5 @@
 {
-  "name": "@cyberbowl/game",
+  "name": "@me/portfolio",
   "private": true,
   "scripts": {
     "dev": "vite --port 3334 --open",

@@ -3,3 +3,8 @@
 #app {
   @apply bg-black ;
 }
+
+html, body, #app {
+  height: 100%;
+  overflow-y: auto;
+}

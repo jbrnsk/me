@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-  import { onMounted, reactive, ref } from 'vue';
+  import { onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 
+  const animationFrameId = ref<null | number>(null);
+  const resizeListener = ref<null | (() => void)>(null);
   const props = withDefaults(
     defineProps<{
       canvasWidth?: number;
@@ -46,7 +48,7 @@
   });
 
   function loop() {
-    window.requestAnimationFrame(loop);
+    animationFrameId.value = window.requestAnimationFrame(loop);
     ++tick.value;
 
     ctx.value.globalCompositeOperation = 'source-over';
@@ -141,7 +143,7 @@
       );
   };
 
-  window.addEventListener('resize', function () {
+  function handleResize() {
     w.value = c.value.width = window.innerWidth;
     h.value = c.value.height = window.innerHeight;
     ctx.value.fillStyle = 'black';
@@ -152,7 +154,7 @@
 
     dieX.value = w.value / 2 / opts.len;
     dieY.value = h.value / 2 / opts.len;
-  });
+  }
 
   onMounted(() => {
     ctx.value = c.value.getContext('2d');
@@ -169,6 +171,23 @@
     baseRad.value = (Math.PI * 2) / 4;
 
     loop();
+
+    window.addEventListener('resize', handleResize);
+    resizeListener.value = handleResize;
+  });
+
+  onBeforeUnmount(() => {
+    if (animationFrameId.value) {
+      window.cancelAnimationFrame(animationFrameId.value);
+      animationFrameId.value = null;
+    }
+
+    if (resizeListener.value) {
+      window.removeEventListener('resize', resizeListener.value);
+      resizeListener.value = null;
+    }
+    lines.value = [];
+    ctx.value = null;
   });
 </script>
 

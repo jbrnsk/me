@@ -1,9 +1,11 @@
 import cors from '@fastify/cors';
+import postgres from '@fastify/postgres';
 import fastify from 'fastify';
 
 import { User, UserType } from './types';
 
 const server = fastify();
+
 server.register(cors, {
   origin: (origin, cb) => {
     const hostname = new URL(origin ?? '').hostname;
@@ -15,6 +17,10 @@ server.register(cors, {
     // Generate an error on other origins, disabling access
     cb(new Error('Not allowed'), false);
   },
+});
+
+server.register(postgres, {
+  connectionString: 'postgres://postgres@localhost/postgres',
 });
 
 server.get('/ping', async () => {

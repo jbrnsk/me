@@ -7,6 +7,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "home" */ '@/views/GameHome.vue'),
   },
+  {
+    path: '/portfolio',
+    name: 'Portfolio',
+    component: () =>
+      import(/* webpackChunkName: "home" */ '@/views/PortfolioLanding.vue'),
+  },
   { path: '/:catchAll(.*)', redirect: '/' },
 ];
 
