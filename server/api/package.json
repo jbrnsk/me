@@ -1,5 +1,5 @@
 {
-  "name": "@cyberbowl/api",
+  "name": "@me/api",
   "private": true,
   "main": "src/index.js",
   "scripts": {

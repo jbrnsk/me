@@ -1,5 +1,5 @@
 {
-  "name": "@cyberbowl/config-lib",
+  "name": "@me/config-lib",
   "private": "true",
   "version": "0.0.0",
   "dependencies": {

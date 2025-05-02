@@ -21,7 +21,7 @@
   },
   "references": [
     {
-      "path": "client/apps/demo"
+      "path": "client/apps/cyberbowl"
     },
     {
       "path": "client/apps/portfolio"

@@ -1,5 +1,5 @@
 {
-  "name": "@cyberbowl/canvas-lib",
+  "name": "@me/canvas-lib",
   "private": true,
   "version": "0.0.0",
   "module": "./dist/components.es.js",

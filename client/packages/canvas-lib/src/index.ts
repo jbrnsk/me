@@ -1,1 +1,1 @@
-export { default as CrazyAnimation } from './components/CrazyAnimation.vue';
+export { default as GameStartCanvas } from './components/GameStartCanvas.vue';

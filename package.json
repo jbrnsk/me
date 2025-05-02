@@ -1,11 +1,10 @@
 {
-  "name": "cyberbowl",
-  "packageName": "Cyberbowl",
+  "name": "me",
+  "packageName": "me",
   "private": false,
   "version": "0.0.1",
   "workspaces": [
     "apps/**",
-    "packages/**",
     "server/**"
   ],
   "type": "module",
@@ -40,10 +39,9 @@
     "typescript": "^5.4.5"
   },
   "scripts": {
-    "demo": "pnpm --filter @cyberbowl/demo run dev",
+    "cyberbowl": "pnpm --filter @me/cyberbowl run dev",
     "portfolio": "pnpm --filter @me/portfolio run dev",
     "portfolio:build": "pnpm --filter @me/portfolio run build",
-    "website": "pnpm --filter @cyberbowl/website run dev",
-    "api": "pnpm --filter @cyberbowl/api run dev"
+    "api": "pnpm --filter @me/api run dev"
   }
 }

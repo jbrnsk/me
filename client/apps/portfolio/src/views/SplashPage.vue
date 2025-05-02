@@ -2,7 +2,7 @@
   import { nextTick, onMounted, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
-  import { CrazyAnimation } from '@canvas-lib';
+  import { GameStartCanvas } from '@canvas-lib';
   import { playAudio } from '@/stores/audio';
 
   const showTitle = ref(false);
@@ -79,7 +79,7 @@
           </div>
         </div>
       </Transition>
-      <CrazyAnimation
+      <GameStartCanvas
         class="pointer-events-none absolute"
         :spark-chance="0.0005"
       />
