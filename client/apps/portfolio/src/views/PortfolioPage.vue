@@ -256,7 +256,7 @@
   </main>
 </template>
 
-<style scoped>
+<style>
   .human-bit {
     font-style: italic;
     color: #cccccc;
@@ -264,9 +264,5 @@
     max-width: 60ch;
     margin: 0 auto;
     padding: 2rem 1rem;
-  }
-
-  .contact-links a:hover {
-    text-decoration: underline;
   }
 </style>

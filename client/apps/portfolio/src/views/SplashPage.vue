@@ -116,7 +116,7 @@
   </div>
 </template>
 
-<style scoped>
+<style>
   .cta-container {
     position: absolute;
     bottom: 10%;
