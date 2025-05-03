@@ -254,7 +254,7 @@
       </div>
     </section>
     <p class="font-cyber text-cyber-blue text-xxs mt-16 text-center">
-      ©2025 Joseph Baranoski |
+      © 2025 Joseph Baranoski |
       <a
         class="underline"
         target="_blank"
