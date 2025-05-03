@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-  import PixelDivider from '@/components/PixelDivider.vue';
-  import { ContactLink, SectionCard } from '../../components';
+  import { PixelDivider, ContactLink, SectionCard  } from '@/components';
 </script>
 
 <template>
