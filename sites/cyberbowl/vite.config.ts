@@ -10,10 +10,9 @@ import { manualChunksPlugin } from 'vite-plugin-webpackchunkname';
 export default defineConfig({
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@canvas-lib': `${path.resolve(__dirname, '../../packages/canvas-lib/src')}`,
-      '@config-lib': `${path.resolve(__dirname, '../../packages/config-lib/src')}`,
-      '@ui-lib': `${path.resolve(__dirname, '../../packages/ui-lib/src')}`,
+      src: fileURLToPath(new URL('./src', import.meta.url)),
+      '@me/canvas-lib': `${path.resolve(__dirname, '../../packages/canvas-lib/src')}`,
+      '@me/ui-lib': `${path.resolve(__dirname, '../../packages/ui-lib/src')}`,
     },
   },
   plugins: [vue(), manualChunksPlugin()],

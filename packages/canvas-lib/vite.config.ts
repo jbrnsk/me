@@ -16,7 +16,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(dirname, 'src/index.ts'),
-      name: '@canvas-lib',
+      name: '@me/canvas-lib',
     },
     sourcemap: true,
     rollupOptions: {
@@ -30,7 +30,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(dirname, '/'),
+      src: path.resolve(dirname, '/'),
     },
   },
 });

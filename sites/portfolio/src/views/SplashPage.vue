@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import { nextTick, onMounted, ref } from 'vue';
   import { useRouter } from 'vue-router';
-  import { GameStartCanvas } from '@canvas-lib';
+  import { GameStartCanvas } from '@me/canvas-lib';
   import { playAudio } from 'src/stores/audio';
 
   const showTitle = ref(false);

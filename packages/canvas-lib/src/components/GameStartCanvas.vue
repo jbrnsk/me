@@ -1,6 +1,116 @@
 <script lang="ts" setup>
   import { onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 
+  interface LineType {
+    x: number;
+    y: number;
+    addedX: number;
+    addedY: number;
+    rad: number;
+    lightInputMultiplier: number;
+    color: string;
+    cumulativeTime: number;
+    time: number;
+    targetTime: number;
+    reset: () => void;
+    beginPhase: () => void;
+    step: () => void;
+  }
+  class Line implements LineType {
+    x = 0;
+    y = 0;
+    addedX = 0;
+    addedY = 0;
+    rad = 0;
+    lightInputMultiplier = 0;
+    color = '';
+    cumulativeTime = 0;
+    time = 0;
+    targetTime = 0;
+
+    constructor() {
+      this.reset();
+    }
+
+    reset() {
+      this.x = 0;
+      this.y = 0;
+      this.addedX = 0;
+      this.addedY = 0;
+      this.rad = 0;
+      this.lightInputMultiplier =
+        opts.baseLightInputMultiplier +
+        opts.addedLightInputMultiplier * Math.random();
+      this.color = opts.color.replace(
+        'hue',
+        (tick.value * opts.hueChange).toString(),
+      );
+      this.cumulativeTime = 0;
+      this.beginPhase();
+    }
+    beginPhase() {
+      this.x += this.addedX;
+      this.y += this.addedY;
+
+      this.time = 0;
+      this.targetTime = (opts.baseTime + opts.addedTime * Math.random()) | 0;
+
+      this.rad += baseRad.value * (Math.random() < 0.5 ? 1 : -1);
+      this.addedX = Math.cos(this.rad);
+      this.addedY = Math.sin(this.rad);
+
+      if (
+        Math.random() < opts.dieChance ||
+        this.x > dieX.value ||
+        this.x < -dieX.value ||
+        this.y > dieY.value ||
+        this.y < -dieY.value
+      )
+        this.reset();
+    }
+    step() {
+      ++this.time;
+      ++this.cumulativeTime;
+
+      if (this.time >= this.targetTime) this.beginPhase();
+
+      var prop = this.time / this.targetTime,
+        wave = Math.sin((prop * Math.PI) / 2),
+        x = this.addedX * wave,
+        y = this.addedY * wave;
+
+      ctx.value.shadowBlur = prop * opts.shadowToTimePropMult;
+      ctx.value.fillStyle = ctx.value.shadowColor = this.color.replace(
+        'light',
+        (
+          opts.baseLight +
+          opts.addedLight *
+            Math.sin(this.cumulativeTime * this.lightInputMultiplier)
+        ).toString(),
+      );
+      ctx.value.fillRect(
+        opts.cx + (this.x + x) * opts.len,
+        opts.cy + (this.y + y) * opts.len,
+        2,
+        2,
+      );
+
+      if (Math.random() < opts.sparkChance)
+        ctx.value.fillRect(
+          opts.cx +
+            (this.x + x) * opts.len +
+            Math.random() * opts.sparkDist * (Math.random() < 0.5 ? 1 : -1) -
+            opts.sparkSize / 2,
+          opts.cy +
+            (this.y + y) * opts.len +
+            Math.random() * opts.sparkDist * (Math.random() < 0.5 ? 1 : -1) -
+            opts.sparkSize / 2,
+          opts.sparkSize,
+          opts.sparkSize,
+        );
+    }
+  }
+
   const animationFrameId = ref<null | number>(null);
   const resizeListener = ref<null | (() => void)>(null);
   const props = withDefaults(
@@ -21,7 +131,7 @@
   const w = ref();
   const h = ref();
   const tick = ref(0);
-  const lines = ref([]);
+  const lines = ref<LineType[]>([]);
   const dieX = ref();
   const dieY = ref();
   const baseRad = ref();
@@ -53,7 +163,10 @@
 
     ctx.value.globalCompositeOperation = 'source-over';
     ctx.value.shadowBlur = 0;
-    ctx.value.fillStyle = 'rgba(0,0,0,alp)'.replace('alp', opts.repaintAlpha);
+    ctx.value.fillStyle = 'rgba(0,0,0,alp)'.replace(
+      'alp',
+      opts.repaintAlpha?.toString(),
+    );
     ctx.value.fillRect(0, 0, w, h);
     ctx.value.globalCompositeOperation = 'lighter';
 
@@ -64,85 +177,6 @@
       line.step();
     });
   }
-
-  function Line() {
-    this.reset();
-  }
-
-  Line.prototype.reset = function () {
-    this.x = 0;
-    this.y = 0;
-    this.addedX = 0;
-    this.addedY = 0;
-    this.rad = 0;
-    this.lightInputMultiplier =
-      opts.baseLightInputMultiplier +
-      opts.addedLightInputMultiplier * Math.random();
-    this.color = opts.color.replace('hue', tick.value * opts.hueChange);
-    this.cumulativeTime = 0;
-    this.beginPhase();
-  };
-
-  Line.prototype.beginPhase = function () {
-    this.x += this.addedX;
-    this.y += this.addedY;
-
-    this.time = 0;
-    this.targetTime = (opts.baseTime + opts.addedTime * Math.random()) | 0;
-
-    this.rad += baseRad.value * (Math.random() < 0.5 ? 1 : -1);
-    this.addedX = Math.cos(this.rad);
-    this.addedY = Math.sin(this.rad);
-
-    if (
-      Math.random() < opts.dieChance ||
-      this.x > dieX.value ||
-      this.x < -dieX.value ||
-      this.y > dieY.value ||
-      this.y < -dieY.value
-    )
-      this.reset();
-  };
-  Line.prototype.step = function () {
-    ++this.time;
-    ++this.cumulativeTime;
-
-    if (this.time >= this.targetTime) this.beginPhase();
-
-    var prop = this.time / this.targetTime,
-      wave = Math.sin((prop * Math.PI) / 2),
-      x = this.addedX * wave,
-      y = this.addedY * wave;
-
-    ctx.value.shadowBlur = prop * opts.shadowToTimePropMult;
-    ctx.value.fillStyle = ctx.value.shadowColor = this.color.replace(
-      'light',
-      opts.baseLight +
-        opts.addedLight *
-          Math.sin(this.cumulativeTime * this.lightInputMultiplier),
-    );
-    ctx.value.fillRect(
-      opts.cx + (this.x + x) * opts.len,
-      opts.cy + (this.y + y) * opts.len,
-      2,
-      2,
-    );
-
-    if (Math.random() < opts.sparkChance)
-      ctx.value.fillRect(
-        opts.cx +
-          (this.x + x) * opts.len +
-          Math.random() * opts.sparkDist * (Math.random() < 0.5 ? 1 : -1) -
-          opts.sparkSize / 2,
-        opts.cy +
-          (this.y + y) * opts.len +
-          Math.random() * opts.sparkDist * (Math.random() < 0.5 ? 1 : -1) -
-          opts.sparkSize / 2,
-        opts.sparkSize,
-        opts.sparkSize,
-      );
-  };
-
   function handleResize() {
     w.value = c.value.width = window.innerWidth;
     h.value = c.value.height = window.innerHeight;

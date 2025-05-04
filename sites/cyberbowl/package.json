@@ -8,6 +8,8 @@
     "lint": "eslint \"**/*.{vue,ts,js}\""
   },
   "dependencies": {
+    "@me/canvas-lib": "workspace:*",
+    "@me/ui-lib": "workspace:*",
     "@vueuse/core": "^10.9.0",
     "lodash-es": "^4.17.21",
     "pinia": "^2.1.7",
@@ -18,7 +20,6 @@
   },
   "devDependencies": {
     "@me/config-lib": "workspace:*",
-    "@me/ui-lib": "workspace:*",
     "@types/lodash-es": "^4.17.12",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.19",

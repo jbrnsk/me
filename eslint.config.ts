@@ -3,6 +3,7 @@ import tsPlugin from '@typescript-eslint/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
 import prettierPlugin from 'eslint-plugin-prettier';
 import sortPlugin from 'eslint-plugin-simple-import-sort';
+import vuePlugin from 'eslint-plugin-vue';
 
 export default [
   {
@@ -19,26 +20,20 @@ export default [
       },
     },
     plugins: {
+      vue: vuePlugin,
       prettier: prettierPlugin,
       '@typescript-eslint': tsPlugin,
       'simple-import-sort': sortPlugin,
       import: importPlugin,
     },
     rules: {
+      ...vuePlugin.configs.recommended.rules,
+      ...tsPlugin.configs.strict.rules,
       'simple-import-sort/imports': [
         'error',
         {
           groups: [
-            [
-              '^\\u0000',
-              '^node:',
-              '^vue',
-              '^@?\\w',
-              '^@canvas-lib',
-              '^@config-lib',
-              '^src/',
-              '^\\.',
-            ],
+            ['^\\u0000', '^node:', '^vue', '^@?\\w', '^@me/', '^src/', '^\\.'],
           ],
         },
       ],
@@ -51,10 +46,9 @@ export default [
       ],
       'simple-import-sort/exports': 'error',
       'import/first': 'error',
-      'import/named': 'off',
       'import/newline-after-import': 'error',
       'import/no-duplicates': 'error',
-      'no-unused-vars': 'off',
+      'prettier/prettier': 'error',
     },
   },
 ];

@@ -5,15 +5,17 @@
     "build": "vite build",
     "preview": "vite preview",
     "preview-https": "serve dist",
-    "lint": "eslint \"**/*.{vue,ts,js}\""
+    "lint": "eslint \"**/*.{vue,ts,js}\"",
+    "type-check": "npx vue-tsc"
   },
   "dependencies": {
+    "@me/canvas-lib": "workspace:*",
+    "@me/ui-lib": "workspace:*",
     "vue": "^3.5.13",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@me/config-lib": "workspace:*",
-    "@me/ui-lib": "workspace:*",
     "@vitejs/plugin-vue": "^5.2.3",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",

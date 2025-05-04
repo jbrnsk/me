@@ -1,6 +1,5 @@
 import { useRepo } from 'pinia-orm';
-
-import FootballPlayerModel from '@/models/football_player';
+import FootballPlayerModel from 'src/models/football_player';
 
 export const useTeams = () => {
   const homeTeam = [

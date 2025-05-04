@@ -2,13 +2,12 @@
   import { computed, onMounted, ref } from 'vue';
   import { isEqual } from 'lodash-es';
   import { useRepo } from 'pinia-orm';
-  import { CrazyAnimation } from '@canvas-lib';
-
-  import FieldSquare from '@/components/FieldSquare.vue';
-  import FootballPlayer from '@/components/FootballPlayer.vue';
-  import SingleDie from '@/components/SingleDie.vue';
-  import { useTeams } from '@/composables/initialize';
-  import FootballPlayerModel from '@/models/football_player';
+  import { GameStartCanvas } from '@me/canvas-lib';
+  import FieldSquare from 'src/components/FieldSquare.vue';
+  import FootballPlayer from 'src/components/FootballPlayer.vue';
+  import SingleDie from 'src/components/SingleDie.vue';
+  import { useTeams } from 'src/composables/initialize';
+  import FootballPlayerModel from 'src/models/football_player';
 
   type TDiceResult = 1 | 2 | 3 | 4 | 5 | 6;
   const rowCount = ref(11);
@@ -133,7 +132,7 @@
         :type="grabbedPlayer.type"
         user-team="home"
       />
-      <CrazyAnimation
+      <GameStartCanvas
         class="pointer-events-none absolute -mt-[50px]"
         :canvas-width="1000"
         :canvas-height="600"

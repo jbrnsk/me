@@ -41,6 +41,7 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
+    "canvas-lib:build": "pnpm --filter @me/canvas-lib run build:types",
     "cyberbowl": "pnpm --filter @me/cyberbowl run dev",
     "invest": "pnpm --filter @me/investment-gpt run dev",
     "portfolio": "pnpm --filter @me/portfolio run dev",

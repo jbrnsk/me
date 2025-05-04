@@ -1,10 +1,9 @@
 <script lang="ts" setup>
   import { computed, markRaw } from 'vue';
-
-  import PlayerBlitzer from '@/components/icons/PlayerBlitzer.vue';
-  import PlayerLineman from '@/components/icons/PlayerLineman.vue';
-  import PlayerThrower from '@/components/icons/PlayerThrower.vue';
-  import type { TPlayerPosition } from '@/models/football_player';
+  import PlayerBlitzer from 'src/components/icons/PlayerBlitzer.vue';
+  import PlayerLineman from 'src/components/icons/PlayerLineman.vue';
+  import PlayerThrower from 'src/components/icons/PlayerThrower.vue';
+  import type { TPlayerPosition } from 'src/models/football_player';
 
   const props = defineProps<{
     activePlayerId?: number;

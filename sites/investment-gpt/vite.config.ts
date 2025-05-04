@@ -11,7 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       src: fileURLToPath(new URL('./src', import.meta.url)),
-      '@ui-lib': `${path.resolve(__dirname, '../../packages/ui-lib/src')}`,
+      '@me/ui-lib': `${path.resolve(__dirname, '../../packages/ui-lib/src')}`,
     },
   },
   plugins: [vue(), manualChunksPlugin()],

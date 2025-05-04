@@ -136,6 +136,12 @@ importers:
 
   sites/cyberbowl:
     dependencies:
+      '@me/canvas-lib':
+        specifier: workspace:*
+        version: link:../../packages/canvas-lib
+      '@me/ui-lib':
+        specifier: workspace:*
+        version: link:../../packages/ui-lib
       '@vueuse/core':
         specifier: ^10.9.0
         version: 10.9.0(vue@3.5.13(typescript@5.8.3))
@@ -161,9 +167,6 @@ importers:
       '@me/config-lib':
         specifier: workspace:*
         version: link:../../packages/config-lib
-      '@me/ui-lib':
-        specifier: workspace:*
-        version: link:../../packages/ui-lib
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -197,6 +200,9 @@ importers:
 
   sites/investment-gpt:
     dependencies:
+      '@me/ui-lib':
+        specifier: workspace:*
+        version: link:../../packages/ui-lib
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.8.3)
@@ -207,9 +213,6 @@ importers:
       '@me/config-lib':
         specifier: workspace:*
         version: link:../../packages/config-lib
-      '@me/ui-lib':
-        specifier: workspace:*
-        version: link:../../packages/ui-lib
       '@vitejs/plugin-vue':
         specifier: ^5.2.3
         version: 5.2.3(vite@6.3.4(@types/node@20.14.2)(jiti@2.4.2)(yaml@2.4.2))(vue@3.5.13(typescript@5.8.3))
@@ -237,6 +240,12 @@ importers:
 
   sites/portfolio:
     dependencies:
+      '@me/canvas-lib':
+        specifier: workspace:*
+        version: link:../../packages/canvas-lib
+      '@me/ui-lib':
+        specifier: workspace:*
+        version: link:../../packages/ui-lib
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.8.3)
@@ -247,9 +256,6 @@ importers:
       '@me/config-lib':
         specifier: workspace:*
         version: link:../../packages/config-lib
-      '@me/ui-lib':
-        specifier: workspace:*
-        version: link:../../packages/ui-lib
       '@vitejs/plugin-vue':
         specifier: ^5.2.3
         version: 5.2.3(vite@6.3.4(@types/node@20.14.2)(jiti@2.4.2)(yaml@2.4.2))(vue@3.5.13(typescript@5.8.3))
