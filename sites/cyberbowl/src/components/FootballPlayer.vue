@@ -33,7 +33,7 @@
     return 'bg-blue-500';
   });
 
-  const playerComponent = computed(() => {
+  const _playerComponent = computed(() => {
     switch (props.type) {
       case 'blitzer':
         return markRaw(PlayerBlitzer);

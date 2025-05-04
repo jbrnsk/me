@@ -2,8 +2,8 @@
   import { computed, onMounted, ref } from 'vue';
   import { isEqual } from 'lodash-es';
   import { useRepo } from 'pinia-orm';
-
   import { CrazyAnimation } from '@canvas-lib';
+
   import FieldSquare from '@/components/FieldSquare.vue';
   import FootballPlayer from '@/components/FootballPlayer.vue';
   import SingleDie from '@/components/SingleDie.vue';

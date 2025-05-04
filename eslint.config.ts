@@ -45,7 +45,8 @@ export default [
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
-          varsIgnorePattern: 'props',
+          varsIgnorePattern: '^_|props',
+          argsIgnorePattern: '^_',
         },
       ],
       'simple-import-sort/exports': 'error',
