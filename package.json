@@ -35,13 +35,14 @@
     "eslint-plugin-prettier": "^5.2.6",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-vue": "^10.1.0",
+    "jiti": "^2.4.2",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "typescript": "^5.8.3"
   },
   "scripts": {
     "cyberbowl": "pnpm --filter @me/cyberbowl run dev",
-    "investment": "pnpm --filter @me/investment-gpt run dev",
+    "invest": "pnpm --filter @me/investment-gpt run dev",
     "portfolio": "pnpm --filter @me/portfolio run dev",
     "portfolio:build": "pnpm --filter @me/portfolio run build",
     "api": "pnpm --filter @me/api run dev"

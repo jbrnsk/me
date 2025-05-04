@@ -5,13 +5,13 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () =>
-      import(/* webpackChunkName: "home" */ '@/views/SplashPage.vue'),
+      import(/* webpackChunkName: "home" */ 'src/views/SplashPage.vue'),
   },
   {
     path: '/portfolio',
     name: 'Portfolio',
     component: () =>
-      import(/* webpackChunkName: "portfolio" */ '@/views/PortfolioPage.vue'),
+      import(/* webpackChunkName: "portfolio" */ 'src/views/PortfolioPage.vue'),
   },
   { path: '/:catchAll(.*)', redirect: '/' },
 ];

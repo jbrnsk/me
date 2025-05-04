@@ -1,7 +1,6 @@
 import cors from '@fastify/cors';
 import postgres from '@fastify/postgres';
 import fastify from 'fastify';
-
 import { User, UserType } from './types';
 
 const server = fastify();

@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 dist
+dist-ssr
 out
 
 # Log files
@@ -20,3 +21,9 @@ docs/.vitepress/cache
 example/dist
 package-lock.json
 pnpm-lock.yaml
+
+.vite-ssg-dist
+.vite-ssg-temp
+*.local
+.idea/
+*.log

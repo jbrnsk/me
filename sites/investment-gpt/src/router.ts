@@ -4,7 +4,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
+    component: () =>
+      import(/* webpackChunkName: "home" */ 'src/views/Home.vue'),
   },
   { path: '/:catchAll(.*)', redirect: '/' },
 ];

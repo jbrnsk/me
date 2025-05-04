@@ -21,22 +21,25 @@
   },
   "references": [
     {
-      "path": "client/apps/cyberbowl"
+      "path": "sites/cyberbowl"
     },
     {
-      "path": "client/apps/portfolio"
+      "path": "sites/investment-gpt"
     },
     {
-      "path": "packages/packages/canvas-lib"
+      "path": "sites/portfolio"
     },
     {
-      "path": "packages/packages/config-lib"
+      "path": "packages/canvas-lib"
     },
     {
-      "path": "packages/packages/ui-lib"
+      "path": "packages/config-lib"
     },
     {
-      "path": "services/packages/api"
+      "path": "packages/ui-lib"
+    },
+    {
+      "path": "services/api"
     }
   ]
 }

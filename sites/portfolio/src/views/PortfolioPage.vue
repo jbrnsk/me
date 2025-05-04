@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { PixelDivider, ContactLink, SectionCard  } from '@/components';
+  import { ContactLink, PixelDivider, SectionCard } from 'src/components';
 </script>
 
 <template>

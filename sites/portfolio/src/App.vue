@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { onMounted, ref, watch } from 'vue';
   import { useRouter } from 'vue-router';
-
   import {
     initializeAudio,
     isMuted,
@@ -9,7 +8,7 @@
     setVolume,
     toggleMute,
     volume,
-  } from '@/stores/audio';
+  } from 'src/stores/audio';
 
   const router = useRouter();
   const hideVolume = ref(false);

@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cors_1 = __importDefault(require("@fastify/cors"));
 const fastify_1 = __importDefault(require("fastify"));
 const types_1 = require("./types");
+
 const server = (0, fastify_1.default)();
 server.register(cors_1.default, {
     origin: (origin, cb) => {

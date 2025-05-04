@@ -10,7 +10,7 @@ import { manualChunksPlugin } from 'vite-plugin-webpackchunkname';
 export default defineConfig({
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      src: fileURLToPath(new URL('./src', import.meta.url)),
       '@ui-lib': `${path.resolve(__dirname, '../../packages/ui-lib/src')}`,
     },
   },
