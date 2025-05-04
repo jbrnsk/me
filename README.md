@@ -34,4 +34,4 @@ pnpm portfolio
 
 ---
 
-💡 There are other commands that can be run in this workspace, but they are at various stages of experimentation/development.
+💡 There are other commands that can be run in this workspace, but they are at various stages of experimentation and/or development.
