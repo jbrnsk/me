@@ -36,7 +36,7 @@
       "path": "packages/packages/ui-lib"
     },
     {
-      "path": "server/packages/api"
+      "path": "services/packages/api"
     }
   ]
 }

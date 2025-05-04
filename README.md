@@ -25,7 +25,7 @@ pnpm install
 Only the following workspace commands are officially supported.
 
 #### 📁 Portfolio App
-Source: [client/apps/portfolio](https://github.com/jbrnsk/me/tree/main/client/apps/portfolio
+Source: [sites/portfolio](https://github.com/jbrnsk/me/tree/main/client/apps/portfolio
 )
 
 ```bash
@@ -34,4 +34,4 @@ pnpm portfolio
 
 ---
 
-💡 There are other workspace commands that can be run in this workspace, but they are at various stages of experimentation/development.
+💡 There are other commands that can be run in this workspace, but they are at various stages of experimentation/development.
