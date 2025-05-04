@@ -1,0 +1,9 @@
+@import '@ui-lib/styles/main.css';
+
+#app {
+}
+
+html, body, #app {
+  height: 100%;
+  overflow-y: auto;
+}

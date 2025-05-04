@@ -1,5 +1,5 @@
 {
-  "name": "@me/portfolio",
+  "name": "@me/investment-gpt",
   "scripts": {
     "dev": "vite --port 3334 --open",
     "build": "vite build",

@@ -41,6 +41,7 @@
   },
   "scripts": {
     "cyberbowl": "pnpm --filter @me/cyberbowl run dev",
+    "investment": "pnpm --filter @me/investment-gpt run dev",
     "portfolio": "pnpm --filter @me/portfolio run dev",
     "portfolio:build": "pnpm --filter @me/portfolio run build",
     "api": "pnpm --filter @me/api run dev"
