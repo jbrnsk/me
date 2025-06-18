@@ -17,22 +17,6 @@ const routes = [
         /* webpackChunkName: "photography1" */ 'src/views/PhotographyPage1.vue'
       ),
   },
-  {
-    path: '/alt',
-    name: 'Portfolio2',
-    component: () =>
-      import(
-        /* webpackChunkName: "photography1" */ 'src/views/PortfolioPage2.vue'
-      ),
-  },
-  {
-    path: '/photography-alt',
-    name: 'Photography2',
-    component: () =>
-      import(
-        /* webpackChunkName: "photography1" */ 'src/views/PhotographyPage2.vue'
-      ),
-  },
   { path: '/:catchAll(.*)', redirect: '/' },
 ];
 

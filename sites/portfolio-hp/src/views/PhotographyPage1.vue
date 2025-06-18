@@ -2,325 +2,336 @@
 
 <template>
   <!-- Navigation Header -->
-  <nav class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-blue-500/20">
+  <!-- Navigation Header -->
+  <nav
+    class="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm"
+  >
     <div class="mx-auto max-w-4xl px-6 py-4">
       <div class="flex items-center justify-between">
-        <h1 class="font-display text-xl font-bold text-white">
-          HENRY.PROCTOR
-        </h1>
-        <div class="flex space-x-6 text-sm font-medium">
-          <a href="#about" class="nav-link text-blue-200 hover:text-white">ABOUT</a>
-          <a href="#experience" class="nav-link text-blue-200 hover:text-white">EXPERIENCE</a>
-          <a href="#aviation" class="nav-link text-blue-200 hover:text-white">AVIATION</a>
-          <a href="#contact" class="nav-link text-blue-200 hover:text-white">CONTACT</a>
+        <a
+          href="/"
+          class="font-mono text-lg font-medium text-slate-800 transition-colors hover:text-blue-600"
+        >
+          ← henry.proctor
+        </a>
+        <div class="flex items-center gap-2 text-sm text-gray-600">
+          <svg
+            class="h-4 w-4 text-blue-500"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+            ></path>
+          </svg>
+          aerial photography
         </div>
       </div>
     </div>
   </nav>
 
   <main class="mx-auto max-w-4xl px-6 py-16">
-
-    <!-- Hero Section -->
-    <section class="animate-slide mb-20 text-center">
-      <div class="mb-8">
-        <h1 class="gradient-text mb-4 text-5xl font-bold font-display">
-          HENRY PROCTOR IV
-        </h1>
-        <div class="flex items-center justify-center gap-3 text-xl font-semibold">
-          <span class="text-blue-300">SALES LEADER</span>
-          <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-          <span class="text-purple-300">COMMERCIAL PILOT</span>
-          <svg class="w-5 h-5 text-blue-400 animate-bounce-subtle" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Stats Dashboard -->
-      <div class="mb-12 grid grid-cols-2 gap-6 md:grid-cols-4">
-        <div class="stat-card hover-scale rounded-xl p-6 from-blue-600 to-blue-700">
-          <div class="font-display text-3xl font-bold text-white">340+</div>
-          <div class="text-blue-100 text-sm font-medium uppercase tracking-wide">Flight Hours</div>
-        </div>
-        <div class="stat-card hover-scale rounded-xl p-6 from-green-600 to-emerald-700">
-          <div class="font-display text-3xl font-bold text-white">$7M</div>
-          <div class="text-green-100 text-sm font-medium uppercase tracking-wide">Monthly Revenue</div>
-        </div>
-        <div class="stat-card hover-scale rounded-xl p-6 from-purple-600 to-violet-700">
-          <div class="font-display text-3xl font-bold text-white">75%</div>
-          <div class="text-purple-100 text-sm font-medium uppercase tracking-wide">Close Rate</div>
-        </div>
-        <div class="stat-card hover-scale rounded-xl p-6 from-orange-600 to-red-700">
-          <div class="font-display text-3xl font-bold text-white">10+</div>
-          <div class="text-orange-100 text-sm font-medium uppercase tracking-wide">Years Experience</div>
-        </div>
-      </div>
-
-      <p class="max-w-3xl mx-auto text-lg leading-relaxed text-blue-100">
-        <strong class="text-white">Relationship-first sales leader</strong> with a decade of experience scaling
-        territories across FinTech, Automotive, and Wellness sectors.
-        <strong class="text-white">Certified commercial pilot</strong> bringing precision and strategic thinking
-        to business operations.
+    <!-- Header Section -->
+    <section class="animate-slide mb-16 text-center">
+      <h1 class="mb-4 text-4xl font-light text-gray-900">Aerial Photography</h1>
+      <p class="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600">
+        A personal passion project combining my love of flight with creative
+        photography. Exploring unique perspectives from above in my free time.
       </p>
+
+      <!-- Quick Stats -->
+      <div class="mt-8 flex justify-center gap-8 text-sm">
+        <div class="text-center">
+          <div class="font-mono text-xl font-medium text-blue-600">340+</div>
+          <div class="text-gray-500">flight hours</div>
+        </div>
+        <div class="text-center">
+          <div class="font-mono text-xl font-medium text-green-600">📷</div>
+          <div class="text-gray-500">hobby pilot</div>
+        </div>
+        <div class="text-center">
+          <div class="font-mono text-xl font-medium text-purple-600">TX</div>
+          <div class="text-gray-500">based</div>
+        </div>
+      </div>
     </section>
 
-    <!-- Main Content Grid -->
-    <div class="grid grid-cols-1 gap-16 lg:grid-cols-12">
+    <!-- Services Section -->
+    <section class="fade-in-up mb-16">
+      <h2
+        class="mb-8 flex items-center gap-2 font-mono text-lg font-medium text-gray-900"
+      >
+        what i enjoy shooting
+        <div
+          class="h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent"
+        ></div>
+      </h2>
 
-      <!-- Main Content -->
-      <div class="space-y-16 lg:col-span-8">
-
-        <!-- Experience -->
-        <section id="experience" class="fade-in-up">
-          <div class="mb-8 flex items-center gap-4">
-            <h2 class="font-display text-2xl font-bold text-white">EXPERIENCE</h2>
-            <div class="section-badge">TRACK RECORD</div>
-          </div>
-
-          <div class="space-y-6">
-            <div class="experience-card rounded-xl p-6">
-              <div class="mb-4 flex items-start justify-between">
-                <div>
-                  <h3 class="font-display text-xl font-bold text-slate-900">Senior Customer Success Manager</h3>
-                  <p class="font-semibold text-blue-600">PorchPass</p>
-                </div>
-                <span class="font-display text-sm font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full">2024 – 2025</span>
-              </div>
-              <p class="mb-4 text-slate-700 leading-relaxed">
-                <strong>Drove loan volume from $3M to $7M monthly in 90 days.</strong> Managing
-                125+ dealership accounts across Texas and Oklahoma with
-                full-cycle partnership ownership.
-              </p>
-              <div class="flex gap-3">
-                                <span class="rounded-full bg-green-500 text-white px-4 py-2 text-sm font-bold">
-                                    📈 133% GROWTH
-                                </span>
-                <span class="rounded-full bg-blue-500 text-white px-4 py-2 text-sm font-bold">
-                                    🎯 125+ ACCOUNTS
-                                </span>
-              </div>
-            </div>
-
-            <div class="experience-card rounded-xl p-6">
-              <div class="mb-4 flex items-start justify-between">
-                <div>
-                  <h3 class="font-display text-xl font-bold text-slate-900">Sales Manager & Flexologist</h3>
-                  <p class="font-semibold text-purple-600">StretchLab</p>
-                </div>
-                <span class="font-display text-sm font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full">2023 – 2024</span>
-              </div>
-              <p class="mb-4 text-slate-700 leading-relaxed">
-                Managed $1.2M annual sales across two studios. Led 7-person
-                team and achieved <strong>75% close rate—highest in district.</strong>
-              </p>
-              <div class="flex gap-3">
-                                <span class="rounded-full bg-purple-500 text-white px-4 py-2 text-sm font-bold">
-                                    🏆 DISTRICT LEADER
-                                </span>
-                <span class="rounded-full bg-orange-500 text-white px-4 py-2 text-sm font-bold">
-                                    💰 $1.2M REVENUE
-                                </span>
-              </div>
-            </div>
-
-            <div class="experience-card rounded-xl p-6">
-              <div class="mb-4 flex items-start justify-between">
-                <div>
-                  <h3 class="font-display text-xl font-bold text-slate-900">Senior Account Manager</h3>
-                  <p class="font-semibold text-indigo-600">Otis Elevator Company</p>
-                </div>
-                <span class="font-display text-sm font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full">2016 – 2020</span>
-              </div>
-              <p class="mb-4 text-slate-700 leading-relaxed">
-                <strong>Top 3 performer in Midwest region.</strong> Managed 633 elevators, sold
-                $4.3M in upgrades, maintained 95% customer retention.
-              </p>
-              <div class="flex gap-3">
-                                <span class="rounded-full bg-yellow-500 text-white px-4 py-2 text-sm font-bold">
-                                    🥉 TOP 3 REGIONAL
-                                </span>
-                <span class="rounded-full bg-green-500 text-white px-4 py-2 text-sm font-bold">
-                                    ✅ 95% RETENTION
-                                </span>
-              </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <div
+          class="rounded-lg border border-gray-200 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
+        >
+          <div class="mb-4 text-center">
+            <div
+              class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-blue-600"
+            >
+              🏠
             </div>
           </div>
-        </section>
+          <h3 class="mb-2 font-medium text-gray-900">
+            Properties & Architecture
+          </h3>
+          <p class="text-sm text-gray-600">
+            Love capturing homes and buildings from angles you can't see from
+            the ground. There's something fascinating about the geometry and
+            scale from above.
+          </p>
+        </div>
 
-        <!-- Aviation Interests -->
-        <section class="fade-in-up-delayed">
-          <div class="mb-8 flex items-center gap-4">
-            <h2 class="font-display text-2xl font-bold text-white">AVIATION INTERESTS</h2>
-            <div class="section-badge">PASSION PROJECT</div>
-          </div>
-
-          <div class="rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-400/30 p-8 backdrop-blur-sm">
-            <div class="flex items-center gap-3 mb-4">
-              <h3 class="font-display text-xl font-bold text-white">DRONE PHOTOGRAPHY</h3>
-              <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"></path>
-              </svg>
+        <div
+          class="rounded-lg border border-gray-200 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
+        >
+          <div class="mb-4 text-center">
+            <div
+              class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-600"
+            >
+              🌄
             </div>
-            <p class="text-blue-100 leading-relaxed mb-4">
-              Exploring drone media production for real estate photography and
-              events, applying commercial pilot precision to aerial content
-              creation.
-            </p>
-            <a href="/photography" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3 rounded-lg transition-all hover:transform hover:scale-105">
-              📸 VIEW AERIAL PORTFOLIO →
-            </a>
           </div>
-        </section>
+          <h3 class="mb-2 font-medium text-gray-900">Landscapes & Nature</h3>
+          <p class="text-sm text-gray-600">
+            Texas has incredible landscapes that look completely different from
+            above. Hill Country and coastal areas offer amazing opportunities
+            for aerial shots.
+          </p>
+        </div>
+
+        <div
+          class="rounded-lg border border-gray-200 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
+        >
+          <div class="mb-4 text-center">
+            <div
+              class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 text-purple-600"
+            >
+              🎯
+            </div>
+          </div>
+          <h3 class="mb-2 font-medium text-gray-900">Creative Experiments</h3>
+          <p class="text-sm text-gray-600">
+            Always trying new techniques and perspectives. The intersection of
+            my pilot training and creative interests makes for some interesting
+            compositions.
+          </p>
+        </div>
       </div>
+    </section>
 
-      <!-- Sidebar -->
-      <aside class="space-y-8 lg:col-span-4 fade-in-up-delayed-2">
+    <!-- Portfolio Gallery -->
+    <section class="fade-in-up-delayed mb-16">
+      <h2
+        class="mb-8 flex items-center gap-2 font-mono text-lg font-medium text-gray-900"
+      >
+        portfolio
+        <div
+          class="h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent"
+        ></div>
+      </h2>
 
-        <!-- Profile Image -->
-        <div class="text-center">
-          <div class="relative inline-block">
-            <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face"
-              alt="Henry Proctor IV"
-              class="mx-auto h-40 w-40 rounded-xl object-cover transition-all duration-500 hover:scale-105 border-4 border-blue-400/50"
-            />
-            <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-slate-900 flex items-center justify-center">
-              <div class="w-3 h-3 bg-white rounded-full"></div>
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Placeholder images - replace with Henry's actual photos -->
+        <div
+          class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
+        >
+          <img
+            src="/images/dji_fly_20240218_123500_93_1708290047743_photo_optimized.jpg"
+            alt="Aerial real estate photography"
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+          >
+            <div class="absolute bottom-4 left-4 text-white">
+              <p class="text-sm font-medium">Residential Property</p>
+              <p class="text-xs text-white/80">Austin, TX</p>
             </div>
           </div>
         </div>
 
-        <!-- Contact -->
-        <section id="contact" class="rounded-xl bg-slate-800/50 p-6 border border-blue-400/30">
-          <h3 class="font-display text-lg font-bold text-white mb-4 flex items-center gap-2">
-            CONTACT
-            <div class="w-8 h-px bg-blue-400"></div>
-          </h3>
-          <div class="space-y-3">
-            <a href="mailto:hproc725@gmail.com" class="contact-item flex items-center gap-3 text-blue-200 hover:text-white">
-              <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                📧
-              </div>
-              <div>
-                <div class="font-medium">Email</div>
-                <div class="text-sm text-blue-300">hproc725@gmail.com</div>
-              </div>
-            </a>
-            <a href="tel:216-633-8470" class="contact-item flex items-center gap-3 text-blue-200 hover:text-white">
-              <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
-                📞
-              </div>
-              <div>
-                <div class="font-medium">Phone</div>
-                <div class="text-sm text-blue-300">(216) 633-8470</div>
-              </div>
-            </a>
-            <a href="#" class="contact-item flex items-center gap-3 text-blue-200 hover:text-white">
-              <div class="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
-                💼
-              </div>
-              <div>
-                <div class="font-medium">LinkedIn</div>
-                <div class="text-sm text-blue-300">henry-proctor</div>
-              </div>
-            </a>
-            <div class="flex items-center gap-3 text-blue-200">
-              <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center">
-                📍
-              </div>
-              <div>
-                <div class="font-medium">Location</div>
-                <div class="text-sm text-blue-300">San Antonio, Texas</div>
-              </div>
+        <div
+          class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
+        >
+          <img
+            src="/images/dji_fly_20240217_142300_63_1708218134249_pano_optimized.jpg"
+            alt="Aerial landscape photography"
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+          >
+            <div class="absolute bottom-4 left-4 text-white">
+              <p class="text-sm font-medium">Natural Landscape</p>
+              <p class="text-xs text-white/80">Hill Country, TX</p>
             </div>
           </div>
-        </section>
+        </div>
 
-        <!-- Aviation -->
-        <section id="aviation" class="rounded-xl bg-slate-800/50 p-6 border border-blue-400/30">
-          <h3 class="font-display text-lg font-bold text-white mb-4 flex items-center gap-2">
-            AVIATION
-            <div class="w-8 h-px bg-blue-400"></div>
-          </h3>
-          <div class="space-y-3">
-            <div class="aviation-badge flex items-center justify-between bg-blue-600/20 p-3 rounded-lg border border-blue-400/30">
-              <div class="flex items-center gap-2">
-                <span>✈️</span>
-                <span class="text-blue-100 font-medium">Private Pilot</span>
-              </div>
-              <span class="font-display font-bold text-blue-300">2021</span>
-            </div>
-            <div class="aviation-badge flex items-center justify-between bg-purple-600/20 p-3 rounded-lg border border-purple-400/30">
-              <div class="flex items-center gap-2">
-                <span>🎯</span>
-                <span class="text-purple-100 font-medium">Instrument Rating</span>
-              </div>
-              <span class="font-display font-bold text-purple-300">2022</span>
-            </div>
-            <div class="aviation-badge flex items-center justify-between bg-green-600/20 p-3 rounded-lg border border-green-400/30">
-              <div class="flex items-center gap-2">
-                <span>🛩️</span>
-                <span class="text-green-100 font-medium">Commercial SE</span>
-              </div>
-              <span class="font-display font-bold text-green-300">2023</span>
-            </div>
-            <div class="mt-4 p-4 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-lg border border-blue-400/50">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-white">TOTAL HOURS</span>
-                <span class="font-display text-2xl font-bold text-blue-300">340+</span>
-              </div>
+        <div
+          class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
+        >
+          <img
+            src="/images/dji_fly_20240303_130744_130_1709477833365_photo_optimized.jpg"
+            alt="Aerial event photography"
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+          >
+            <div class="absolute bottom-4 left-4 text-white">
+              <p class="text-sm font-medium">Corporate Event</p>
+              <p class="text-xs text-white/80">San Antonio, TX</p>
             </div>
           </div>
-        </section>
+        </div>
 
-        <!-- Education -->
-        <section class="rounded-xl bg-slate-800/50 p-6 border border-blue-400/30">
-          <h3 class="font-display text-lg font-bold text-white mb-4 flex items-center gap-2">
-            EDUCATION
-            <div class="w-8 h-px bg-blue-400"></div>
-          </h3>
-          <div class="bg-gradient-to-br from-blue-600/20 to-purple-600/20 p-4 rounded-lg border border-blue-400/30">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-lg">🎓</span>
-              <span class="font-bold text-white">B.S. Exercise Science</span>
+        <div
+          class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
+        >
+          <img
+            src="/images/dji_fly_20240329_122446_213_1711667602744_pano_optimized.jpg"
+            alt="Aerial urban photography"
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+          >
+            <div class="absolute bottom-4 left-4 text-white">
+              <p class="text-sm font-medium">Urban Development</p>
+              <p class="text-xs text-white/80">Dallas, TX</p>
             </div>
-            <p class="text-blue-200">Bowling Green State University</p>
-            <p class="font-display text-blue-300 font-bold">2016</p>
           </div>
-        </section>
+        </div>
 
-        <!-- Philosophy -->
-        <section class="rounded-xl bg-gradient-to-br from-purple-600/20 to-blue-600/20 p-6 border border-purple-400/30">
-          <h3 class="font-display text-lg font-bold text-white mb-4 flex items-center gap-2">
-            PHILOSOPHY
-            <div class="w-8 h-px bg-purple-400"></div>
-          </h3>
-          <p class="text-purple-100 leading-relaxed">
-            <strong class="text-white">Former athlete</strong> with a passion for flight, connection, and
-            high-performing teams. Best results come from genuine
-            relationships and getting the work done right the first time.
-          </p>
-        </section>
-      </aside>
-    </div>
+        <div
+          class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
+        >
+          <img
+            src="/images/dji_fly_20240329_123730_224_1711667803569_pano_optimized.jpg"
+            alt="Aerial coastal photography"
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+          >
+            <div class="absolute bottom-4 left-4 text-white">
+              <p class="text-sm font-medium">Coastal Property</p>
+              <p class="text-xs text-white/80">Gulf Coast, TX</p>
+            </div>
+          </div>
+        </div>
 
-    <!-- Footer -->
-    <footer class="mt-20 border-t border-blue-400/30 pt-8 text-center">
-      <p class="font-display text-sm text-blue-300">
-        © 2025 HENRY.PROCTOR • BUILT BY JOSEPH.BARANOSKI
+        <div
+          class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
+        >
+          <img
+            src="/images/dji_fly_20240412_125256_247_1712865767972_pano_optimized.jpg"
+            alt="Aerial construction photography"
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+          >
+            <div class="absolute bottom-4 left-4 text-white">
+              <p class="text-sm font-medium">Development Progress</p>
+              <p class="text-xs text-white/80">Austin, TX</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
+        >
+          <img
+            src="/images/dji_fly_20240417_093348_303_1713460718142_photo.jpg"
+            alt="Aerial construction photography"
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+          >
+            <div class="absolute bottom-4 left-4 text-white">
+              <p class="text-sm font-medium">Development Progress</p>
+              <p class="text-xs text-white/80">Austin, TX</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
+        >
+          <img
+            src="/images/dji_fly_20241030_172628_519_1730331388591_photo.jpg"
+            alt="Aerial construction photography"
+            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+          >
+            <div class="absolute bottom-4 left-4 text-white">
+              <p class="text-sm font-medium">Development Progress</p>
+              <p class="text-xs text-white/80">Austin, TX</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      class="fade-in-up-delayed-2 rounded-lg border border-blue-100 bg-gradient-to-br from-blue-50 to-indigo-50 p-8 text-center"
+    >
+      <h2 class="mb-4 text-2xl font-light text-gray-900">
+        Always Learning & Exploring
+      </h2>
+      <p class="mx-auto mb-6 max-w-2xl text-gray-600">
+        Aviation and photography are two of my biggest passions. If you're
+        interested in chatting about either (or want to see more shots), feel
+        free to reach out.
       </p>
-    </footer>
+
+      <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href="mailto:hproc725@gmail.com"
+          class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700"
+        >
+          📧 Say Hello
+        </a>
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50"
+        >
+          ← Back to Portfolio
+        </a>
+      </div>
+
+      <div class="mt-6 text-sm text-gray-600">
+        <p>Just a pilot who loves taking photos from unique perspectives</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-16 border-t border-gray-200 bg-white py-8">
+    <div class="mx-auto max-w-4xl px-6 text-center">
+      <p class="font-mono text-xs text-gray-500">
+        © 2025 henry.proctor • aerial photography • built by joseph.baranoski
+      </p>
+    </div>
+  </footer>
 </template>
 
 <style scoped>
-  .font-display {
-    font-family: 'Space Grotesk', sans-serif;
-  }
-  body {
-    font-family: 'Inter', sans-serif;
-  }
-
-  /* Enhanced Animations */
+  /* Load Animations */
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -352,26 +363,6 @@
     }
   }
 
-  @keyframes bounceSubtle {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-3px);
-    }
-  }
-
-  @keyframes gradient {
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
   /* Animation Classes */
   .animate-fade {
     animation: fadeIn 0.8s ease-out;
@@ -390,99 +381,8 @@
     animation: fadeInUp 0.8s ease-out 0.4s forwards;
     opacity: 0;
   }
-  .animate-bounce-subtle {
-    animation: bounceSubtle 2s ease-in-out infinite;
-  }
-
-  /* Enhanced Hover Effects */
-  .hover-scale {
-    transition: all 0.3s ease;
-  }
-
-  .hover-scale:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
-  }
-
-  .stat-card {
-    transition: all 0.3s ease;
-    background: linear-gradient(135deg, var(--tw-gradient-stops));
-  }
-
-  .stat-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  }
-
-  .experience-card {
-    position: relative;
-    transition: all 0.4s ease;
-    background: white;
-    border: 2px solid transparent;
-  }
-
-  .experience-card:hover {
-    transform: translateX(8px);
-    border-color: #3b82f6;
-    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.1);
-  }
-
-  .contact-item {
-    transition: all 0.3s ease;
-  }
-
-  .contact-item:hover {
-    transform: translateX(4px);
-    color: #3b82f6;
-  }
-
-  .aviation-badge {
-    transition: all 0.3s ease;
-  }
-
-  .aviation-badge:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, #1e293b 0%, #3b82f6 50%, #8b5cf6 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 200%;
-    animation: gradient 3s ease infinite;
-  }
-
-  .nav-link {
-    position: relative;
-    transition: all 0.3s ease;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-    border-radius: 2px;
-  }
-
-  .nav-link:hover::after {
-    width: 100%;
-  }
-
-  .section-badge {
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.025em;
+  .fade-in-up-delayed-3 {
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+    opacity: 0;
   }
 </style>
