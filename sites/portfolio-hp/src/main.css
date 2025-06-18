@@ -1,7 +1,7 @@
 @import '@me/ui-lib/styles/main.css';
 
 #app {
-  @apply bg-black ;
+  @apply bg-white ;
 }
 
 html, body, #app {
