@@ -388,7 +388,7 @@
   </div>
 </template>
 
-<style scoped>
+<style>
   .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }

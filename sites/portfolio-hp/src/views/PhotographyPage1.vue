@@ -330,7 +330,7 @@
   </footer>
 </template>
 
-<style scoped>
+<style>
   /* Load Animations */
   @keyframes fadeIn {
     from {
