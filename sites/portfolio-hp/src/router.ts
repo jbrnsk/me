@@ -3,9 +3,35 @@ import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
     path: '/',
-    name: 'Portfolio',
+    name: 'Portfolio1',
     component: () =>
-      import(/* webpackChunkName: "portfolio" */ 'src/views/PortfolioPage.vue'),
+      import(
+        /* webpackChunkName: "portfolio1" */ 'src/views/PortfolioPage1.vue'
+      ),
+  },
+  {
+    path: '/photography',
+    name: 'Photography1',
+    component: () =>
+      import(
+        /* webpackChunkName: "photography1" */ 'src/views/PhotographyPage1.vue'
+      ),
+  },
+  {
+    path: '/alt',
+    name: 'Portfolio2',
+    component: () =>
+      import(
+        /* webpackChunkName: "photography1" */ 'src/views/PortfolioPage2.vue'
+      ),
+  },
+  {
+    path: '/photography-alt',
+    name: 'Photography2',
+    component: () =>
+      import(
+        /* webpackChunkName: "photography1" */ 'src/views/PhotographyPage2.vue'
+      ),
   },
   { path: '/:catchAll(.*)', redirect: '/' },
 ];
