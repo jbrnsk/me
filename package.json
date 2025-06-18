@@ -46,6 +46,8 @@
     "invest": "pnpm --filter @me/investment-gpt run dev",
     "portfolio": "pnpm --filter @me/portfolio run dev",
     "portfolio:build": "pnpm --filter @me/portfolio run build",
+    "portfolio-hp": "pnpm --filter @me/portfolio-hp run dev",
+    "portfolio-hp:build": "pnpm --filter @me/portfolio-hp run build",
     "api": "pnpm --filter @me/api run dev"
   }
 }
