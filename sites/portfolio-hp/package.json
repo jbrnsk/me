@@ -1,0 +1,27 @@
+{
+  "name": "@me/portfolio-hp",
+  "scripts": {
+    "dev": "vite --port 3334 --open",
+    "build": "vite build",
+    "preview": "vite preview",
+    "preview-https": "serve dist",
+    "lint": "eslint \"**/*.{vue,ts,js}\"",
+    "type-check": "npx vue-tsc"
+  },
+  "dependencies": {
+    "@me/ui-lib": "workspace:*",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@me/config-lib": "workspace:*",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.4",
+    "vite-plugin-webpackchunkname": "1.0.1",
+    "vue-tsc": "^2.2.10"
+  }
+}
