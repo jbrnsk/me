@@ -2,7 +2,6 @@
 
 <template>
   <!-- Navigation Header -->
-  <!-- Navigation Header -->
   <nav
     class="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm"
   >

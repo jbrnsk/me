@@ -1,10 +1,12 @@
 @import '@me/ui-lib/styles/main.css';
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112.5,300;112.5,600;125,600&display=swap');
 
 #app {
   @apply bg-white;
 }
 
 html, body, #app {
+  font-family: Archivo, sans-serif;
   height: 100%;
   overflow-y: auto;
 }
