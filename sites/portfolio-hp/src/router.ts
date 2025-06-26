@@ -6,7 +6,7 @@ const routes = [
     name: "Henry's Portfolio",
     component: () =>
       import(
-        /* webpackChunkName: "portfolio1" */ 'src/views/HenryPortfolio.vue'
+        /* webpackChunkName: "portfolio" */ 'src/views/HenryPortfolio.vue'
       ),
   },
   {
@@ -14,7 +14,7 @@ const routes = [
     name: "Henry's Photography",
     component: () =>
       import(
-        /* webpackChunkName: "photography1" */ 'src/views/HenryPhotography.vue'
+        /* webpackChunkName: "photography" */ 'src/views/HenryPhotography.vue'
       ),
   },
   { path: '/:catchAll(.*)', redirect: '/' },

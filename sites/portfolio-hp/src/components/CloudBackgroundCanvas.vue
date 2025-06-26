@@ -17,7 +17,7 @@
 
   const simplex = createNoise2D();
   let numShapes = 6;
-  const colors = ['#FFFFFF', '#F8FAFC', '#F1F5F9'];
+  const colors = ['#3b82f6', '#9333ea', '#14b8a6'];
 
   let noiseInc = 0.00005;
 
@@ -120,7 +120,7 @@
   let timeline;
 
   function addShape() {
-    shapes.push(svg.circle().fill(random(colors)).opacity(0.2));
+    shapes.push(svg.circle().fill(random(colors)).opacity(0.5));
   }
 
   function update() {
@@ -182,10 +182,10 @@
     pointer-events: none;
     background: linear-gradient(
       to bottom,
-      #4f8ef8 0%,
-      #60a5fa 30%,
-      #dbeafe 70%,
-      #f8fafc 100%
+      #0f172a 0%,
+      #1e293b 35%,
+      #334155 70%,
+      #e2e8f0 100%
     );
   }
 </style>

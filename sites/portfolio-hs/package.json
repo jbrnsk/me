@@ -9,11 +9,8 @@
     "type-check": "npx vue-tsc"
   },
   "dependencies": {
-    "@georgedoescode/generative-utils": "^2.0.1",
+    "@me/canvas-lib": "workspace:*",
     "@me/ui-lib": "workspace:*",
-    "@svgdotjs/svg.js": "^3.2.4",
-    "gsap": "^3.13.0",
-    "simplex-noise": "^4.0.3",
     "vue": "^3.5.13",
     "vue-router": "^4.5.1"
   },

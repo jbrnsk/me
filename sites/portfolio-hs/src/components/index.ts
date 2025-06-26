@@ -1,5 +1,3 @@
-import ContactLink from './ContactLink.vue';
-import PixelDivider from './PixelDivider.vue';
-import SectionCard from './SectionCard.vue';
+import ParticleConnectCanvas from './ParticleConnectCanvas.vue';
 
-export { ContactLink, PixelDivider, SectionCard };
+export { ParticleConnectCanvas };

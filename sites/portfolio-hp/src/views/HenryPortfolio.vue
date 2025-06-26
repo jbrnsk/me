@@ -3,7 +3,9 @@
   import { onMounted } from 'vue';
 
   onMounted(() => {
+    animateYearsExp();
     animateRevenue();
+    animateCloseRate();
     animateAppsRate();
   });
 

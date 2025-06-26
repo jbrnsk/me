@@ -3,18 +3,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
     path: '/',
-    name: "Henry's Portfolio",
+    name: "Hendrik's Portfolio",
     component: () =>
       import(
-        /* webpackChunkName: "portfolio1" */ 'src/views/HenryPortfolio.vue'
-      ),
-  },
-  {
-    path: '/photography',
-    name: "Henry's Photography",
-    component: () =>
-      import(
-        /* webpackChunkName: "photography1" */ 'src/views/HenryPhotography.vue'
+        /* webpackChunkName: "portfolio" */ 'src/views/HendrikPortfolio.vue'
       ),
   },
   { path: '/:catchAll(.*)', redirect: '/' },
