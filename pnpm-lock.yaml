@@ -333,6 +333,58 @@ importers:
         specifier: ^2.2.10
         version: 2.2.10(typescript@5.8.3)
 
+  sites/portfolio-hs:
+    dependencies:
+      '@georgedoescode/generative-utils':
+        specifier: ^2.0.1
+        version: 2.0.1
+      '@me/ui-lib':
+        specifier: workspace:*
+        version: link:../../packages/ui-lib
+      '@svgdotjs/svg.js':
+        specifier: ^3.2.4
+        version: 3.2.4
+      gsap:
+        specifier: ^3.13.0
+        version: 3.13.0
+      simplex-noise:
+        specifier: ^4.0.3
+        version: 4.0.3
+      vue:
+        specifier: ^3.5.13
+        version: 3.5.13(typescript@5.8.3)
+      vue-router:
+        specifier: ^4.5.1
+        version: 4.5.1(vue@3.5.13(typescript@5.8.3))
+    devDependencies:
+      '@me/config-lib':
+        specifier: workspace:*
+        version: link:../../packages/config-lib
+      '@vitejs/plugin-vue':
+        specifier: ^5.2.3
+        version: 5.2.3(vite@6.3.4(@types/node@20.14.2)(jiti@2.4.2)(yaml@2.4.2))(vue@3.5.13(typescript@5.8.3))
+      autoprefixer:
+        specifier: ^10.4.21
+        version: 10.4.21(postcss@8.5.3)
+      postcss:
+        specifier: ^8.5.3
+        version: 8.5.3
+      tailwindcss:
+        specifier: ^3.4.17
+        version: 3.4.17(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.8.3))
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+      vite:
+        specifier: ^6.3.4
+        version: 6.3.4(@types/node@20.14.2)(jiti@2.4.2)(yaml@2.4.2)
+      vite-plugin-webpackchunkname:
+        specifier: 1.0.1
+        version: 1.0.1(rollup@4.40.1)
+      vue-tsc:
+        specifier: ^2.2.10
+        version: 2.2.10(typescript@5.8.3)
+
 packages:
 
   '@alloc/quick-lru@5.2.0':

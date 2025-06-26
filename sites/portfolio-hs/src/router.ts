@@ -1,0 +1,33 @@
+import { createRouter, createWebHistory } from 'vue-router';
+
+const routes = [
+  {
+    path: '/',
+    name: "Henry's Portfolio",
+    component: () =>
+      import(
+        /* webpackChunkName: "portfolio1" */ 'src/views/HenryPortfolio.vue'
+      ),
+  },
+  {
+    path: '/photography',
+    name: "Henry's Photography",
+    component: () =>
+      import(
+        /* webpackChunkName: "photography1" */ 'src/views/HenryPhotography.vue'
+      ),
+  },
+  { path: '/:catchAll(.*)', redirect: '/' },
+];
+
+const history = createWebHistory();
+
+const router = createRouter({
+  history,
+  routes,
+  scrollBehavior() {
+    return { top: 0 };
+  },
+});
+
+export default router;

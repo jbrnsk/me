@@ -1,0 +1,31 @@
+{
+  "name": "@me/portfolio-hs",
+  "scripts": {
+    "dev": "vite --port 3334 --open",
+    "build": "vite build",
+    "preview": "vite preview",
+    "preview-https": "serve dist",
+    "lint": "eslint \"**/*.{vue,ts,js}\"",
+    "type-check": "npx vue-tsc"
+  },
+  "dependencies": {
+    "@georgedoescode/generative-utils": "^2.0.1",
+    "@me/ui-lib": "workspace:*",
+    "@svgdotjs/svg.js": "^3.2.4",
+    "gsap": "^3.13.0",
+    "simplex-noise": "^4.0.3",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@me/config-lib": "workspace:*",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.4",
+    "vite-plugin-webpackchunkname": "1.0.1",
+    "vue-tsc": "^2.2.10"
+  }
+}
