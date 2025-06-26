@@ -74,7 +74,7 @@
   <div class="relative z-10 min-h-screen">
     <!-- Navigation -->
     <nav
-      class="sticky top-0 z-50 border-b border-white/20 bg-white/10 backdrop-blur-lg"
+      class="sticky top-0 z-50 border-b border-gray-200 bg-white/60 backdrop-blur-lg"
     >
       <div class="mx-auto max-w-6xl px-6 py-4">
         <div class="flex items-center justify-between">
@@ -105,457 +105,463 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative px-6 py-20">
-      <div class="mx-auto max-w-6xl">
-        <div class="glass-card mx-auto max-w-4xl p-12 text-center">
-          <h1 class="hero-title mb-4 text-5xl font-light text-slate-800">
-            Henry Proctor IV
-          </h1>
-          <p
-            class="mb-8 flex items-center justify-center gap-3 text-xl text-slate-600"
-          >
-            Sales Leader
-            <span
-              class="inline-block h-1 w-1 animate-pulse rounded-full bg-blue-500"
-            ></span>
-            Commercial Pilot
-            <svg
-              class="h-5 w-5 text-blue-500"
-              fill="currentColor"
-              viewBox="0 0 20 20"
+    <div class="py-10 sm:px-2 md:px-4">
+      <section class="relative px-6 py-10">
+        <div class="mx-auto max-w-6xl">
+          <div class="glass-card mx-auto max-w-4xl p-12 text-center">
+            <h1 class="hero-title mb-4 text-5xl font-light text-slate-800">
+              Henry Proctor IV
+            </h1>
+            <p
+              class="mb-8 flex items-center justify-center gap-3 text-xl text-slate-600"
             >
-              <path
-                d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
-              ></path>
-            </svg>
-          </p>
-
-          <!-- Colorful Stats Grid -->
-          <div class="mb-8 grid grid-cols-2 gap-6 md:grid-cols-4">
-            <div
-              class="stat-bubble-blue cursor-pointer transition-all duration-300 hover:scale-105"
-              @mouseenter="animateYearsExp"
-            >
-              <div
-                class="font-mono text-2xl font-bold text-blue-700"
-                id="years-exp"
+              Sales Leader
+              <span
+                class="inline-block h-1 w-1 animate-pulse rounded-full bg-blue-500"
+              ></span>
+              Commercial Pilot
+              <svg
+                class="h-5 w-5 text-blue-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
               >
-                10+
-              </div>
-              <div class="text-sm text-blue-600">years exp</div>
-            </div>
-            <div
-              class="stat-bubble-green cursor-pointer transition-all duration-300 hover:scale-105"
-              @mouseenter="animateRevenue"
-            >
+                <path
+                  d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+                ></path>
+              </svg>
+            </p>
+
+            <!-- Colorful Stats Grid -->
+            <div class="mb-8 grid grid-cols-2 gap-6 md:grid-cols-4">
               <div
-                class="font-mono text-2xl font-bold text-green-700"
-                id="revenue"
+                class="stat-bubble-blue cursor-pointer transition-all duration-300 hover:scale-105"
+                @mouseenter="animateYearsExp"
               >
-                $7M
-              </div>
-              <div class="text-sm text-green-600">monthly revenue</div>
-            </div>
-
-            <div
-              class="stat-bubble-purple cursor-pointer transition-all duration-300 hover:scale-105"
-              @mouseenter="animateCloseRate"
-            >
-              <div
-                class="font-mono text-2xl font-bold text-purple-700"
-                id="close-rate"
-              >
-                75%
-              </div>
-              <div class="text-sm text-purple-600">close rate</div>
-            </div>
-
-            <div
-              class="stat-bubble-orange cursor-pointer transition-all duration-300 hover:scale-105"
-              @mouseenter="animateAppsRate"
-            >
-              <div
-                class="font-mono text-2xl font-bold text-orange-700"
-                id="apps-rate"
-              >
-                500+
-              </div>
-              <div class="text-sm text-orange-600">apps in 6 months</div>
-            </div>
-          </div>
-
-          <p class="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600">
-            Strategic sales leader with 10+ years driving growth across FinTech,
-            aviation, and wellness sectors. Military spouse bringing analytical
-            precision and relationship-focused leadership to scale
-            high-performing teams and execute revenue-generating strategies
-            across diverse markets.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Main Content Grid -->
-    <section id="experience" class="relative px-6 py-16">
-      <div class="mx-auto max-w-6xl">
-        <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
-          <!-- Main Experience Content -->
-          <div class="lg:col-span-2">
-            <div class="content-card p-8">
-              <!-- Aligned header with timeline -->
-              <div class="mb-8 flex items-start gap-6">
-                <div class="timeline-line"></div>
-                <h2
-                  class="flex items-center gap-3 text-2xl font-light text-slate-800"
+                <div
+                  class="font-mono text-2xl font-bold text-blue-700"
+                  id="years-exp"
                 >
-                  <span class="text-3xl">🛩️</span>
-                  Experience Timeline
-                </h2>
+                  10+
+                </div>
+                <div class="text-sm text-blue-600">years exp</div>
+              </div>
+              <div
+                class="stat-bubble-green cursor-pointer transition-all duration-300 hover:scale-105"
+                @mouseenter="animateRevenue"
+              >
+                <div
+                  class="font-mono text-2xl font-bold text-green-700"
+                  id="revenue"
+                >
+                  $7M
+                </div>
+                <div class="text-sm text-green-600">monthly revenue</div>
               </div>
 
-              <div class="relative pl-6">
-                <!-- Animated timeline line -->
-                <div class="timeline-connector"></div>
+              <div
+                class="stat-bubble-purple cursor-pointer transition-all duration-300 hover:scale-105"
+                @mouseenter="animateCloseRate"
+              >
+                <div
+                  class="font-mono text-2xl font-bold text-purple-700"
+                  id="close-rate"
+                >
+                  75%
+                </div>
+                <div class="text-sm text-purple-600">close rate</div>
+              </div>
 
-                <div class="space-y-8">
-                  <div class="experience-item group">
-                    <div class="timeline-dot timeline-dot-active"></div>
-                    <div class="mb-3 flex items-start justify-between">
-                      <div class="flex items-start gap-3">
-                        <div
-                          class="company-icon company-icon-blue"
-                          title="PorchPass"
-                        >
-                          PP
-                        </div>
-                        <div>
-                          <h3
-                            class="font-medium text-slate-800 transition-colors group-hover:text-blue-600"
+              <div
+                class="stat-bubble-orange cursor-pointer transition-all duration-300 hover:scale-105"
+                @mouseenter="animateAppsRate"
+              >
+                <div
+                  class="font-mono text-2xl font-bold text-orange-700"
+                  id="apps-rate"
+                >
+                  500+
+                </div>
+                <div class="text-sm text-orange-600">apps in 6 months</div>
+              </div>
+            </div>
+
+            <p class="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600">
+              Strategic sales leader with 10+ years driving growth across
+              FinTech, aviation, and wellness sectors. Military spouse bringing
+              analytical precision and relationship-focused leadership to scale
+              high-performing teams and execute revenue-generating strategies
+              across diverse markets.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Grid -->
+      <section id="experience" class="relative px-6 py-16">
+        <div class="mx-auto max-w-6xl">
+          <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
+            <!-- Main Experience Content -->
+            <div class="lg:col-span-2">
+              <div class="content-card p-8">
+                <!-- Aligned header with timeline -->
+                <div class="mb-8 flex items-start gap-6">
+                  <div class="timeline-line"></div>
+                  <h2
+                    class="flex items-center gap-3 text-2xl font-light text-slate-800"
+                  >
+                    <span class="text-3xl">🛩️</span>
+                    Experience Timeline
+                  </h2>
+                </div>
+
+                <div class="relative pl-6">
+                  <!-- Animated timeline line -->
+                  <div class="timeline-connector"></div>
+
+                  <div class="space-y-8">
+                    <div class="experience-item group">
+                      <div class="timeline-dot timeline-dot-active"></div>
+                      <div class="mb-3 flex items-start justify-between">
+                        <div class="flex items-start gap-3">
+                          <div
+                            class="company-icon company-icon-blue"
+                            title="PorchPass"
                           >
-                            Senior Customer Success Manager
-                          </h3>
-                          <p class="font-medium text-blue-600">PorchPass</p>
+                            PP
+                          </div>
+                          <div>
+                            <h3
+                              class="font-medium text-slate-800 transition-colors group-hover:text-blue-600"
+                            >
+                              Senior Customer Success Manager
+                            </h3>
+                            <p class="font-medium text-blue-600">PorchPass</p>
+                          </div>
                         </div>
+                        <span class="font-mono text-sm text-slate-500">
+                          2024 – 2025
+                        </span>
                       </div>
-                      <span class="font-mono text-sm text-slate-500">
-                        2024 – 2025
-                      </span>
+                      <p class="mb-4 ml-12 leading-relaxed text-slate-600">
+                        Drove loan volume from $3M to $7M monthly in 90 days.
+                        Managing 125+ dealership accounts across Texas and
+                        Oklahoma with full-cycle partnership ownership.
+                      </p>
+                      <div class="ml-12 flex gap-2 text-xs">
+                        <span
+                          class="achievement-tag rounded-full bg-green-100 px-3 py-1 text-green-700"
+                        >
+                          133% growth
+                        </span>
+                        <span
+                          class="achievement-tag rounded-full bg-blue-100 px-3 py-1 text-blue-700"
+                        >
+                          125+ accounts
+                        </span>
+                      </div>
                     </div>
-                    <p class="mb-4 ml-12 leading-relaxed text-slate-600">
-                      Drove loan volume from $3M to $7M monthly in 90 days.
-                      Managing 125+ dealership accounts across Texas and
-                      Oklahoma with full-cycle partnership ownership.
-                    </p>
-                    <div class="ml-12 flex gap-2 text-xs">
-                      <span
-                        class="achievement-tag rounded-full bg-green-100 px-3 py-1 text-green-700"
-                      >
-                        133% growth
-                      </span>
-                      <span
-                        class="achievement-tag rounded-full bg-blue-100 px-3 py-1 text-blue-700"
-                      >
-                        125+ accounts
-                      </span>
+
+                    <div class="experience-item group">
+                      <div class="timeline-dot"></div>
+                      <div class="mb-3 flex items-start justify-between">
+                        <div class="flex items-start gap-3">
+                          <div
+                            class="company-icon company-icon-purple"
+                            title="StretchLab"
+                          >
+                            SL
+                          </div>
+                          <div>
+                            <h3
+                              class="font-medium text-slate-800 transition-colors group-hover:text-purple-600"
+                            >
+                              Sales Manager & Flexologist
+                            </h3>
+                            <p class="font-medium text-purple-600">
+                              StretchLab
+                            </p>
+                          </div>
+                        </div>
+                        <span class="font-mono text-sm text-slate-500">
+                          2023 – 2024
+                        </span>
+                      </div>
+                      <p class="mb-4 ml-12 leading-relaxed text-slate-600">
+                        Managed $1.2M annual sales across two studios. Led
+                        7-person team and achieved 75% close rate—highest in
+                        district.
+                      </p>
+                      <div class="ml-12 flex gap-2 text-xs">
+                        <span
+                          class="achievement-tag rounded-full bg-purple-100 px-3 py-1 text-purple-700"
+                        >
+                          district leader
+                        </span>
+                        <span
+                          class="achievement-tag rounded-full bg-orange-100 px-3 py-1 text-orange-700"
+                        >
+                          $1.2M revenue
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="experience-item group">
+                      <div class="timeline-dot"></div>
+                      <div class="mb-3 flex items-start justify-between">
+                        <div class="flex items-start gap-3">
+                          <div
+                            class="company-icon company-icon-indigo"
+                            title="Otis Elevator Company"
+                          >
+                            OE
+                          </div>
+                          <div>
+                            <h3
+                              class="font-medium text-slate-800 transition-colors group-hover:text-indigo-600"
+                            >
+                              Senior Account Manager
+                            </h3>
+                            <p class="font-medium text-indigo-600">
+                              Otis Elevator Company
+                            </p>
+                          </div>
+                        </div>
+                        <span class="font-mono text-sm text-slate-500">
+                          2016 – 2020
+                        </span>
+                      </div>
+                      <p class="mb-4 ml-12 leading-relaxed text-slate-600">
+                        Top 3 performer in Midwest region. Managed 633
+                        elevators, sold $4.3M in upgrades, maintained 95%
+                        customer retention.
+                      </p>
+                      <div class="ml-12 flex gap-2 text-xs">
+                        <span
+                          class="achievement-tag rounded-full bg-yellow-100 px-3 py-1 text-yellow-700"
+                        >
+                          top 3 regional
+                        </span>
+                        <span
+                          class="achievement-tag rounded-full bg-green-100 px-3 py-1 text-green-700"
+                        >
+                          95% retention
+                        </span>
+                      </div>
                     </div>
                   </div>
+                </div>
 
-                  <div class="experience-item group">
-                    <div class="timeline-dot"></div>
-                    <div class="mb-3 flex items-start justify-between">
-                      <div class="flex items-start gap-3">
-                        <div
-                          class="company-icon company-icon-purple"
-                          title="StretchLab"
-                        >
-                          SL
-                        </div>
-                        <div>
-                          <h3
-                            class="font-medium text-slate-800 transition-colors group-hover:text-purple-600"
-                          >
-                            Sales Manager & Flexologist
-                          </h3>
-                          <p class="font-medium text-purple-600">StretchLab</p>
-                        </div>
-                      </div>
-                      <span class="font-mono text-sm text-slate-500">
-                        2023 – 2024
-                      </span>
-                    </div>
-                    <p class="mb-4 ml-12 leading-relaxed text-slate-600">
-                      Managed $1.2M annual sales across two studios. Led
-                      7-person team and achieved 75% close rate—highest in
-                      district.
-                    </p>
-                    <div class="ml-12 flex gap-2 text-xs">
-                      <span
-                        class="achievement-tag rounded-full bg-purple-100 px-3 py-1 text-purple-700"
-                      >
-                        district leader
-                      </span>
-                      <span
-                        class="achievement-tag rounded-full bg-orange-100 px-3 py-1 text-orange-700"
-                      >
-                        $1.2M revenue
-                      </span>
-                    </div>
-                  </div>
+                <!-- Download Resume Button -->
+                <div class="mt-8 text-center">
+                  <a
+                    href="/henry-proctor-resume.pdf"
+                    download
+                    class="download-btn group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  >
+                    <svg
+                      class="download-icon h-5 w-5 transition-transform duration-300 group-hover:translate-y-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    <span class="download-text">Download Resume</span>
+                    <div class="download-pulse"></div>
+                  </a>
+                </div>
+              </div>
+            </div>
 
-                  <div class="experience-item group">
-                    <div class="timeline-dot"></div>
-                    <div class="mb-3 flex items-start justify-between">
-                      <div class="flex items-start gap-3">
-                        <div
-                          class="company-icon company-icon-indigo"
-                          title="Otis Elevator Company"
-                        >
-                          OE
-                        </div>
-                        <div>
-                          <h3
-                            class="font-medium text-slate-800 transition-colors group-hover:text-indigo-600"
-                          >
-                            Senior Account Manager
-                          </h3>
-                          <p class="font-medium text-indigo-600">
-                            Otis Elevator Company
-                          </p>
-                        </div>
-                      </div>
-                      <span class="font-mono text-sm text-slate-500">
-                        2016 – 2020
+            <!-- Unified Sidebar -->
+            <div class="stat-bubble-blue space-y-8 p-8">
+              <!-- Profile -->
+              <div class="text-center">
+                <div
+                  class="relative mx-auto mb-6 h-32 w-32 overflow-hidden rounded-full"
+                >
+                  <img
+                    src="/images/henry-headshot.jpg"
+                    alt="Henry Proctor IV"
+                    class="h-full w-full object-cover grayscale transition-all duration-500 hover:scale-105 hover:grayscale-0"
+                  />
+                </div>
+                <h3 class="mb-2 font-medium text-slate-800">
+                  Henry Proctor IV
+                </h3>
+                <p class="text-sm text-slate-600">
+                  Sales Leader & Commercial Pilot
+                </p>
+              </div>
+
+              <!-- Contact -->
+              <div class="sidebar-section">
+                <h3
+                  class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+                >
+                  <span class="text-xl">📞</span>
+                  Contact
+                </h3>
+                <div class="space-y-3 text-sm">
+                  <a
+                    href="mailto:hproc725@gmail.com"
+                    class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
+                  >
+                    📧 hproc725@gmail.com
+                  </a>
+                  <a
+                    href="tel:216-633-8470"
+                    class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
+                  >
+                    📞 (216) 633-8470
+                  </a>
+                  <a
+                    href="#"
+                    class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
+                  >
+                    💼 linkedin.com/in/henry-proctor
+                  </a>
+                  <p class="flex items-center gap-2 text-slate-600">
+                    📍 San Antonio, Texas
+                  </p>
+                </div>
+              </div>
+
+              <!-- Flight + Media -->
+              <div class="sidebar-section">
+                <h3
+                  class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+                >
+                  <span class="text-xl">✈️</span>
+                  Flight + Media
+                </h3>
+                <div class="space-y-4">
+                  <!-- Aviation credentials -->
+                  <div class="space-y-3 text-sm">
+                    <div class="flex items-center justify-between">
+                      <span class="text-slate-600">Private Pilot</span>
+                      <span
+                        class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
+                      >
+                        2021
                       </span>
                     </div>
-                    <p class="mb-4 ml-12 leading-relaxed text-slate-600">
-                      Top 3 performer in Midwest region. Managed 633 elevators,
-                      sold $4.3M in upgrades, maintained 95% customer retention.
-                    </p>
-                    <div class="ml-12 flex gap-2 text-xs">
+                    <div class="flex items-center justify-between">
+                      <span class="text-slate-600">Instrument Rating</span>
                       <span
-                        class="achievement-tag rounded-full bg-yellow-100 px-3 py-1 text-yellow-700"
+                        class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
                       >
-                        top 3 regional
+                        2022
                       </span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <span class="text-slate-600">Commercial SE</span>
                       <span
-                        class="achievement-tag rounded-full bg-green-100 px-3 py-1 text-green-700"
+                        class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
                       >
-                        95% retention
+                        2023
                       </span>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Download Resume Button -->
-              <div class="mt-8 text-center">
-                <a
-                  href="/henry-proctor-resume.pdf"
-                  download
-                  class="download-btn group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                >
-                  <svg
-                    class="download-icon h-5 w-5 transition-transform duration-300 group-hover:translate-y-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <!-- Philosophy -->
+                <div class="sidebar-section sidebar-card">
+                  <h3
+                    class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
                   >
+                    <span class="text-xl">🎯</span>
+                    Philosophy
+                  </h3>
+                  <div
+                    class="hover-expand rounded-lg border border-green-100 bg-white/60 p-4 backdrop-blur-sm"
+                  >
+                    <p class="text-sm leading-relaxed text-slate-600">
+                      Blending the grit of sport, precision of flight, and
+                      strategy of business—with wisdom and a hunger to learn,
+                      growth is my constant pursuit.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Education -->
+                <div class="sidebar-section sidebar-card">
+                  <h3
+                    class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+                  >
+                    <span class="text-xl">🎓</span>
+                    Education
+                  </h3>
+                  <div
+                    class="hover-expand rounded-lg border border-green-100 bg-white/60 p-4 text-sm backdrop-blur-sm"
+                  >
+                    <p class="font-medium text-slate-800">
+                      B.S. Exercise Science
+                    </p>
+                    <p class="text-slate-600">Bowling Green State University</p>
+                    <p class="font-mono text-slate-600">2016</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Drone Photography Section -->
+      <section class="relative px-6 py-16">
+        <div class="mx-auto max-w-4xl">
+          <div class="content-card p-8">
+            <h2
+              class="mb-6 flex items-center gap-3 text-2xl font-light text-slate-800"
+            >
+              <span class="text-3xl">📷</span>
+              Aerial Photography
+            </h2>
+            <div class="grid items-center gap-6 md:grid-cols-2">
+              <div>
+                <p class="mb-4 text-lg leading-relaxed text-slate-600">
+                  Combining commercial pilot precision with creative vision to
+                  capture unique perspectives from above. Specializing in real
+                  estate photography and event coverage across Texas.
+                </p>
+                <p class="mb-6 text-slate-600">
+                  Licensed drone operator applying the same attention to detail
+                  from aviation to aerial media production.
+                </p>
+                <a
+                  href="/photography"
+                  class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700"
+                >
+                  📷 View Portfolio
+                  <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fill-rule="evenodd"
-                      d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <span class="download-text">Download Resume</span>
-                  <div class="download-pulse"></div>
                 </a>
               </div>
-            </div>
-          </div>
-
-          <!-- Unified Sidebar -->
-          <div class="stat-bubble-blue space-y-8 p-8">
-            <!-- Profile -->
-            <div class="text-center">
-              <div
-                class="relative mx-auto mb-6 h-32 w-32 overflow-hidden rounded-full"
-              >
-                <img
-                  src="/images/henry-headshot.jpg"
-                  alt="Henry Proctor IV"
-                  class="h-full w-full object-cover grayscale transition-all duration-500 hover:scale-105 hover:grayscale-0"
-                />
-              </div>
-              <h3 class="mb-2 font-medium text-slate-800">Henry Proctor IV</h3>
-              <p class="text-sm text-slate-600">
-                Sales Leader & Commercial Pilot
-              </p>
-            </div>
-
-            <!-- Contact -->
-            <div class="sidebar-section">
-              <h3
-                class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
-              >
-                <span class="text-xl">📞</span>
-                Contact
-              </h3>
-              <div class="space-y-3 text-sm">
-                <a
-                  href="mailto:hproc725@gmail.com"
-                  class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
-                >
-                  📧 hproc725@gmail.com
-                </a>
-                <a
-                  href="tel:216-633-8470"
-                  class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
-                >
-                  📞 (216) 633-8470
-                </a>
-                <a
-                  href="#"
-                  class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
-                >
-                  💼 linkedin.com/in/henry-proctor
-                </a>
-                <p class="flex items-center gap-2 text-slate-600">
-                  📍 San Antonio, Texas
-                </p>
-              </div>
-            </div>
-
-            <!-- Flight + Media -->
-            <div class="sidebar-section">
-              <h3
-                class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
-              >
-                <span class="text-xl">✈️</span>
-                Flight + Media
-              </h3>
-              <div class="space-y-4">
-                <!-- Aviation credentials -->
-                <div class="space-y-3 text-sm">
-                  <div class="flex items-center justify-between">
-                    <span class="text-slate-600">Private Pilot</span>
-                    <span
-                      class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
-                    >
-                      2021
-                    </span>
-                  </div>
-                  <div class="flex items-center justify-between">
-                    <span class="text-slate-600">Instrument Rating</span>
-                    <span
-                      class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
-                    >
-                      2022
-                    </span>
-                  </div>
-                  <div class="flex items-center justify-between">
-                    <span class="text-slate-600">Commercial SE</span>
-                    <span
-                      class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
-                    >
-                      2023
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Philosophy -->
-              <div class="sidebar-section sidebar-card">
-                <h3
-                  class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
-                >
-                  <span class="text-xl">🎯</span>
-                  Philosophy
-                </h3>
+              <div class="relative">
                 <div
-                  class="hover-expand rounded-lg border border-green-100 bg-white/60 p-4 backdrop-blur-sm"
+                  class="flex aspect-square items-center justify-center rounded-lg bg-gradient-to-br from-blue-100 to-purple-100"
                 >
-                  <p class="text-sm leading-relaxed text-slate-600">
-                    Blending the grit of sport, precision of flight, and
-                    strategy of business—with wisdom and a hunger to learn,
-                    growth is my constant pursuit.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Education -->
-              <div class="sidebar-section sidebar-card">
-                <h3
-                  class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
-                >
-                  <span class="text-xl">🎓</span>
-                  Education
-                </h3>
-                <div
-                  class="hover-expand rounded-lg border border-green-100 bg-white/60 p-4 text-sm backdrop-blur-sm"
-                >
-                  <p class="font-medium text-slate-800">
-                    B.S. Exercise Science
-                  </p>
-                  <p class="text-slate-600">Bowling Green State University</p>
-                  <p class="font-mono text-slate-600">2016</p>
+                  <img
+                    src="/images/dji_fly_20240218_123500_93_1708290047743_photo_optimized.jpg"
+                    alt="Aerial real estate photography"
+                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Drone Photography Section -->
-    <section class="relative px-6 py-16">
-      <div class="mx-auto max-w-4xl">
-        <div class="content-card p-8">
-          <h2
-            class="mb-6 flex items-center gap-3 text-2xl font-light text-slate-800"
-          >
-            <span class="text-3xl">📷</span>
-            Aerial Photography
-          </h2>
-          <div class="grid items-center gap-6 md:grid-cols-2">
-            <div>
-              <p class="mb-4 text-lg leading-relaxed text-slate-600">
-                Combining commercial pilot precision with creative vision to
-                capture unique perspectives from above. Specializing in real
-                estate photography and event coverage across Texas.
-              </p>
-              <p class="mb-6 text-slate-600">
-                Licensed drone operator applying the same attention to detail
-                from aviation to aerial media production.
-              </p>
-              <a
-                href="/photography"
-                class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700"
-              >
-                📷 View Portfolio
-                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-            <div class="relative">
-              <div
-                class="flex aspect-square items-center justify-center rounded-lg bg-gradient-to-br from-blue-100 to-purple-100"
-              >
-                <img
-                  src="/images/dji_fly_20240218_123500_93_1708290047743_photo_optimized.jpg"
-                  alt="Aerial real estate photography"
-                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+      </section>
+    </div>
     <!-- Enhanced Footer -->
     <footer class="relative px-6 py-8">
       <div class="mx-auto max-w-6xl">
@@ -760,16 +766,15 @@
 
   /* Frosted Glass Effect - Reserved for Hero */
   .glass-card {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(20px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
   }
 
   .glass-card:hover {
-    background: rgba(255, 255, 255, 0.3);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
   }

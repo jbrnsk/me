@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="relative h-full sm:px-2 md:px-4">
+  <div class="relative h-full">
     <CloudBackgroundCanvas />
     <div class="pointer-events-none fixed inset-0 min-h-screen overflow-hidden">
       <div class="racing-stripe racing-stripe-1"></div>
