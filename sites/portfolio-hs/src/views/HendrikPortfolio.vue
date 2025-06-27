@@ -1,956 +1,916 @@
-<script setup lang="ts">
-  import { throttle } from 'lodash-es';
-  import { onMounted } from 'vue';
-
-  onMounted(() => {
-    animateRevenue();
-    animateAppsRate();
-  });
-
-  const animateNumber = (
-    elementId: string,
-    target: number,
-    suffix: string = '',
-  ) => {
-    const element = document.getElementById(elementId);
-    if (!element) return;
-
-    let current = 0;
-    const increment = target / 30;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        current = target;
-        clearInterval(timer);
-      }
-
-      let displayValue = '';
-      if (suffix === 'M') {
-        displayValue = `$${Math.floor(current)}M`;
-      } else if (suffix === '%') {
-        displayValue = `${Math.floor(current)}%`;
-      } else if (suffix === '+') {
-        displayValue = `${Math.floor(current)}+`;
-      } else {
-        displayValue = `${Math.floor(current)}+`;
-      }
-
-      element.textContent = displayValue;
-    }, 50);
-  };
-
-  const animateYearsExp = throttle(() => animateNumber('years-exp', 10), 2000, {
-    leading: true,
-    trailing: false,
-  });
-  const animateRevenue = throttle(
-    () => animateNumber('revenue', 7, 'M'),
-    2000,
-    {
-      leading: true,
-      trailing: false,
-    },
-  );
-  const animateCloseRate = throttle(
-    () => animateNumber('close-rate', 75, '%'),
-    2000,
-    {
-      leading: true,
-      trailing: false,
-    },
-  );
-  const animateAppsRate = throttle(
-    () => animateNumber('apps-rate', 500, '+'),
-    2000,
-    {
-      leading: true,
-      trailing: false,
-    },
-  );
-</script>
-
 <template>
-  <!-- Main Content -->
-  <div class="pointer-events-none relative z-10 min-h-screen">
-    <!-- Navigation -->
-    <nav
-      class="sticky top-0 z-50 border-b border-gray-200 bg-white/60 backdrop-blur-lg"
+  <div class="relative">
+    <!-- Language Toggle - Top Right -->
+    <div class="fixed right-4 top-4 z-50">
+      <div
+        class="mr-4 flex overflow-hidden rounded-lg border border-white/10 bg-black/20 backdrop-blur-md"
+      >
+        <button
+          @click="setLanguage('en')"
+          :class="[
+            'px-3 py-2 text-sm font-medium transition-all duration-300',
+            currentLanguage === 'en'
+              ? 'border-r border-emerald-400/50 bg-emerald-500/30 text-emerald-300'
+              : 'text-white/70 hover:bg-white/10 hover:text-white',
+          ]"
+        >
+          EN
+        </button>
+        <button
+          @click="setLanguage('de')"
+          :class="[
+            'px-3 py-2 text-sm font-medium transition-all duration-300',
+            currentLanguage === 'de'
+              ? 'border-l border-emerald-400/50 bg-emerald-500/30 text-emerald-300'
+              : 'text-white/70 hover:bg-white/10 hover:text-white',
+          ]"
+        >
+          DE
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      @click="mobileMenuOpen = !mobileMenuOpen"
+      class="fixed left-4 top-4 z-50 rounded-lg border border-white/10 bg-black/20 p-3 backdrop-blur-md lg:hidden"
     >
-      <div class="mx-auto max-w-6xl px-6 py-4">
-        <div class="flex items-center justify-between">
-          <h1
-            class="flex items-center font-mono text-lg font-medium text-slate-800"
+      <svg
+        class="h-6 w-6 text-white"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+    </button>
+
+    <!-- Mobile Menu Overlay -->
+    <div
+      v-if="mobileMenuOpen"
+      @click="mobileMenuOpen = false"
+      class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
+    ></div>
+
+    <!-- Left Sidebar -->
+    <div
+      :class="[
+        'z-50 flex flex-col border-r border-white/10 bg-black/20 p-8 backdrop-blur-md',
+        'lg:fixed lg:h-full lg:w-80',
+        'fixed h-full w-80 transition-transform duration-300',
+        mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
+      ]"
+    >
+      <!-- Profile -->
+      <div class="mb-12 text-center">
+        <div
+          class="mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full border border-white/20 bg-gradient-to-br from-emerald-400/30 to-teal-600/30"
+        >
+          <div
+            class="flex h-24 w-24 items-center justify-center rounded-full bg-white/10"
           >
-            henry.proctor
-            <div
-              class="ml-2 inline-block h-2 w-2 animate-pulse rounded-full bg-blue-500"
-            ></div>
-          </h1>
-          <div class="flex space-x-6 text-sm">
-            <a
-              href="#experience"
-              class="nav-link text-slate-700 transition-colors hover:text-blue-600"
+            <svg
+              class="h-12 w-12 text-white/50"
+              fill="currentColor"
+              viewBox="0 0 20 20"
             >
-              Experience
-            </a>
-            <a
-              href="/photography"
-              class="nav-link text-slate-700 transition-colors hover:text-blue-600"
-            >
-              Photography
-            </a>
+              <path
+                fill-rule="evenodd"
+                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                clip-rule="evenodd"
+              />
+            </svg>
           </div>
         </div>
+        <h1 class="mb-2 text-2xl font-bold text-white">Hendrik Strache</h1>
+        <p class="text-lg text-emerald-300">{{ t('profile.title') }}</p>
+        <p class="mt-1 text-sm text-white/60">Austin, TX</p>
       </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <!--    <div class="py-10 sm:px-2 md:px-4">-->
-    <!--      <section class="relative px-6 py-10">-->
-    <!--        <div class="mx-auto max-w-6xl">-->
-    <!--          <div class="glass-card mx-auto max-w-4xl p-12 text-center">-->
-    <!--            <h1 class="hero-title mb-4 text-5xl font-light text-slate-800">-->
-    <!--              Henry Proctor IV-->
-    <!--            </h1>-->
-    <!--            <p-->
-    <!--              class="mb-8 flex items-center justify-center gap-3 text-xl text-slate-600"-->
-    <!--            >-->
-    <!--              Sales Leader-->
-    <!--              <span-->
-    <!--                class="inline-block h-1 w-1 animate-pulse rounded-full bg-blue-500"-->
-    <!--              ></span>-->
-    <!--              Commercial Pilot-->
-    <!--              <svg-->
-    <!--                class="h-5 w-5 text-blue-500"-->
-    <!--                fill="currentColor"-->
-    <!--                viewBox="0 0 20 20"-->
-    <!--              >-->
-    <!--                <path-->
-    <!--                  d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"-->
-    <!--                ></path>-->
-    <!--              </svg>-->
-    <!--            </p>-->
+      <!-- Navigation -->
+      <nav class="flex-1">
+        <ul class="space-y-4">
+          <li>
+            <button
+              @click="scrollToSection('overview')"
+              :class="navButtonClass('overview')"
+            >
+              <span class="flex items-center">
+                <svg
+                  class="mr-3 h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+                {{ t('nav.overview') }}
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              @click="scrollToSection('projects')"
+              :class="navButtonClass('projects')"
+            >
+              <span class="flex items-center">
+                <svg
+                  class="mr-3 h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  />
+                </svg>
+                {{ t('nav.projects') }}
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              @click="scrollToSection('contact')"
+              :class="navButtonClass('contact')"
+            >
+              <span class="flex items-center">
+                <svg
+                  class="mr-3 h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                {{ t('nav.contact') }}
+              </span>
+            </button>
+          </li>
+        </ul>
+      </nav>
 
-    <!--            &lt;!&ndash; Colorful Stats Grid &ndash;&gt;-->
-    <!--            <div class="mb-8 grid grid-cols-2 gap-6 md:grid-cols-4">-->
-    <!--              <div-->
-    <!--                class="stat-bubble-blue cursor-pointer transition-all duration-300 hover:scale-105"-->
-    <!--                @mouseenter="animateYearsExp"-->
-    <!--              >-->
-    <!--                <div-->
-    <!--                  class="font-mono text-2xl font-bold text-blue-700"-->
-    <!--                  id="years-exp"-->
-    <!--                >-->
-    <!--                  10+-->
-    <!--                </div>-->
-    <!--                <div class="text-sm text-blue-600">years exp</div>-->
-    <!--              </div>-->
-    <!--              <div-->
-    <!--                class="stat-bubble-green cursor-pointer transition-all duration-300 hover:scale-105"-->
-    <!--                @mouseenter="animateRevenue"-->
-    <!--              >-->
-    <!--                <div-->
-    <!--                  class="font-mono text-2xl font-bold text-green-700"-->
-    <!--                  id="revenue"-->
-    <!--                >-->
-    <!--                  $7M-->
-    <!--                </div>-->
-    <!--                <div class="text-sm text-green-600">monthly revenue</div>-->
-    <!--              </div>-->
+      <!-- Download Resume -->
+      <div class="mt-auto pt-8">
+        <button
+          @click="downloadResume"
+          class="mb-6 w-full transform rounded-lg border border-emerald-400/50 bg-emerald-500/20 px-6 py-3 text-emerald-300 transition-all duration-300 hover:scale-105 hover:bg-emerald-500/30"
+        >
+          <span class="flex items-center justify-center">
+            <svg
+              class="mr-2 h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            {{ t('sidebar.downloadResume') }}
+          </span>
+        </button>
 
-    <!--              <div-->
-    <!--                class="stat-bubble-purple cursor-pointer transition-all duration-300 hover:scale-105"-->
-    <!--                @mouseenter="animateCloseRate"-->
-    <!--              >-->
-    <!--                <div-->
-    <!--                  class="font-mono text-2xl font-bold text-purple-700"-->
-    <!--                  id="close-rate"-->
-    <!--                >-->
-    <!--                  75%-->
-    <!--                </div>-->
-    <!--                <div class="text-sm text-purple-600">close rate</div>-->
-    <!--              </div>-->
+        <!-- Social Links -->
+        <div class="flex justify-center space-x-4">
+          <a
+            href="#"
+            class="text-white/50 transition-colors duration-300 hover:text-emerald-300"
+          >
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+          <a
+            href="#"
+            class="text-white/50 transition-colors duration-300 hover:text-emerald-300"
+          >
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
 
-    <!--              <div-->
-    <!--                class="stat-bubble-orange cursor-pointer transition-all duration-300 hover:scale-105"-->
-    <!--                @mouseenter="animateAppsRate"-->
-    <!--              >-->
-    <!--                <div-->
-    <!--                  class="font-mono text-2xl font-bold text-orange-700"-->
-    <!--                  id="apps-rate"-->
-    <!--                >-->
-    <!--                  500+-->
-    <!--                </div>-->
-    <!--                <div class="text-sm text-orange-600">apps in 6 months</div>-->
-    <!--              </div>-->
-    <!--            </div>-->
+    <!-- Main Content -->
+    <div
+      :class="[
+        'transition-all duration-300',
+        'lg:ml-80',
+        mobileMenuOpen ? 'blur-sm' : '',
+      ]"
+    >
+      <!-- Overview Section -->
+      <section id="overview" class="flex min-h-screen items-center p-6 lg:p-12">
+        <div class="mx-auto w-full max-w-4xl">
+          <div
+            class="rounded-2xl border border-white/10 bg-black/20 p-6 backdrop-blur-md lg:p-12"
+          >
+            <h2 class="mb-8 text-4xl font-bold text-white">
+              {{ t('overview.title') }}
+            </h2>
+            <div class="space-y-6 text-lg leading-relaxed text-white/80">
+              <p>{{ t('overview.description1') }}</p>
+              <p>{{ t('overview.description2') }}</p>
 
-    <!--            <p class="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600">-->
-    <!--              Strategic sales leader with 10+ years driving growth across-->
-    <!--              FinTech, aviation, and wellness sectors. Military spouse bringing-->
-    <!--              analytical precision and relationship-focused leadership to scale-->
-    <!--              high-performing teams and execute revenue-generating strategies-->
-    <!--              across diverse markets.-->
-    <!--            </p>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </section>-->
+              <div class="mt-12 grid gap-8 md:grid-cols-2">
+                <div>
+                  <h3 class="mb-4 text-xl font-semibold text-emerald-300">
+                    {{ t('overview.expertise.title') }}
+                  </h3>
+                  <ul class="space-y-2 text-white/70">
+                    <li
+                      v-for="item in t('overview.expertise.items')"
+                      :key="item"
+                    >
+                      • {{ item }}
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="mb-4 text-xl font-semibold text-emerald-300">
+                    {{ t('overview.industries.title') }}
+                  </h3>
+                  <ul class="space-y-2 text-white/70">
+                    <li
+                      v-for="item in t('overview.industries.items')"
+                      :key="item"
+                    >
+                      • {{ item }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!--      &lt;!&ndash; Main Content Grid &ndash;&gt;-->
-    <!--      <section id="experience" class="relative px-6 py-16">-->
-    <!--        <div class="mx-auto max-w-6xl">-->
-    <!--          <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">-->
-    <!--            &lt;!&ndash; Main Experience Content &ndash;&gt;-->
-    <!--            <div class="lg:col-span-2">-->
-    <!--              <div class="content-card p-8">-->
-    <!--                &lt;!&ndash; Aligned header with timeline &ndash;&gt;-->
-    <!--                <div class="mb-8 flex items-start gap-6">-->
-    <!--                  <div class="timeline-line"></div>-->
-    <!--                  <h2-->
-    <!--                    class="flex items-center gap-3 text-2xl font-light text-slate-800"-->
-    <!--                  >-->
-    <!--                    <span class="text-3xl">🛩️</span>-->
-    <!--                    Experience Timeline-->
-    <!--                  </h2>-->
-    <!--                </div>-->
+      <!-- Projects Section -->
+      <section
+        id="projects"
+        class="flex min-h-screen flex-col justify-center px-6 py-8"
+      >
+        <div class="mx-auto w-full max-w-6xl">
+          <div
+            class="rounded-2xl border border-white/10 bg-black/20 p-6 backdrop-blur-md"
+          >
+            <h2 class="mb-6 text-center text-3xl font-bold text-white">
+              {{ t('projects.title') }}
+            </h2>
+            <div class="grid gap-4 lg:grid-cols-2">
+              <!-- Project 1 -->
+              <div
+                class="group transform overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition-all duration-500 hover:scale-[1.02] hover:bg-white/10"
+              >
+                <div
+                  class="relative h-36 bg-gradient-to-br from-blue-600/30 via-purple-600/30 to-cyan-400/30"
+                >
+                  <div class="absolute inset-0 bg-black/40"></div>
+                  <div
+                    class="absolute left-2 top-2 rounded-lg bg-white/10 px-2 py-1 backdrop-blur-sm lg:left-4 lg:top-4 lg:px-3"
+                  >
+                    <span class="text-xs font-semibold text-white lg:text-sm">
+                      DB InfraGO
+                    </span>
+                  </div>
+                </div>
 
-    <!--                <div class="relative pl-6">-->
-    <!--                  &lt;!&ndash; Animated timeline line &ndash;&gt;-->
-    <!--                  <div class="timeline-connector"></div>-->
+                <div class="p-5">
+                  <h3 class="mb-2 text-lg font-bold text-white">
+                    {{ t('projects.project1.title') }}
+                  </h3>
+                  <p class="mb-3 text-sm leading-relaxed text-white/70">
+                    {{ t('projects.project1.description') }}
+                  </p>
 
-    <!--                  <div class="space-y-8">-->
-    <!--                    <div class="experience-item group">-->
-    <!--                      <div class="timeline-dot timeline-dot-active"></div>-->
-    <!--                      <div class="mb-3 flex items-start justify-between">-->
-    <!--                        <div class="flex items-start gap-3">-->
-    <!--                          <div-->
-    <!--                            class="company-icon company-icon-blue"-->
-    <!--                            title="PorchPass"-->
-    <!--                          >-->
-    <!--                            PP-->
-    <!--                          </div>-->
-    <!--                          <div>-->
-    <!--                            <h3-->
-    <!--                              class="font-medium text-slate-800 transition-colors group-hover:text-blue-600"-->
-    <!--                            >-->
-    <!--                              Senior Customer Success Manager-->
-    <!--                            </h3>-->
-    <!--                            <p class="font-medium text-blue-600">PorchPass</p>-->
-    <!--                          </div>-->
-    <!--                        </div>-->
-    <!--                        <span class="font-mono text-sm text-slate-500">-->
-    <!--                          2024 – 2025-->
-    <!--                        </span>-->
-    <!--                      </div>-->
-    <!--                      <p class="mb-4 ml-12 leading-relaxed text-slate-600">-->
-    <!--                        Drove loan volume from $3M to $7M monthly in 90 days.-->
-    <!--                        Managing 125+ dealership accounts across Texas and-->
-    <!--                        Oklahoma with full-cycle partnership ownership.-->
-    <!--                      </p>-->
-    <!--                      <div class="ml-12 flex gap-2 text-xs">-->
-    <!--                        <span-->
-    <!--                          class="achievement-tag rounded-full bg-green-100 px-3 py-1 text-green-700"-->
-    <!--                        >-->
-    <!--                          133% growth-->
-    <!--                        </span>-->
-    <!--                        <span-->
-    <!--                          class="achievement-tag rounded-full bg-blue-100 px-3 py-1 text-blue-700"-->
-    <!--                        >-->
-    <!--                          125+ accounts-->
-    <!--                        </span>-->
-    <!--                      </div>-->
-    <!--                    </div>-->
+                  <div class="mb-3 space-y-1 text-sm">
+                    <div class="flex items-center">
+                      <span class="text-white/60">
+                        {{ t('projects.industry') }}:
+                      </span>
+                      <span class="ml-2 text-white">
+                        {{ t('projects.project1.industry') }}
+                      </span>
+                    </div>
+                    <div class="flex items-center">
+                      <span class="text-white/60">
+                        {{ t('projects.budget') }}:
+                      </span>
+                      <span class="ml-2 text-white">€70M</span>
+                    </div>
+                  </div>
 
-    <!--                    <div class="experience-item group">-->
-    <!--                      <div class="timeline-dot"></div>-->
-    <!--                      <div class="mb-3 flex items-start justify-between">-->
-    <!--                        <div class="flex items-start gap-3">-->
-    <!--                          <div-->
-    <!--                            class="company-icon company-icon-purple"-->
-    <!--                            title="StretchLab"-->
-    <!--                          >-->
-    <!--                            SL-->
-    <!--                          </div>-->
-    <!--                          <div>-->
-    <!--                            <h3-->
-    <!--                              class="font-medium text-slate-800 transition-colors group-hover:text-purple-600"-->
-    <!--                            >-->
-    <!--                              Sales Manager & Flexologist-->
-    <!--                            </h3>-->
-    <!--                            <p class="font-medium text-purple-600">-->
-    <!--                              StretchLab-->
-    <!--                            </p>-->
-    <!--                          </div>-->
-    <!--                        </div>-->
-    <!--                        <span class="font-mono text-sm text-slate-500">-->
-    <!--                          2023 – 2024-->
-    <!--                        </span>-->
-    <!--                      </div>-->
-    <!--                      <p class="mb-4 ml-12 leading-relaxed text-slate-600">-->
-    <!--                        Managed $1.2M annual sales across two studios. Led-->
-    <!--                        7-person team and achieved 75% close rate—highest in-->
-    <!--                        district.-->
-    <!--                      </p>-->
-    <!--                      <div class="ml-12 flex gap-2 text-xs">-->
-    <!--                        <span-->
-    <!--                          class="achievement-tag rounded-full bg-purple-100 px-3 py-1 text-purple-700"-->
-    <!--                        >-->
-    <!--                          district leader-->
-    <!--                        </span>-->
-    <!--                        <span-->
-    <!--                          class="achievement-tag rounded-full bg-orange-100 px-3 py-1 text-orange-700"-->
-    <!--                        >-->
-    <!--                          $1.2M revenue-->
-    <!--                        </span>-->
-    <!--                      </div>-->
-    <!--                    </div>-->
+                  <div class="border-t border-white/10 pt-3">
+                    <h4 class="mb-2 text-sm font-semibold text-emerald-300">
+                      {{ t('projects.myRole') }}:
+                    </h4>
+                    <p class="text-sm leading-relaxed text-white/70">
+                      {{ t('projects.project1.role') }}
+                    </p>
+                  </div>
 
-    <!--                    <div class="experience-item group">-->
-    <!--                      <div class="timeline-dot"></div>-->
-    <!--                      <div class="mb-3 flex items-start justify-between">-->
-    <!--                        <div class="flex items-start gap-3">-->
-    <!--                          <div-->
-    <!--                            class="company-icon company-icon-indigo"-->
-    <!--                            title="Otis Elevator Company"-->
-    <!--                          >-->
-    <!--                            OE-->
-    <!--                          </div>-->
-    <!--                          <div>-->
-    <!--                            <h3-->
-    <!--                              class="font-medium text-slate-800 transition-colors group-hover:text-indigo-600"-->
-    <!--                            >-->
-    <!--                              Senior Account Manager-->
-    <!--                            </h3>-->
-    <!--                            <p class="font-medium text-indigo-600">-->
-    <!--                              Otis Elevator Company-->
-    <!--                            </p>-->
-    <!--                          </div>-->
-    <!--                        </div>-->
-    <!--                        <span class="font-mono text-sm text-slate-500">-->
-    <!--                          2016 – 2020-->
-    <!--                        </span>-->
-    <!--                      </div>-->
-    <!--                      <p class="mb-4 ml-12 leading-relaxed text-slate-600">-->
-    <!--                        Top 3 performer in Midwest region. Managed 633-->
-    <!--                        elevators, sold $4.3M in upgrades, maintained 95%-->
-    <!--                        customer retention.-->
-    <!--                      </p>-->
-    <!--                      <div class="ml-12 flex gap-2 text-xs">-->
-    <!--                        <span-->
-    <!--                          class="achievement-tag rounded-full bg-yellow-100 px-3 py-1 text-yellow-700"-->
-    <!--                        >-->
-    <!--                          top 3 regional-->
-    <!--                        </span>-->
-    <!--                        <span-->
-    <!--                          class="achievement-tag rounded-full bg-green-100 px-3 py-1 text-green-700"-->
-    <!--                        >-->
-    <!--                          95% retention-->
-    <!--                        </span>-->
-    <!--                      </div>-->
-    <!--                    </div>-->
-    <!--                  </div>-->
-    <!--                </div>-->
+                  <button
+                    class="mt-3 w-full rounded border border-blue-400/50 bg-blue-600/20 py-2 text-sm text-blue-300 hover:bg-blue-600/30"
+                  >
+                    {{ t('projects.viewCaseStudy') }}
+                  </button>
+                </div>
+              </div>
 
-    <!--                &lt;!&ndash; Download Resume Button &ndash;&gt;-->
-    <!--                <div class="mt-8 text-center">-->
-    <!--                  <a-->
-    <!--                    href="/henry-proctor-resume.pdf"-->
-    <!--                    download-->
-    <!--                    class="download-btn group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"-->
-    <!--                  >-->
-    <!--                    <svg-->
-    <!--                      class="download-icon h-5 w-5 transition-transform duration-300 group-hover:translate-y-1"-->
-    <!--                      fill="currentColor"-->
-    <!--                      viewBox="0 0 20 20"-->
-    <!--                    >-->
-    <!--                      <path-->
-    <!--                        fill-rule="evenodd"-->
-    <!--                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"-->
-    <!--                        clip-rule="evenodd"-->
-    <!--                      ></path>-->
-    <!--                    </svg>-->
-    <!--                    <span class="download-text">Download Resume</span>-->
-    <!--                    <div class="download-pulse"></div>-->
-    <!--                  </a>-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--            </div>-->
+              <!-- Project 2 -->
+              <div
+                class="group transform overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition-all duration-500 hover:scale-[1.02] hover:bg-white/10"
+              >
+                <div
+                  class="relative h-36 bg-gradient-to-br from-emerald-600/30 via-green-500/30 to-teal-400/30"
+                >
+                  <div class="absolute inset-0 bg-black/40"></div>
+                  <div
+                    class="absolute left-2 top-2 rounded-lg bg-white/10 px-2 py-1 backdrop-blur-sm lg:left-4 lg:top-4 lg:px-3"
+                  >
+                    <span class="text-xs font-semibold text-white lg:text-sm">
+                      PorchPass
+                    </span>
+                  </div>
+                </div>
 
-    <!--            &lt;!&ndash; Unified Sidebar &ndash;&gt;-->
-    <!--            <div class="stat-bubble-blue space-y-8 p-8">-->
-    <!--              &lt;!&ndash; Profile &ndash;&gt;-->
-    <!--              <div class="text-center">-->
-    <!--                <div-->
-    <!--                  class="relative mx-auto mb-6 h-32 w-32 overflow-hidden rounded-full"-->
-    <!--                >-->
-    <!--                  <img-->
-    <!--                    src="/images/henry-headshot.jpg"-->
-    <!--                    alt="Henry Proctor IV"-->
-    <!--                    class="h-full w-full object-cover grayscale transition-all duration-500 hover:scale-105 hover:grayscale-0"-->
-    <!--                  />-->
-    <!--                </div>-->
-    <!--                <h3 class="mb-2 font-medium text-slate-800">-->
-    <!--                  Henry Proctor IV-->
-    <!--                </h3>-->
-    <!--                <p class="text-sm text-slate-600">-->
-    <!--                  Sales Leader & Commercial Pilot-->
-    <!--                </p>-->
-    <!--              </div>-->
+                <div class="p-5">
+                  <h3 class="mb-2 text-lg font-bold text-white">
+                    {{ t('projects.project2.title') }}
+                  </h3>
+                  <p class="mb-3 text-sm leading-relaxed text-white/70">
+                    {{ t('projects.project2.description') }}
+                  </p>
 
-    <!--              &lt;!&ndash; Contact &ndash;&gt;-->
-    <!--              <div class="sidebar-section">-->
-    <!--                <h3-->
-    <!--                  class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"-->
-    <!--                >-->
-    <!--                  <span class="text-xl">📞</span>-->
-    <!--                  Contact-->
-    <!--                </h3>-->
-    <!--                <div class="space-y-3 text-sm">-->
-    <!--                  <a-->
-    <!--                    href="mailto:hproc725@gmail.com"-->
-    <!--                    class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"-->
-    <!--                  >-->
-    <!--                    📧 hproc725@gmail.com-->
-    <!--                  </a>-->
-    <!--                  <a-->
-    <!--                    href="tel:216-633-8470"-->
-    <!--                    class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"-->
-    <!--                  >-->
-    <!--                    📞 (216) 633-8470-->
-    <!--                  </a>-->
-    <!--                  <a-->
-    <!--                    href="#"-->
-    <!--                    class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"-->
-    <!--                  >-->
-    <!--                    💼 linkedin.com/in/henry-proctor-->
-    <!--                  </a>-->
-    <!--                  <p class="flex items-center gap-2 text-slate-600">-->
-    <!--                    📍 San Antonio, Texas-->
-    <!--                  </p>-->
-    <!--                </div>-->
-    <!--              </div>-->
+                  <div class="mb-3 space-y-1 text-sm">
+                    <div class="flex items-center">
+                      <span class="text-white/60">
+                        {{ t('projects.industry') }}:
+                      </span>
+                      <span class="ml-2 text-white">
+                        {{ t('projects.project2.industry') }}
+                      </span>
+                    </div>
+                    <div class="flex items-center">
+                      <span class="text-white/60">
+                        {{ t('projects.impact') }}:
+                      </span>
+                      <span class="ml-2 text-white">
+                        {{ t('projects.project2.impact') }}
+                      </span>
+                    </div>
+                  </div>
 
-    <!--              &lt;!&ndash; Flight + Media &ndash;&gt;-->
-    <!--              <div class="sidebar-section">-->
-    <!--                <h3-->
-    <!--                  class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"-->
-    <!--                >-->
-    <!--                  <span class="text-xl">✈️</span>-->
-    <!--                  Flight + Media-->
-    <!--                </h3>-->
-    <!--                <div class="space-y-4">-->
-    <!--                  &lt;!&ndash; Aviation credentials &ndash;&gt;-->
-    <!--                  <div class="space-y-3 text-sm">-->
-    <!--                    <div class="flex items-center justify-between">-->
-    <!--                      <span class="text-slate-600">Private Pilot</span>-->
-    <!--                      <span-->
-    <!--                        class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"-->
-    <!--                      >-->
-    <!--                        2021-->
-    <!--                      </span>-->
-    <!--                    </div>-->
-    <!--                    <div class="flex items-center justify-between">-->
-    <!--                      <span class="text-slate-600">Instrument Rating</span>-->
-    <!--                      <span-->
-    <!--                        class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"-->
-    <!--                      >-->
-    <!--                        2022-->
-    <!--                      </span>-->
-    <!--                    </div>-->
-    <!--                    <div class="flex items-center justify-between">-->
-    <!--                      <span class="text-slate-600">Commercial SE</span>-->
-    <!--                      <span-->
-    <!--                        class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"-->
-    <!--                      >-->
-    <!--                        2023-->
-    <!--                      </span>-->
-    <!--                    </div>-->
-    <!--                  </div>-->
-    <!--                </div>-->
+                  <div class="border-t border-white/10 pt-3">
+                    <h4 class="mb-2 text-sm font-semibold text-emerald-300">
+                      {{ t('projects.myRole') }}:
+                    </h4>
+                    <p class="text-sm leading-relaxed text-white/70">
+                      {{ t('projects.project2.role') }}
+                    </p>
+                  </div>
 
-    <!--                &lt;!&ndash; Philosophy &ndash;&gt;-->
-    <!--                <div class="sidebar-section sidebar-card">-->
-    <!--                  <h3-->
-    <!--                    class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"-->
-    <!--                  >-->
-    <!--                    <span class="text-xl">🎯</span>-->
-    <!--                    Philosophy-->
-    <!--                  </h3>-->
-    <!--                  <div-->
-    <!--                    class="hover-expand rounded-lg border border-green-100 bg-white/60 p-4 backdrop-blur-sm"-->
-    <!--                  >-->
-    <!--                    <p class="text-sm leading-relaxed text-slate-600">-->
-    <!--                      Blending the grit of sport, precision of flight, and-->
-    <!--                      strategy of business—with wisdom and a hunger to learn,-->
-    <!--                      growth is my constant pursuit.-->
-    <!--                    </p>-->
-    <!--                  </div>-->
-    <!--                </div>-->
+                  <button
+                    class="mt-3 w-full rounded border border-emerald-400/50 bg-emerald-600/20 py-2 text-sm text-emerald-300 hover:bg-emerald-600/30"
+                  >
+                    {{ t('projects.viewCaseStudy') }}
+                  </button>
+                </div>
+              </div>
 
-    <!--                &lt;!&ndash; Education &ndash;&gt;-->
-    <!--                <div class="sidebar-section sidebar-card">-->
-    <!--                  <h3-->
-    <!--                    class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"-->
-    <!--                  >-->
-    <!--                    <span class="text-xl">🎓</span>-->
-    <!--                    Education-->
-    <!--                  </h3>-->
-    <!--                  <div-->
-    <!--                    class="hover-expand rounded-lg border border-green-100 bg-white/60 p-4 text-sm backdrop-blur-sm"-->
-    <!--                  >-->
-    <!--                    <p class="font-medium text-slate-800">-->
-    <!--                      B.S. Exercise Science-->
-    <!--                    </p>-->
-    <!--                    <p class="text-slate-600">Bowling Green State University</p>-->
-    <!--                    <p class="font-mono text-slate-600">2016</p>-->
-    <!--                  </div>-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </section>-->
+              <!-- Project 3 -->
+              <div
+                class="group transform overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition-all duration-500 hover:scale-[1.02] hover:bg-white/10"
+              >
+                <div
+                  class="relative h-36 bg-gradient-to-br from-orange-600/30 via-red-500/30 to-pink-400/30"
+                >
+                  <div class="absolute inset-0 bg-black/40"></div>
+                  <div
+                    class="absolute left-2 top-2 rounded-lg bg-white/10 px-2 py-1 backdrop-blur-sm lg:left-4 lg:top-4 lg:px-3"
+                  >
+                    <span class="text-xs font-semibold text-white lg:text-sm">
+                      BridgingIT
+                    </span>
+                  </div>
+                </div>
 
-    <!--      &lt;!&ndash; Drone Photography Section &ndash;&gt;-->
-    <!--      <section class="relative px-6 py-16">-->
-    <!--        <div class="mx-auto max-w-4xl">-->
-    <!--          <div class="content-card p-8">-->
-    <!--            <h2-->
-    <!--              class="mb-6 flex items-center gap-3 text-2xl font-light text-slate-800"-->
-    <!--            >-->
-    <!--              <span class="text-3xl">📷</span>-->
-    <!--              Aerial Photography-->
-    <!--            </h2>-->
-    <!--            <div class="grid items-center gap-6 md:grid-cols-2">-->
-    <!--              <div>-->
-    <!--                <p class="mb-4 text-lg leading-relaxed text-slate-600">-->
-    <!--                  Combining commercial pilot precision with creative vision to-->
-    <!--                  capture unique perspectives from above. Specializing in real-->
-    <!--                  estate photography and event coverage across Texas.-->
-    <!--                </p>-->
-    <!--                <p class="mb-6 text-slate-600">-->
-    <!--                  Licensed drone operator applying the same attention to detail-->
-    <!--                  from aviation to aerial media production.-->
-    <!--                </p>-->
-    <!--                <a-->
-    <!--                  href="/photography"-->
-    <!--                  class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700"-->
-    <!--                >-->
-    <!--                  📷 View Portfolio-->
-    <!--                  <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">-->
-    <!--                    <path-->
-    <!--                      fill-rule="evenodd"-->
-    <!--                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"-->
-    <!--                      clip-rule="evenodd"-->
-    <!--                    ></path>-->
-    <!--                  </svg>-->
-    <!--                </a>-->
-    <!--              </div>-->
-    <!--              <div class="relative">-->
-    <!--                <div-->
-    <!--                  class="flex aspect-square items-center justify-center rounded-lg bg-gradient-to-br from-blue-100 to-purple-100"-->
-    <!--                >-->
-    <!--                  <img-->
-    <!--                    src="/images/dji_fly_20240218_123500_93_1708290047743_photo_optimized.jpg"-->
-    <!--                    alt="Aerial real estate photography"-->
-    <!--                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"-->
-    <!--                  />-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </section>-->
-    <!--    </div>-->
-    <!-- Enhanced Footer -->
-    <!--    <footer class="relative px-6 py-8">-->
-    <!--      <div class="mx-auto max-w-6xl">-->
-    <!--        <div class="content-card p-6">-->
-    <!--          <div class="flex items-center justify-between">-->
-    <!--            <p class="font-mono text-xs text-slate-500">-->
-    <!--              © 2025 henry.proctor • built by-->
-    <!--              <a href="#" class="transition-colors hover:text-blue-600">-->
-    <!--                joseph.baranoski-->
-    <!--              </a>-->
-    <!--            </p>-->
-    <!--            <a-->
-    <!--              href="#contact"-->
-    <!--              class="footer-cta font-medium text-blue-600 transition-all duration-300 hover:text-blue-700"-->
-    <!--            >-->
-    <!--              Let's talk. ✈️-->
-    <!--            </a>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </footer>-->
+                <div class="p-5">
+                  <h3 class="mb-2 text-lg font-bold text-white">
+                    {{ t('projects.project3.title') }}
+                  </h3>
+                  <p class="mb-3 text-sm leading-relaxed text-white/70">
+                    {{ t('projects.project3.description') }}
+                  </p>
+
+                  <div class="mb-3 space-y-1 text-sm">
+                    <div class="flex items-center">
+                      <span class="text-white/60">
+                        {{ t('projects.industry') }}:
+                      </span>
+                      <span class="ml-2 text-white">
+                        {{ t('projects.project3.industry') }}
+                      </span>
+                    </div>
+                    <div class="flex items-center">
+                      <span class="text-white/60">
+                        {{ t('projects.costReduction') }}:
+                      </span>
+                      <span class="ml-2 text-white">20%</span>
+                    </div>
+                  </div>
+
+                  <div class="border-t border-white/10 pt-3">
+                    <h4 class="mb-2 text-sm font-semibold text-emerald-300">
+                      {{ t('projects.myRole') }}:
+                    </h4>
+                    <p class="text-sm leading-relaxed text-white/70">
+                      {{ t('projects.project3.role') }}
+                    </p>
+                  </div>
+
+                  <button
+                    class="mt-3 w-full rounded border border-orange-400/50 bg-orange-600/20 py-2 text-sm text-orange-300 hover:bg-orange-600/30"
+                  >
+                    {{ t('projects.viewCaseStudy') }}
+                  </button>
+                </div>
+              </div>
+
+              <!-- Project 4 -->
+              <div
+                class="group transform overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition-all duration-500 hover:scale-[1.02] hover:bg-white/10"
+              >
+                <div
+                  class="relative h-36 bg-gradient-to-br from-purple-600/30 via-indigo-500/30 to-blue-400/30"
+                >
+                  <div class="absolute inset-0 bg-black/40"></div>
+                  <div
+                    class="absolute left-2 top-2 rounded-lg bg-white/10 px-2 py-1 backdrop-blur-sm lg:left-4 lg:top-4 lg:px-3"
+                  >
+                    <span class="text-xs font-semibold text-white lg:text-sm">
+                      Magna Telemotive
+                    </span>
+                  </div>
+                </div>
+
+                <div class="p-5">
+                  <h3 class="mb-2 text-lg font-bold text-white">
+                    {{ t('projects.project4.title') }}
+                  </h3>
+                  <p class="mb-3 text-sm leading-relaxed text-white/70">
+                    {{ t('projects.project4.description') }}
+                  </p>
+
+                  <div class="mb-3 space-y-1 text-sm">
+                    <div class="flex items-center">
+                      <span class="text-white/60">
+                        {{ t('projects.industry') }}:
+                      </span>
+                      <span class="ml-2 text-white">
+                        {{ t('projects.project4.industry') }}
+                      </span>
+                    </div>
+                    <div class="flex items-center">
+                      <span class="text-white/60">
+                        {{ t('projects.profitIncrease') }}:
+                      </span>
+                      <span class="ml-2 text-white">26%</span>
+                    </div>
+                  </div>
+
+                  <div class="border-t border-white/10 pt-3">
+                    <h4 class="mb-2 text-sm font-semibold text-emerald-300">
+                      {{ t('projects.myRole') }}:
+                    </h4>
+                    <p class="text-sm leading-relaxed text-white/70">
+                      {{ t('projects.project4.role') }}
+                    </p>
+                  </div>
+
+                  <button
+                    class="mt-3 w-full rounded border border-purple-400/50 bg-purple-600/20 py-2 text-sm text-purple-300 hover:bg-purple-600/30"
+                  >
+                    {{ t('projects.viewCaseStudy') }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="flex min-h-screen items-center p-6 lg:p-12">
+        <div class="mx-auto w-full max-w-4xl">
+          <div
+            class="rounded-2xl border border-white/10 bg-black/20 p-6 backdrop-blur-md lg:p-12"
+          >
+            <h2 class="mb-8 text-4xl font-bold text-white">
+              {{ t('contact.title') }}
+            </h2>
+            <div class="grid gap-12 md:grid-cols-2">
+              <div class="space-y-6">
+                <div class="flex items-center space-x-4">
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-500/20"
+                  >
+                    <svg
+                      class="h-6 w-6 text-emerald-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-sm text-white/60">
+                      {{ t('contact.location') }}
+                    </p>
+                    <p class="text-lg text-white">Austin, Texas</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <p class="text-lg leading-relaxed text-white/80">
+                  {{ t('contact.description1') }}
+                </p>
+                <p class="text-white/80">
+                  {{ t('contact.description2') }}
+                </p>
+
+                <div class="pt-6">
+                  <button
+                    @click="downloadResume"
+                    class="transform rounded-lg border border-emerald-400/50 bg-emerald-500/20 px-8 py-3 text-emerald-300 transition-colors duration-300 hover:scale-105 hover:bg-emerald-500/30"
+                  >
+                    {{ t('contact.downloadResume') }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
-<style>
-  /* Download Button Animation */
-  .download-btn {
-    position: relative;
-    overflow: hidden;
-  }
+<script setup>
+  import { ref, onMounted, onUnmounted, computed } from 'vue';
 
-  .download-btn:hover .download-icon {
-    animation: downloadBounce 0.6s ease-in-out;
-  }
+  const activeSection = ref('overview');
+  const mobileMenuOpen = ref(false);
+  const scrollTimeout = ref();
+  const currentLanguage = ref('en');
 
-  .download-pulse {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.6s ease;
-  }
+  // Translation object
+  const translations = {
+    en: {
+      profile: {
+        title: 'Product Manager',
+      },
+      nav: {
+        overview: 'Overview',
+        projects: 'Projects',
+        contact: 'Contact',
+      },
+      sidebar: {
+        downloadResume: 'Download Resume',
+      },
+      overview: {
+        title: 'Professional Overview',
+        description1:
+          'Experienced Product Manager with 7+ years of expertise developing data-driven software products in transportation, manufacturing and technology industries.',
+        description2:
+          'Proven in shaping roadmaps, leading cross-functional teams, and driving innovative solutions from concept to launch.',
+        expertise: {
+          title: 'Core Expertise',
+          items: [
+            'Product Strategy & Roadmaps',
+            'Data Engineering & Architecture',
+            'Cross-Functional Team Leadership',
+            'SaaS & Cloud-Native Solutions',
+          ],
+        },
+        industries: {
+          title: 'Industries',
+          items: [
+            'FinTech & Financial Services',
+            'Transportation & Logistics',
+            'Manufacturing & Semiconductors',
+            'Enterprise Software',
+          ],
+        },
+      },
+      projects: {
+        title: 'Featured Projects',
+        industry: 'Industry',
+        budget: 'Budget',
+        impact: 'Impact',
+        costReduction: 'Cost Reduction',
+        profitIncrease: 'Profit Increase',
+        myRole: 'My Role',
+        viewCaseStudy: 'View Full Case Study',
+        project1: {
+          title: 'Digital Twin: Real-Time Rail Network',
+          description:
+            'Creation of a "Google Maps for trains"—a real-time digital twin of national rail infrastructure.',
+          industry: 'Transportation',
+          role: 'Senior PM leading core team, managing multi-million budget, unifying product vision.',
+        },
+        project2: {
+          title: 'FinTech Data Platform & Analytics',
+          description:
+            "Built company's first comprehensive data platform enabling BI and real-time reporting.",
+          industry: 'FinTech',
+          impact: '95% Effort Reduction',
+          role: 'Developed roadmap workstreams, aligned executive requirements with technical execution.',
+        },
+        project3: {
+          title: 'Digital Twin Factory Platform',
+          description:
+            "Product strategy for semiconductor manufacturer's digital twin factory with unified visibility.",
+          industry: 'Manufacturing',
+          role: 'Led product strategy with redesigned data lake architecture, optimized factory processes.',
+        },
+        project4: {
+          title: 'B2B EV Charging SaaS Platform',
+          description:
+            'Led development of B2B SaaS analyzing 18M+ charging transactions across 23 countries.',
+          industry: 'Automotive/EV',
+          role: 'Led agile team of 7, implemented data-driven processes, conducted customer analytics.',
+        },
+      },
+      contact: {
+        title: 'Get In Touch',
+        email: 'Email',
+        phone: 'Phone',
+        location: 'Location',
+        description1:
+          "I'm always interested in discussing new opportunities, innovative product challenges, and ways to leverage data-driven solutions.",
+        description2:
+          "Whether you're looking for a product leader or want to explore collaboration opportunities, let's connect.",
+        downloadResume: 'Download Resume',
+      },
+    },
+    de: {
+      profile: {
+        title: 'Product Manager',
+      },
+      nav: {
+        overview: 'Überblick',
+        projects: 'Projekte',
+        contact: 'Kontakt',
+      },
+      sidebar: {
+        downloadResume: 'Lebenslauf herunterladen',
+      },
+      overview: {
+        title: 'Beruflicher Überblick',
+        description1:
+          'Erfahrener Product Manager mit über 7 Jahren Expertise in der Entwicklung datengetriebener Software-Produkte in Transport-, Fertigungs- und Technologiebranchen.',
+        description2:
+          'Bewährt in der Gestaltung von Roadmaps, Führung funktionsübergreifender Teams und der Entwicklung innovativer Lösungen von der Konzeption bis zur Markteinführung.',
+        expertise: {
+          title: 'Kernkompetenzen',
+          items: [
+            'Produktstrategie & Roadmaps',
+            'Datenarchitektur & Engineering',
+            'Funktionsübergreifende Teamführung',
+            'SaaS & Cloud-Native Lösungen',
+          ],
+        },
+        industries: {
+          title: 'Branchen',
+          items: [
+            'FinTech & Finanzdienstleistungen',
+            'Transport & Logistik',
+            'Fertigung & Halbleiter',
+            'Unternehmenssoftware',
+          ],
+        },
+      },
+      projects: {
+        title: 'Ausgewählte Projekte',
+        industry: 'Branche',
+        budget: 'Budget',
+        impact: 'Auswirkung',
+        costReduction: 'Kosteneinsparung',
+        profitIncrease: 'Gewinnsteigerung',
+        myRole: 'Meine Rolle',
+        viewCaseStudy: 'Vollständige Fallstudie ansehen',
+        project1: {
+          title: 'Digital Twin: Echtzeit-Bahnnetzwerk',
+          description:
+            'Entwicklung eines "Google Maps für Züge" - ein digitaler Echtzeit-Zwilling der nationalen Bahninfrastruktur.',
+          industry: 'Transport',
+          role: 'Senior PM, der das Kernteam leitet, mehrere Millionen Budget verwaltet und die Produktvision vereint.',
+        },
+        project2: {
+          title: 'FinTech Datenplattform & Analytics',
+          description:
+            'Entwicklung der ersten umfassenden Datenplattform des Unternehmens für BI und Echtzeit-Reporting.',
+          industry: 'FinTech',
+          impact: '95% Aufwandsreduktion',
+          role: 'Entwicklung von Roadmap-Workstreams, Abstimmung von Führungsanforderungen mit technischer Umsetzung.',
+        },
+        project3: {
+          title: 'Digital Twin Fabrikplattform',
+          description:
+            'Produktstrategie für die Digital Twin Fabrik eines Halbleiterherstellers mit einheitlicher Sichtbarkeit.',
+          industry: 'Fertigung',
+          role: 'Leitete Produktstrategie mit neugestalteter Data Lake Architektur und optimierten Fabrikprozessen.',
+        },
+        project4: {
+          title: 'B2B E-Ladestation SaaS Platform',
+          description:
+            'Leitete Entwicklung einer B2B SaaS zur Analyse von über 18 Mio. Ladevorgängen in 23 Ländern.',
+          industry: 'Automotive/E-Mobilität',
+          role: 'Leitete agiles 7er-Team, implementierte datengetriebene Prozesse, führte Kundenanalysen durch.',
+        },
+      },
+      contact: {
+        title: 'Kontakt aufnehmen',
+        email: 'E-Mail',
+        phone: 'Telefon',
+        location: 'Standort',
+        description1:
+          'Ich bin immer interessiert an Diskussionen über neue Möglichkeiten, innovative Produktherausforderungen und Wege zur Nutzung datengetriebener Lösungen.',
+        description2:
+          'Ob Sie einen Produktleiter suchen oder Kooperationsmöglichkeiten erkunden möchten, lassen Sie uns in Kontakt treten.',
+        downloadResume: 'Lebenslauf herunterladen',
+      },
+    },
+  };
 
-  .download-btn:hover .download-pulse {
-    width: 200px;
-    height: 200px;
-    opacity: 0;
-  }
+  // Translation function
+  const t = (key) => {
+    const keys = key.split('.');
+    let value = translations[currentLanguage.value];
 
-  @keyframes downloadBounce {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(4px);
-    }
-  }
-
-  /* Timeline Elements */
-  .timeline-line {
-    width: 4px;
-    height: 60px;
-    background: linear-gradient(180deg, #059669 0%, #10b981 50%, #059669 100%);
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
-
-  .timeline-connector {
-    position: absolute;
-    left: 8px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(
-      180deg,
-      rgba(59, 130, 246, 0.3) 0%,
-      rgba(59, 130, 246, 0.6) 50%,
-      rgba(59, 130, 246, 0.3) 100%
-    );
-    animation: timelinePulse 3s ease-in-out infinite;
-  }
-
-  .timeline-dot {
-    position: absolute;
-    left: 2px;
-    top: 8px;
-    width: 12px;
-    height: 12px;
-    background: white;
-    border: 2px solid #e2e8f0;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-  }
-
-  .timeline-dot-active {
-    border-color: #3b82f6;
-    background: #3b82f6;
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
-  }
-
-  .experience-item:hover .timeline-dot {
-    border-color: #3b82f6;
-    transform: scale(1.2);
-  }
-
-  @keyframes timelinePulse {
-    0%,
-    100% {
-      opacity: 0.6;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-
-  /* Company Icons with Brand Colors */
-  .company-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 12px;
-    flex-shrink: 0;
-    transition: all 0.3s ease;
-  }
-
-  .company-icon-blue {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-  }
-
-  .company-icon-purple {
-    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-  }
-
-  .company-icon-indigo {
-    background: linear-gradient(135deg, #6366f1, #4f46e5);
-  }
-
-  .company-icon:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  /* Sidebar Section Spacing */
-  .sidebar-section {
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .sidebar-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  /* Footer CTA Animation */
-  .footer-cta:hover {
-    transform: translateX(3px);
-  }
-
-  /* Quote Block Serif Font */
-  .quote-block p {
-    font-family: Georgia, 'Times New Roman', serif;
-  }
-
-  /* Quote Block */
-  .quote-block {
-    position: relative;
-  }
-
-  .quote-block::before {
-    content: '"';
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    font-size: 4rem;
-    color: rgba(59, 130, 246, 0.2);
-    font-family: serif;
-  }
-
-  /* Sidebar Enhancements */
-  .sidebar-card .hover-expand {
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-
-  .sidebar-card .hover-expand:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    border-color: rgba(59, 130, 246, 0.3);
-  }
-
-  /* Frosted Glass Effect - Reserved for Hero */
-  .glass-card {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .glass-card:hover {
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-  }
-
-  /* Solid Content Cards for Lower Sections */
-  .content-card {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    border: 1px solid rgba(226, 232, 240, 0.5);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-  }
-
-  .content-card:hover {
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
-  }
-
-  /* Subdued Colorful Stat Bubbles */
-  .stat-bubble-blue {
-    background: rgba(239, 246, 255, 0.6);
-    backdrop-filter: blur(15px);
-    border-radius: 16px;
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    padding: 1.5rem 1rem;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.1);
-  }
-
-  .stat-bubble-green {
-    background: rgba(240, 253, 244, 0.6);
-    backdrop-filter: blur(15px);
-    border-radius: 16px;
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    padding: 1.5rem 1rem;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.1);
-  }
-
-  .stat-bubble-purple {
-    background: rgba(250, 245, 255, 0.6);
-    backdrop-filter: blur(15px);
-    border-radius: 16px;
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    padding: 1.5rem 1rem;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(139, 92, 246, 0.1);
-  }
-
-  .stat-bubble-orange {
-    background: rgba(255, 247, 237, 0.6);
-    backdrop-filter: blur(15px);
-    border-radius: 16px;
-    border: 1px solid rgba(249, 115, 22, 0.3);
-    padding: 1.5rem 1rem;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(249, 115, 22, 0.1);
-  }
-
-  .stat-bubble-blue:hover,
-  .stat-bubble-green:hover,
-  .stat-bubble-purple:hover,
-  .stat-bubble-orange:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-  }
-
-  /* Experience Items */
-  .experience-item {
-    position: relative;
-    padding: 1.5rem 0;
-    transition: all 0.2s ease;
-  }
-
-  .experience-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 0 -1.5rem;
-  }
-
-  /* Achievement Tags */
-  .achievement-tag {
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
-  }
-
-  .achievement-tag:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  /* Contact Links */
-  .contact-link {
-    padding: 0.5rem 0;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-
-  .contact-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateX(4px);
-  }
-
-  /* Hero Title */
-  .hero-title {
-    background: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Navigation */
-  .nav-link {
-    position: relative;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #10b981, #f59e0b);
-    transition: width 0.3s ease;
-  }
-
-  .nav-link:hover::after {
-    width: 100%;
-  }
-
-  /* Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .glass-card {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .hero-title {
-      font-size: 2.5rem;
+    for (const k of keys) {
+      value = value?.[k];
     }
 
-    .glass-card {
-      padding: 1.5rem;
-    }
+    return value || key;
+  };
 
-    .timeline-connector {
-      left: 6px;
+  // Language management
+  const setLanguage = (lang) => {
+    currentLanguage.value = lang;
+    // Store in memory (replacing localStorage functionality)
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('preferred-language', lang);
+      } catch (e) {
+        // Fallback if localStorage is not available
+        console.log('Language preference stored in memory:', lang);
+      }
     }
+  };
 
-    .timeline-dot {
-      left: 0;
+  // Load language preference
+  const loadLanguagePreference = () => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('preferred-language');
+        if (saved && (saved === 'en' || saved === 'de')) {
+          currentLanguage.value = saved;
+        }
+      } catch (e) {
+        // Fallback to browser language detection
+        const browserLang = navigator.language?.slice(0, 2);
+        if (browserLang === 'de') {
+          currentLanguage.value = 'de';
+        }
+      }
     }
+  };
 
-    .company-icon {
-      width: 32px;
-      height: 32px;
-      font-size: 10px;
-    }
+  const navButtonClass = (section) => {
+    const baseClass =
+      'w-full text-left px-6 py-4 rounded-lg transition-all duration-300 transform hover:scale-105';
+    const activeClass =
+      'bg-emerald-500/30 text-white border border-emerald-400/50 shadow-lg shadow-emerald-500/20';
+    const inactiveClass =
+      'text-white/70 hover:text-white hover:bg-white/10 border border-transparent';
 
-    .experience-item .ml-12 {
-      margin-left: 2.5rem;
+    return `${baseClass} ${activeSection.value === section ? activeClass : inactiveClass}`;
+  };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      mobileMenuOpen.value = false; // Close mobile menu when navigating
     }
+  };
+
+  const handleScroll = () => {
+    if (scrollTimeout.value) return;
+
+    scrollTimeout.value = setTimeout(() => {
+      const sections = ['overview', 'projects', 'contact'];
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+      let current = 'overview';
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const sectionTop = element.offsetTop;
+          const sectionBottom = sectionTop + element.offsetHeight;
+
+          if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+            current = sectionId;
+            break;
+          }
+        }
+      }
+
+      if (activeSection.value !== current) {
+        activeSection.value = current;
+      }
+
+      scrollTimeout.value = null;
+    }, 50);
+  };
+
+  const downloadResume = () => {
+    console.log('Downloading resume...');
+  };
+
+  onMounted(() => {
+    loadLanguagePreference();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Force initial check
+    setTimeout(() => {
+      handleScroll();
+    }, 100);
+  });
+
+  onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll);
+  });
+</script>
+
+<style scoped>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(16, 185, 129, 0.3);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(16, 185, 129, 0.5);
   }
 </style>
