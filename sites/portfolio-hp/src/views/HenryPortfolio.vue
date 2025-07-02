@@ -72,520 +72,369 @@
 </script>
 
 <template>
-  <!-- Main Content -->
-  <div class="relative z-10 min-h-screen">
-    <!-- Navigation -->
-    <nav
-      class="sticky top-0 z-50 border-b border-gray-200 bg-white/60 backdrop-blur-lg"
-    >
-      <div class="mx-auto max-w-6xl px-6 py-4">
-        <div class="flex items-center justify-between">
-          <h1
-            class="flex items-center font-mono text-lg font-medium text-slate-800"
+  <!-- Hero Section -->
+  <section class="relative px-6 py-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="glass-card mx-auto p-12 text-center">
+        <h1 class="hero-title mb-4 text-5xl font-light text-slate-800">
+          Henry Proctor IV
+        </h1>
+        <p
+          class="mb-8 flex items-center justify-center gap-3 text-xl text-slate-600"
+        >
+          Sales Leader
+          <span
+            class="inline-block h-1 w-1 animate-pulse rounded-full bg-blue-500"
+          ></span>
+          Commercial Pilot
+          <svg
+            class="float-animation h-5 w-5 text-blue-500"
+            fill="currentColor"
+            viewBox="0 0 20 20"
           >
-            henry.proctor
+            <path
+              d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+            ></path>
+          </svg>
+        </p>
+        <!-- Colorful Stats Grid -->
+        <div class="mb-8 grid grid-cols-2 gap-6 md:grid-cols-4">
+          <div
+            class="stat-bubble-blue transition-all duration-300 hover:scale-105"
+            @mouseenter="animateYearsExp"
+          >
             <div
-              class="ml-2 inline-block h-2 w-2 animate-pulse rounded-full bg-blue-500"
-            ></div>
-          </h1>
-          <div class="flex space-x-6 text-sm">
-            <a
-              href="#experience"
-              class="nav-link text-slate-700 transition-colors hover:text-blue-600"
+              class="font-mono text-2xl font-bold text-blue-700"
+              id="years-exp"
             >
-              Experience
-            </a>
+              10+
+            </div>
+            <div class="text-sm text-blue-600">years exp</div>
+          </div>
+          <div
+            class="stat-bubble-green transition-all duration-300 hover:scale-105"
+            @mouseenter="animateRevenue"
+          >
+            <div
+              class="font-mono text-2xl font-bold text-green-700"
+              id="revenue"
+            >
+              $7M
+            </div>
+            <div class="text-sm text-green-600">monthly revenue</div>
+          </div>
+          <div
+            class="stat-bubble-purple transition-all duration-300 hover:scale-105"
+            @mouseenter="animateCloseRate"
+          >
+            <div
+              class="font-mono text-2xl font-bold text-purple-700"
+              id="close-rate"
+            >
+              75%
+            </div>
+            <div class="text-sm text-purple-600">close rate</div>
+          </div>
+          <div
+            class="stat-bubble-orange transition-all duration-300 hover:scale-105"
+            @mouseenter="animateAppsRate"
+          >
+            <div
+              class="font-mono text-2xl font-bold text-orange-700"
+              id="apps-rate"
+            >
+              500+
+            </div>
+            <div class="text-sm text-orange-600">apps in 6 months</div>
+          </div>
+        </div>
+        <p class="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600">
+          Strategic sales leader with 10+ years driving growth across FinTech,
+          aviation, and wellness sectors. Military spouse bringing analytical
+          precision and relationship-focused leadership to scale high-performing
+          teams and execute revenue-generating strategies across diverse
+          markets.
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- Main Content Grid -->
+  <section id="experience" class="relative px-6 py-8">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
+        <!-- Main Experience Content -->
+        <div class="lg:col-span-2">
+          <div class="content-card p-12">
+            <!-- Section Header -->
+            <h2 class="section-title">Experience</h2>
+            <!-- Timeline Container -->
+            <div class="timeline-container">
+              <div class="timeline-line"></div>
+              <!-- Experience Items -->
+              <div class="experience-item">
+                <div class="timeline-dot"></div>
+                <div class="mb-4 flex items-start justify-between">
+                  <div class="flex-1">
+                    <div class="company-name">PorchPass</div>
+                    <h3 class="role-title">Senior Customer Success Manager</h3>
+                  </div>
+                  <div class="time-period">2024 – 2025</div>
+                </div>
+                <p class="description">
+                  Drove loan volume from $3M to $7M monthly in 90 days. Managing
+                  125+ dealership accounts across Texas and Oklahoma with
+                  full-cycle partnership ownership.
+                </p>
+                <div class="metrics-container">
+                  <span class="metric-tag metric-primary">133% Growth</span>
+                  <span class="metric-tag metric-secondary">125+ Accounts</span>
+                </div>
+              </div>
+              <div class="experience-item">
+                <div class="timeline-dot"></div>
+                <div class="mb-4 flex items-start justify-between">
+                  <div class="flex-1">
+                    <div class="company-name">StretchLab</div>
+                    <h3 class="role-title">Sales Manager & Flexologist</h3>
+                  </div>
+                  <div class="time-period">2023 – 2024</div>
+                </div>
+                <p class="description">
+                  Managed $1.2M annual sales across two studios. Led 7-person
+                  team and achieved 75% close rate—highest in district.
+                </p>
+                <div class="metrics-container">
+                  <span class="metric-tag metric-primary">$1.2M Revenue</span>
+                  <span class="metric-tag metric-secondary">
+                    District Leader
+                  </span>
+                </div>
+              </div>
+              <div class="experience-item">
+                <div class="timeline-dot"></div>
+                <div class="mb-4 flex items-start justify-between">
+                  <div class="flex-1">
+                    <div class="company-name">Otis Elevator Company</div>
+                    <h3 class="role-title">Senior Account Manager</h3>
+                  </div>
+                  <div class="time-period">2016 – 2020</div>
+                </div>
+                <p class="description">
+                  Top 3 performer in Midwest region. Managed 633 elevators, sold
+                  $4.3M in upgrades, maintained 95% customer retention.
+                </p>
+                <div class="metrics-container">
+                  <span class="metric-tag metric-primary">$4.3M Sales</span>
+                  <span class="metric-tag metric-secondary">95% Retention</span>
+                  <span class="metric-tag metric-secondary">
+                    Top 3 Regional
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- Download Resume Button -->
+            <div class="mt-16 text-center">
+              <a
+                href="/docs/Resume-Henry Proctor IV 2025.pdf"
+                download
+                class="download-btn"
+              >
+                <svg
+                  class="download-icon h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                Download Resume
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Unified Sidebar -->
+        <div class="content-card space-y-8 p-8">
+          <!-- Profile -->
+          <div class="text-center">
+            <div
+              class="relative mx-auto mb-6 h-32 w-32 overflow-hidden rounded-full"
+            >
+              <img
+                src="/images/henry-headshot.jpg"
+                alt="Henry Proctor IV"
+                class="h-full w-full object-cover grayscale transition-all duration-500 hover:scale-105 hover:grayscale-0"
+              />
+            </div>
+            <h3 class="mb-2 font-medium text-slate-800">Henry Proctor IV</h3>
+            <p class="text-sm text-slate-600">
+              Sales Leader & Commercial Pilot
+            </p>
+          </div>
+
+          <!-- Contact -->
+          <div class="sidebar-section">
+            <h3
+              class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+            >
+              <span class="text-xl">📞</span>
+              Contact
+            </h3>
+            <div class="space-y-3 text-sm">
+              <a
+                href="mailto:hproc725@gmail.com"
+                class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
+              >
+                📧 hproc725@gmail.com
+              </a>
+              <a
+                href="tel:216-633-8470"
+                class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
+              >
+                📞 (216) 633-8470
+              </a>
+              <a
+                href="#"
+                class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
+              >
+                💼 linkedin.com/in/henry-proctor
+              </a>
+              <p class="flex items-center gap-2 text-slate-600">
+                📍 San Antonio, Texas
+              </p>
+            </div>
+          </div>
+
+          <!-- Flight + Media -->
+          <div class="sidebar-section">
+            <h3
+              class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+            >
+              <span class="text-xl">✈️</span>
+              Flight + Media
+            </h3>
+            <div class="space-y-4">
+              <!-- Aviation credentials -->
+              <div class="space-y-3 text-sm">
+                <div class="flex items-center justify-between">
+                  <span class="text-slate-600">Private Pilot</span>
+                  <span
+                    class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
+                  >
+                    2021
+                  </span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-slate-600">Instrument Rating</span>
+                  <span
+                    class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
+                  >
+                    2022
+                  </span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-slate-600">Commercial SE</span>
+                  <span
+                    class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
+                  >
+                    2023
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Philosophy -->
+            <div class="sidebar-section sidebar-card">
+              <h3
+                class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+              >
+                <span class="text-xl">🎯</span>
+                Philosophy
+              </h3>
+              <div
+                class="hover-expand rounded-lg border border-green-100 bg-white/60 p-4 backdrop-blur-sm"
+              >
+                <p class="text-sm leading-relaxed text-slate-600">
+                  Blending the grit of sport, precision of flight, and strategy
+                  of business—with wisdom and a hunger to learn, growth is my
+                  constant pursuit.
+                </p>
+              </div>
+            </div>
+
+            <!-- Education -->
+            <div class="sidebar-section sidebar-card">
+              <h3
+                class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+              >
+                <span class="text-xl">🎓</span>
+                Education
+              </h3>
+              <div
+                class="hover-expand rounded-lg border border-green-100 bg-white/60 p-4 text-sm backdrop-blur-sm"
+              >
+                <p class="font-medium text-slate-800">B.S. Exercise Science</p>
+                <p class="text-slate-600">Bowling Green State University</p>
+                <p class="font-mono text-slate-600">2016</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Drone Photography Section -->
+  <section class="relative px-6 py-8">
+    <div class="mx-auto">
+      <div class="content-card glass-card p-8">
+        <h2
+          class="mb-6 flex items-center gap-3 text-2xl font-light text-slate-800"
+        >
+          aerial photography
+        </h2>
+        <div class="grid items-center gap-6 md:grid-cols-2">
+          <div>
+            <p class="mb-4 text-lg leading-relaxed text-slate-600">
+              Combining commercial pilot precision with creative vision to
+              capture unique perspectives from above. Specializing in real
+              estate photography and event coverage across Texas.
+            </p>
+            <p class="mb-6 text-slate-600">
+              Licensed drone operator applying the same attention to detail from
+              aviation to aerial media production.
+            </p>
             <a
               href="/photography"
-              class="nav-link text-slate-700 transition-colors hover:text-blue-600"
+              class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700"
             >
-              Photography
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="py-10 sm:px-2 md:px-4">
-      <section class="relative px-6 py-10">
-        <div class="mx-auto max-w-6xl">
-          <div class="glass-card mx-auto max-w-4xl p-12 text-center">
-            <h1 class="hero-title mb-4 text-5xl font-light text-slate-800">
-              Henry Proctor IV
-            </h1>
-            <p
-              class="mb-8 flex items-center justify-center gap-3 text-xl text-slate-600"
-            >
-              Sales Leader
-              <span
-                class="inline-block h-1 w-1 animate-pulse rounded-full bg-blue-500"
-              ></span>
-              Commercial Pilot
-              <svg
-                class="h-5 w-5 text-blue-500"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
+              📷 View Portfolio
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                 <path
-                  d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
                 ></path>
               </svg>
-            </p>
-
-            <!-- Colorful Stats Grid -->
-            <div class="mb-8 grid grid-cols-2 gap-6 md:grid-cols-4">
-              <div
-                class="stat-bubble-blue cursor-pointer transition-all duration-300 hover:scale-105"
-                @mouseenter="animateYearsExp"
-              >
-                <div
-                  class="font-mono text-2xl font-bold text-blue-700"
-                  id="years-exp"
-                >
-                  10+
-                </div>
-                <div class="text-sm text-blue-600">years exp</div>
-              </div>
-              <div
-                class="stat-bubble-green cursor-pointer transition-all duration-300 hover:scale-105"
-                @mouseenter="animateRevenue"
-              >
-                <div
-                  class="font-mono text-2xl font-bold text-green-700"
-                  id="revenue"
-                >
-                  $7M
-                </div>
-                <div class="text-sm text-green-600">monthly revenue</div>
-              </div>
-
-              <div
-                class="stat-bubble-purple cursor-pointer transition-all duration-300 hover:scale-105"
-                @mouseenter="animateCloseRate"
-              >
-                <div
-                  class="font-mono text-2xl font-bold text-purple-700"
-                  id="close-rate"
-                >
-                  75%
-                </div>
-                <div class="text-sm text-purple-600">close rate</div>
-              </div>
-
-              <div
-                class="stat-bubble-orange cursor-pointer transition-all duration-300 hover:scale-105"
-                @mouseenter="animateAppsRate"
-              >
-                <div
-                  class="font-mono text-2xl font-bold text-orange-700"
-                  id="apps-rate"
-                >
-                  500+
-                </div>
-                <div class="text-sm text-orange-600">apps in 6 months</div>
-              </div>
-            </div>
-
-            <p class="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600">
-              Strategic sales leader with 10+ years driving growth across
-              FinTech, aviation, and wellness sectors. Military spouse bringing
-              analytical precision and relationship-focused leadership to scale
-              high-performing teams and execute revenue-generating strategies
-              across diverse markets.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Main Content Grid -->
-      <section id="experience" class="relative px-6 py-16">
-        <div class="mx-auto max-w-6xl">
-          <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
-            <!-- Main Experience Content -->
-            <div class="lg:col-span-2">
-              <div class="content-card p-8">
-                <!-- Aligned header with timeline -->
-                <div class="mb-8 flex items-start gap-6">
-                  <div class="timeline-line"></div>
-                  <h2
-                    class="flex items-center gap-3 text-2xl font-light text-slate-800"
-                  >
-                    <span class="text-3xl">🛩️</span>
-                    Experience Timeline
-                  </h2>
-                </div>
-
-                <div class="relative pl-6">
-                  <!-- Animated timeline line -->
-                  <div class="timeline-connector"></div>
-
-                  <div class="space-y-8">
-                    <div class="experience-item group">
-                      <div class="timeline-dot timeline-dot-active"></div>
-                      <div class="mb-3 flex items-start justify-between">
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="company-icon company-icon-blue"
-                            title="PorchPass"
-                          >
-                            PP
-                          </div>
-                          <div>
-                            <h3
-                              class="font-medium text-slate-800 transition-colors group-hover:text-blue-600"
-                            >
-                              Senior Customer Success Manager
-                            </h3>
-                            <p class="font-medium text-blue-600">PorchPass</p>
-                          </div>
-                        </div>
-                        <span class="font-mono text-sm text-slate-500">
-                          2024 – 2025
-                        </span>
-                      </div>
-                      <p class="mb-4 ml-12 leading-relaxed text-slate-600">
-                        Drove loan volume from $3M to $7M monthly in 90 days.
-                        Managing 125+ dealership accounts across Texas and
-                        Oklahoma with full-cycle partnership ownership.
-                      </p>
-                      <div class="ml-12 flex gap-2 text-xs">
-                        <span
-                          class="achievement-tag rounded-full bg-green-100 px-3 py-1 text-green-700"
-                        >
-                          133% growth
-                        </span>
-                        <span
-                          class="achievement-tag rounded-full bg-blue-100 px-3 py-1 text-blue-700"
-                        >
-                          125+ accounts
-                        </span>
-                      </div>
-                    </div>
-
-                    <div class="experience-item group">
-                      <div class="timeline-dot"></div>
-                      <div class="mb-3 flex items-start justify-between">
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="company-icon company-icon-purple"
-                            title="StretchLab"
-                          >
-                            SL
-                          </div>
-                          <div>
-                            <h3
-                              class="font-medium text-slate-800 transition-colors group-hover:text-purple-600"
-                            >
-                              Sales Manager & Flexologist
-                            </h3>
-                            <p class="font-medium text-purple-600">
-                              StretchLab
-                            </p>
-                          </div>
-                        </div>
-                        <span class="font-mono text-sm text-slate-500">
-                          2023 – 2024
-                        </span>
-                      </div>
-                      <p class="mb-4 ml-12 leading-relaxed text-slate-600">
-                        Managed $1.2M annual sales across two studios. Led
-                        7-person team and achieved 75% close rate—highest in
-                        district.
-                      </p>
-                      <div class="ml-12 flex gap-2 text-xs">
-                        <span
-                          class="achievement-tag rounded-full bg-purple-100 px-3 py-1 text-purple-700"
-                        >
-                          district leader
-                        </span>
-                        <span
-                          class="achievement-tag rounded-full bg-orange-100 px-3 py-1 text-orange-700"
-                        >
-                          $1.2M revenue
-                        </span>
-                      </div>
-                    </div>
-
-                    <div class="experience-item group">
-                      <div class="timeline-dot"></div>
-                      <div class="mb-3 flex items-start justify-between">
-                        <div class="flex items-start gap-3">
-                          <div
-                            class="company-icon company-icon-indigo"
-                            title="Otis Elevator Company"
-                          >
-                            OE
-                          </div>
-                          <div>
-                            <h3
-                              class="font-medium text-slate-800 transition-colors group-hover:text-indigo-600"
-                            >
-                              Senior Account Manager
-                            </h3>
-                            <p class="font-medium text-indigo-600">
-                              Otis Elevator Company
-                            </p>
-                          </div>
-                        </div>
-                        <span class="font-mono text-sm text-slate-500">
-                          2016 – 2020
-                        </span>
-                      </div>
-                      <p class="mb-4 ml-12 leading-relaxed text-slate-600">
-                        Top 3 performer in Midwest region. Managed 633
-                        elevators, sold $4.3M in upgrades, maintained 95%
-                        customer retention.
-                      </p>
-                      <div class="ml-12 flex gap-2 text-xs">
-                        <span
-                          class="achievement-tag rounded-full bg-yellow-100 px-3 py-1 text-yellow-700"
-                        >
-                          top 3 regional
-                        </span>
-                        <span
-                          class="achievement-tag rounded-full bg-green-100 px-3 py-1 text-green-700"
-                        >
-                          95% retention
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Download Resume Button -->
-                <div class="mt-8 text-center">
-                  <a
-                    href="/henry-proctor-resume.pdf"
-                    download
-                    class="download-btn group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                  >
-                    <svg
-                      class="download-icon h-5 w-5 transition-transform duration-300 group-hover:translate-y-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                    <span class="download-text">Download Resume</span>
-                    <div class="download-pulse"></div>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Unified Sidebar -->
-            <div class="stat-bubble-blue space-y-8 p-8">
-              <!-- Profile -->
-              <div class="text-center">
-                <div
-                  class="relative mx-auto mb-6 h-32 w-32 overflow-hidden rounded-full"
-                >
-                  <img
-                    src="/images/henry-headshot.jpg"
-                    alt="Henry Proctor IV"
-                    class="h-full w-full object-cover grayscale transition-all duration-500 hover:scale-105 hover:grayscale-0"
-                  />
-                </div>
-                <h3 class="mb-2 font-medium text-slate-800">
-                  Henry Proctor IV
-                </h3>
-                <p class="text-sm text-slate-600">
-                  Sales Leader & Commercial Pilot
-                </p>
-              </div>
-
-              <!-- Contact -->
-              <div class="sidebar-section">
-                <h3
-                  class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
-                >
-                  <span class="text-xl">📞</span>
-                  Contact
-                </h3>
-                <div class="space-y-3 text-sm">
-                  <a
-                    href="mailto:hproc725@gmail.com"
-                    class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
-                  >
-                    📧 hproc725@gmail.com
-                  </a>
-                  <a
-                    href="tel:216-633-8470"
-                    class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
-                  >
-                    📞 (216) 633-8470
-                  </a>
-                  <a
-                    href="#"
-                    class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
-                  >
-                    💼 linkedin.com/in/henry-proctor
-                  </a>
-                  <p class="flex items-center gap-2 text-slate-600">
-                    📍 San Antonio, Texas
-                  </p>
-                </div>
-              </div>
-
-              <!-- Flight + Media -->
-              <div class="sidebar-section">
-                <h3
-                  class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
-                >
-                  <span class="text-xl">✈️</span>
-                  Flight + Media
-                </h3>
-                <div class="space-y-4">
-                  <!-- Aviation credentials -->
-                  <div class="space-y-3 text-sm">
-                    <div class="flex items-center justify-between">
-                      <span class="text-slate-600">Private Pilot</span>
-                      <span
-                        class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
-                      >
-                        2021
-                      </span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                      <span class="text-slate-600">Instrument Rating</span>
-                      <span
-                        class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
-                      >
-                        2022
-                      </span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                      <span class="text-slate-600">Commercial SE</span>
-                      <span
-                        class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
-                      >
-                        2023
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Philosophy -->
-                <div class="sidebar-section sidebar-card">
-                  <h3
-                    class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
-                  >
-                    <span class="text-xl">🎯</span>
-                    Philosophy
-                  </h3>
-                  <div
-                    class="hover-expand rounded-lg border border-green-100 bg-white/60 p-4 backdrop-blur-sm"
-                  >
-                    <p class="text-sm leading-relaxed text-slate-600">
-                      Blending the grit of sport, precision of flight, and
-                      strategy of business—with wisdom and a hunger to learn,
-                      growth is my constant pursuit.
-                    </p>
-                  </div>
-                </div>
-
-                <!-- Education -->
-                <div class="sidebar-section sidebar-card">
-                  <h3
-                    class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
-                  >
-                    <span class="text-xl">🎓</span>
-                    Education
-                  </h3>
-                  <div
-                    class="hover-expand rounded-lg border border-green-100 bg-white/60 p-4 text-sm backdrop-blur-sm"
-                  >
-                    <p class="font-medium text-slate-800">
-                      B.S. Exercise Science
-                    </p>
-                    <p class="text-slate-600">Bowling Green State University</p>
-                    <p class="font-mono text-slate-600">2016</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Drone Photography Section -->
-      <section class="relative px-6 py-16">
-        <div class="mx-auto max-w-4xl">
-          <div class="content-card p-8">
-            <h2
-              class="mb-6 flex items-center gap-3 text-2xl font-light text-slate-800"
-            >
-              <span class="text-3xl">📷</span>
-              Aerial Photography
-            </h2>
-            <div class="grid items-center gap-6 md:grid-cols-2">
-              <div>
-                <p class="mb-4 text-lg leading-relaxed text-slate-600">
-                  Combining commercial pilot precision with creative vision to
-                  capture unique perspectives from above. Specializing in real
-                  estate photography and event coverage across Texas.
-                </p>
-                <p class="mb-6 text-slate-600">
-                  Licensed drone operator applying the same attention to detail
-                  from aviation to aerial media production.
-                </p>
-                <a
-                  href="/photography"
-                  class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700"
-                >
-                  📷 View Portfolio
-                  <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fill-rule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </a>
-              </div>
-              <div class="relative">
-                <div
-                  class="flex aspect-square items-center justify-center rounded-lg bg-gradient-to-br from-blue-100 to-purple-100"
-                >
-                  <img
-                    src="/images/dji_fly_20240218_123500_93_1708290047743_photo_optimized.jpg"
-                    alt="Aerial real estate photography"
-                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-    <!-- Enhanced Footer -->
-    <footer class="relative px-6 py-8">
-      <div class="mx-auto max-w-6xl">
-        <div class="content-card p-6">
-          <div class="flex items-center justify-between">
-            <p class="font-mono text-xs text-slate-500">
-              © 2025 henry.proctor • built by
-              <a href="#" class="transition-colors hover:text-blue-600">
-                joseph.baranoski
-              </a>
-            </p>
-            <a
-              href="#contact"
-              class="footer-cta font-medium text-blue-600 transition-all duration-300 hover:text-blue-700"
-            >
-              Let's talk. ✈️
             </a>
+          </div>
+          <div class="relative">
+            <div
+              class="flex aspect-square items-center justify-center rounded-lg bg-gradient-to-br from-blue-100 to-purple-100"
+            >
+              <img
+                src="/images/dji_fly_20240218_123500_93_1708290047743_photo_optimized.jpg"
+                alt="Aerial real estate photography"
+                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
           </div>
         </div>
       </div>
-    </footer>
-  </div>
+    </div>
+  </section>
 </template>
 
 <style>
@@ -627,106 +476,205 @@
     }
   }
 
-  /* Timeline Elements */
-  .timeline-line {
-    width: 4px;
-    height: 60px;
-    background: linear-gradient(180deg, #059669 0%, #10b981 50%, #059669 100%);
-    border-radius: 2px;
-    flex-shrink: 0;
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
   }
 
-  .timeline-connector {
+  @keyframes float {
+    0% {
+      transform: translateY(-2px);
+    }
+    50% {
+      transform: translateY(2px);
+    }
+    100% {
+      transform: translateY(-2px);
+    }
+  }
+  /* Timeline Styles */
+  .timeline-container {
+    position: relative;
+  }
+
+  .timeline-line {
     position: absolute;
-    left: 8px;
+    left: 12px;
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(
-      180deg,
-      rgba(59, 130, 246, 0.3) 0%,
-      rgba(59, 130, 246, 0.6) 50%,
-      rgba(59, 130, 246, 0.3) 100%
-    );
-    animation: timelinePulse 3s ease-in-out infinite;
+    background: linear-gradient(to bottom, #3b82f6, #8b5cf6, #06b6d4);
+    opacity: 0.3;
   }
 
   .timeline-dot {
     position: absolute;
-    left: 2px;
+    left: 6px;
     top: 8px;
-    width: 12px;
-    height: 12px;
-    background: white;
-    border: 2px solid #e2e8f0;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
+    background: white;
+    border: 3px solid #3b82f6;
+    z-index: 10;
     transition: all 0.3s ease;
-  }
-
-  .timeline-dot-active {
-    border-color: #3b82f6;
-    background: #3b82f6;
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
   }
 
   .experience-item:hover .timeline-dot {
-    border-color: #3b82f6;
     transform: scale(1.2);
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
   }
 
-  @keyframes timelinePulse {
-    0%,
-    100% {
-      opacity: 0.6;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-
-  /* Company Icons with Brand Colors */
-  .company-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 12px;
-    flex-shrink: 0;
+  /* Experience Item Styles */
+  .experience-item {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 48px;
     transition: all 0.3s ease;
   }
 
-  .company-icon-blue {
+  .experience-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .experience-item:hover {
+    transform: translateX(8px);
+  }
+
+  /* Company and Role Hierarchy */
+  .company-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #3b82f6;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .role-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .time-period {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #475569;
+    margin: 16px 0 20px 0;
+  }
+
+  /* Unified Metric Tags */
+  .metrics-container {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .metric-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    transition: all 0.3s ease;
+  }
+
+  /* Primary metrics (revenue, growth) */
+  .metric-primary {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    color: #1e40af;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+  }
+
+  /* Secondary metrics (accounts, retention) */
+  .metric-secondary {
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    color: #475569;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .metric-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Download Button */
+  .download-btn {
     background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border-radius: 12px;
+    padding: 16px 32px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
   }
 
-  .company-icon-purple {
-    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  .download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
   }
 
-  .company-icon-indigo {
-    background: linear-gradient(135deg, #6366f1, #4f46e5);
+  .download-icon {
+    transition: transform 0.3s ease;
   }
 
-  .company-icon:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  .download-btn:hover .download-icon {
+    transform: translateY(2px);
   }
 
+  /* Section Header */
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 300;
+    color: #1e293b;
+    margin-bottom: 32px;
+    letter-spacing: -0.025em;
+  }
   /* Sidebar Section Spacing */
   .sidebar-section {
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.3);
   }
 
   .sidebar-section:last-child {
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
+  }
+
+  /* Sidebar Enhancements */
+  .sidebar-card .hover-expand {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid rgba(226, 232, 240, 0.4);
+  }
+
+  .sidebar-card .hover-expand:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: rgba(59, 130, 246, 0.3);
+    background: rgba(255, 255, 255, 0.9);
   }
 
   /* Footer CTA Animation */
@@ -739,36 +687,9 @@
     font-family: Georgia, 'Times New Roman', serif;
   }
 
-  /* Quote Block */
-  .quote-block {
-    position: relative;
-  }
-
-  .quote-block::before {
-    content: '"';
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    font-size: 4rem;
-    color: rgba(59, 130, 246, 0.2);
-    font-family: serif;
-  }
-
-  /* Sidebar Enhancements */
-  .sidebar-card .hover-expand {
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-
-  .sidebar-card .hover-expand:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    border-color: rgba(59, 130, 246, 0.3);
-  }
-
   /* Frosted Glass Effect - Reserved for Hero */
   .glass-card {
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -778,22 +699,6 @@
 
   .glass-card:hover {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-  }
-
-  /* Solid Content Cards for Lower Sections */
-  .content-card {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    border: 1px solid rgba(226, 232, 240, 0.5);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-  }
-
-  .content-card:hover {
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
   }
 
   /* Subdued Colorful Stat Bubbles */
@@ -843,20 +748,6 @@
   .stat-bubble-orange:hover {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
-  }
-
-  /* Experience Items */
-  .experience-item {
-    position: relative;
-    padding: 1.5rem 0;
-    transition: all 0.2s ease;
-  }
-
-  .experience-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 0 -1.5rem;
   }
 
   /* Achievement Tags */
