@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="relative h-full">
+  <div class="relative min-h-screen">
     <div class="fixed inset-0">
       <img
         src="/images/dji_fly_20240218_123500_93_1708290047743_photo_optimized.jpg"

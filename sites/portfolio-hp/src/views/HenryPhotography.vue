@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import { HenryPage } from 'src/components';
+  import { onMounted } from 'vue';
 </script>
 
 <template>

@@ -24,6 +24,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
+    document.getElementById('app')?.scrollTo({ top: 0, behavior: 'auto' });
     return { top: 0 };
   },
 });

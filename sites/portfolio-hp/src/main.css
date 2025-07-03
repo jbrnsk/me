@@ -5,8 +5,15 @@
   @apply bg-white;
 }
 
+html {
+  overflow-y: auto;
+}
+
+html, body {
+  height: auto;
+  min-height: 100%;
+}
+
 html, body, #app {
   font-family: Archivo, sans-serif;
-  height: 100%;
-  overflow-y: auto;
 }

@@ -37,7 +37,7 @@
   <div class="relative z-10 min-h-screen">
     <!-- Enhanced Navigation -->
     <nav
-      class="sticky top-0 z-50 border-b border-white/10 bg-white/90 backdrop-blur-xl transition-all duration-300"
+      class="fixed top-0 z-50 w-full border-b border-white/10 bg-white/90 backdrop-blur-xl transition-all duration-300"
     >
       <div
         class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
@@ -128,7 +128,7 @@
     </nav>
     <!-- Main Content with Enhanced Container -->
     <main
-      class="mx-auto max-w-6xl px-4 py-6 lg:px-8 lg:py-10 xl:bg-slate-900/95 xl:backdrop-blur-sm"
+      class="mx-auto max-w-6xl px-4 pb-6 pt-20 lg:px-8 lg:pb-10 lg:pt-24 xl:bg-slate-900/95 xl:backdrop-blur-sm"
     >
       <slot></slot>
       <!-- Enhanced Footer -->
@@ -139,13 +139,15 @@
               <p class="font-mono text-xs text-slate-500">
                 © 2025 henry.proctor • built by
                 <a
+                  tabindex="0"
                   href="#"
-                  class="footer-link transition-colors hover:text-blue-600"
+                  class="footer-link text-blue-600 transition-colors"
                 >
                   joseph.baranoski
                 </a>
               </p>
               <a
+                tabindex="0"
                 href="#contact"
                 class="footer-cta group flex items-center gap-2 font-medium text-blue-600 transition-all duration-300 hover:text-blue-700"
               >

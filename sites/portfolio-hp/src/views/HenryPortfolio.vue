@@ -250,7 +250,7 @@
             </div>
           </div>
           <p
-            class="mx-auto max-w-2xl px-4 text-sm font-light leading-snug text-slate-500 sm:max-w-lg md:max-w-3xl md:text-lg md:leading-relaxed"
+            class="mx-auto max-w-2xl px-4 text-sm font-light leading-snug text-slate-600 sm:max-w-lg md:max-w-3xl md:text-lg md:leading-relaxed"
           >
             <span id="short-text" class="inline-block md:hidden">
               Strategic sales leader with 10+ years driving growth across
@@ -329,7 +329,7 @@
                     <span
                       v-for="metric in experience.metrics"
                       :class="metricClass(metric.type)"
-                      class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold transition-transform duration-300 ease-in-out hover:-translate-y-[1px]"
+                      class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold transition-transform duration-300 ease-in-out hover:-translate-y-[2px]"
                     >
                       {{ metric.label }}
                     </span>
@@ -340,6 +340,7 @@
                 <a
                   href="/docs/Resume-Henry Proctor IV 2025.pdf"
                   download
+                  tabindex="0"
                   class="z-10 inline-flex items-center gap-2 rounded-md border border-blue-700/30 bg-blue-600 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-blue-700 hover:shadow-lg"
                 >
                   <Icon icon="tabler:download" class="h-5 w-5" />
@@ -352,46 +353,95 @@
             </div>
           </div>
           <!-- Sidebar -->
-          <div class="content-card space-y-8 p-6 md:p-8">
+          <div class="content-card space-y-4 p-6 md:p-8">
             <!-- Profile Section -->
-            <div class="text-center">
-              <div
-                class="profile-image-container relative mx-auto mb-8 h-40 overflow-hidden rounded-xl"
-              >
-                <img
-                  src="/images/henry-headshot.jpg"
-                  alt="Henry Proctor IV"
-                  class="h-full w-full object-cover grayscale transition-all duration-500 hover:scale-105 hover:grayscale-0"
-                  loading="lazy"
-                />
-                <div
-                  class="absolute inset-0 rounded-full ring-2 ring-white/20 ring-offset-2 ring-offset-transparent"
-                ></div>
-              </div>
+            <div
+              class="relative mx-auto mb-8 h-40 max-w-40 overflow-hidden rounded-xl"
+            >
+              <img
+                src="/images/henry-headshot.png"
+                alt="Henry Proctor IV"
+                style="transform: translateZ(0.1px)"
+                class="h-full w-full object-fill grayscale transition-all duration-500 hover:scale-105 hover:grayscale-0"
+                loading="lazy"
+              />
             </div>
             <!-- Enhanced Contact Section -->
-            <div class="sidebar-section">
+            <div class="sidebar-section pb-3">
               <h3
-                class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+                class="sidebar-title mb-3 flex items-center gap-2 text-lg font-medium text-slate-700"
               >
-                <span class="text-xl">📞</span>
+                <Icon
+                  icon="mdi:account-box"
+                  class="-mt-[1px] text-xl text-slate-700"
+                />
                 Contact
               </h3>
-              <div class="space-y-3 text-sm">
-                <a href="mailto:hproc725@gmail.com" class="contact-link group">
-                  <span class="contact-icon">📧</span>
+              <div class="space-y-4 text-sm">
+                <a
+                  href="mailto:hproc725@gmail.com"
+                  class="contact-link group"
+                  tabindex="0"
+                >
+                  <Icon
+                    icon="mdi:email-outline"
+                    class="-mt-[1px] text-xl text-slate-700"
+                  />
                   <span class="contact-text">hproc725@gmail.com</span>
                 </a>
-                <a href="#" class="contact-link group">
-                  <span class="contact-icon">💼</span>
+                <a href="#" class="contact-link group" tabindex="0">
+                  <Icon
+                    icon="mdi:linkedin"
+                    class="-mt-[1px] text-xl text-blue-700"
+                  />
                   <span class="contact-text">
                     linkedin.com/in/henry-proctor
                   </span>
                 </a>
                 <div class="contact-item">
-                  <span class="contact-icon">📍</span>
+                  <Icon
+                    icon="mdi:map-marker"
+                    class="-mt-[1px] text-xl text-rose-600"
+                  />
                   <span class="contact-text">San Antonio, Texas</span>
                 </div>
+              </div>
+            </div>
+            <!-- Enhanced Philosophy Section -->
+            <div class="sidebar-card pb-2">
+              <h3
+                class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+              >
+                <Icon
+                  icon="mdi:leaf"
+                  class="-mt-[1px] text-xl text-emerald-600"
+                />
+
+                Philosophy
+              </h3>
+              <div class="philosophy-card">
+                <p class="text-sm leading-relaxed text-slate-600">
+                  Blending the grit of sport, precision of flight, and strategy
+                  of business—with wisdom and a hunger to learn, growth is my
+                  constant pursuit.
+                </p>
+              </div>
+            </div>
+            <!-- Enhanced Education Section -->
+            <div class="sidebar-card pb-2">
+              <h3
+                class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+              >
+                <Icon
+                  icon="mdi:school"
+                  class="-mt-[1px] text-xl text-slate-700"
+                />
+                Education
+              </h3>
+              <div class="education-card">
+                <p class="font-medium text-slate-800">B.S. Exercise Science</p>
+                <p class="text-slate-600">Bowling Green State University</p>
+                <p class="font-mono text-slate-600">2016</p>
               </div>
             </div>
             <!-- Enhanced Flight + Media Section -->
@@ -399,10 +449,13 @@
               <h3
                 class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
               >
-                <span class="text-xl">✈️</span>
+                <Icon
+                  icon="mdi:airplane"
+                  class="-mt-[1px] text-xl text-purple-700"
+                />
                 Flight + Media
               </h3>
-              <div class="space-y-4">
+              <div class="space-y-4 pl-4">
                 <div class="space-y-3 text-sm">
                   <div class="credential-item">
                     <span class="text-slate-600">Private Pilot</span>
@@ -416,38 +469,6 @@
                     <span class="text-slate-600">Commercial SE</span>
                     <span class="credential-badge">2023</span>
                   </div>
-                </div>
-              </div>
-              <!-- Enhanced Philosophy Section -->
-              <div class="sidebar-card">
-                <h3
-                  class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
-                >
-                  <span class="text-xl">🎯</span>
-                  Philosophy
-                </h3>
-                <div class="philosophy-card">
-                  <p class="text-sm leading-relaxed text-slate-600">
-                    Blending the grit of sport, precision of flight, and
-                    strategy of business—with wisdom and a hunger to learn,
-                    growth is my constant pursuit.
-                  </p>
-                </div>
-              </div>
-              <!-- Enhanced Education Section -->
-              <div class="sidebar-card">
-                <h3
-                  class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
-                >
-                  <span class="text-xl">🎓</span>
-                  Education
-                </h3>
-                <div class="education-card">
-                  <p class="font-medium text-slate-800">
-                    B.S. Exercise Science
-                  </p>
-                  <p class="text-slate-600">Bowling Green State University</p>
-                  <p class="font-mono text-slate-600">2016</p>
                 </div>
               </div>
             </div>
@@ -475,7 +496,11 @@
                 Licensed drone operator applying the same attention to detail
                 from aviation to aerial media production.
               </p>
-              <a href="/photography" class="photography-btn group">
+              <RouterLink
+                to="/photography"
+                class="photography-btn group"
+                tabindex="0"
+              >
                 <span class="btn-icon">📷</span>
                 <span>View Portfolio</span>
                 <svg
@@ -489,7 +514,7 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-              </a>
+              </RouterLink>
             </div>
             <div
               class="duration-400 relative rounded-2xl shadow-2xl transition ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-[0_24px_80px_rgba(0,0,0,0.2)]"
@@ -498,12 +523,10 @@
                 <img
                   src="/images/dji_fly_20241030_172628_519_1730331388591_photo.jpg"
                   alt="Aerial real estate photography"
-                  class="duration-600 h-full w-full object-cover object-[center_80%] transition-transform ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105"
+                  class="duration-600 h-full w-full object-cover object-[center_40%] transition-transform ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105"
                   loading="lazy"
+                  style="will-change: transform"
                 />
-                <div
-                  class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 transition-opacity duration-300 hover:opacity-100"
-                ></div>
               </div>
             </div>
           </div>
@@ -615,7 +638,6 @@
       0 16px 64px rgba(0, 0, 0, 0.15),
       0 4px 16px rgba(0, 0, 0, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    transform: translateY(-4px);
   }
 
   /* Enhanced Typography */
@@ -716,7 +738,6 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 12px 16px;
     border-radius: 12px;
     text-decoration: none;
     color: #64748b;
@@ -725,37 +746,15 @@
     overflow: hidden;
   }
 
-  .contact-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(59, 130, 246, 0.1),
-      transparent
-    );
-    transition: left 0.5s ease;
-  }
-
-  .contact-link:hover::before {
-    left: 100%;
-  }
-
   .contact-link:hover {
     background: rgba(59, 130, 246, 0.05);
     color: #3b82f6;
-    transform: translateX(4px);
   }
 
   .contact-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 12px 16px;
     color: #64748b;
   }
 
@@ -763,10 +762,6 @@
     font-size: 16px;
     min-width: 20px;
     transition: transform 0.3s ease;
-  }
-
-  .contact-link:hover .contact-icon {
-    transform: scale(1.1);
   }
 
   .contact-text {
@@ -778,7 +773,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 0;
   }
 
   .credential-badge {
@@ -787,21 +781,19 @@
     font-family: ui-monospace, SFMono-Regular, monospace;
     font-size: 0.75rem;
     font-weight: 600;
-    padding: 6px 12px;
+    padding: 2px 12px;
     border-radius: 16px;
     border: 1px solid rgba(59, 130, 246, 0.3);
     transition: all 0.3s ease;
   }
 
   .credential-item:hover .credential-badge {
-    transform: scale(1.05);
+    transform: translateY(-2px);
     box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
   }
 
   /* Enhanced Sidebar Cards */
   .sidebar-section {
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
     border-bottom: 1px solid rgba(226, 232, 240, 0.4);
     transition: all 0.3s ease;
   }
@@ -965,12 +957,16 @@
   }
 
   /* Enhanced Profile Image */
-  .profile-image-container {
-    transition: transform 0.3s ease;
+  .profile-image {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    transform: translateX(-12px) translateZ(0.01px) scale(125%);
   }
 
-  .profile-image-container:hover {
-    transform: scale(1.05);
+  .profile-image:hover {
+    transform: translateX(-12px) translateZ(0.01px) scale(135%);
   }
 
   /* Performance Optimizations */
