@@ -20,12 +20,10 @@ const routes = [
   { path: '/:catchAll(.*)', redirect: '/' },
 ];
 
-const history = createWebHistory();
-
 const router = createRouter({
-  history,
+  history: createWebHistory(),
   routes,
-  scrollBehavior() {
+  scrollBehavior(to, from, savedPosition) {
     return { top: 0 };
   },
 });
