@@ -1,12 +1,66 @@
 <script setup lang="ts">
   import { throttle } from 'lodash-es';
-  import { onMounted } from 'vue';
+  import { onMounted, ref } from 'vue';
+  import { Icon } from '@iconify/vue';
+
+  // Animation state
+  const isVisible = ref(false);
+
+  // Experience data - could be moved to a composable
+  const experiences = [
+    {
+      id: 'porchpass',
+      company: 'PorchPass',
+      role: 'Senior Customer Success Manager',
+      period: '2024 – 2025',
+      description:
+        'Drove loan volume from $3M to $7M monthly in 90 days. Managing 125+ dealership accounts across Texas and Oklahoma with full-cycle partnership ownership.',
+      metrics: [
+        { label: '133% Growth', type: 'primary' },
+        { label: '125+ Accounts', type: 'secondary' },
+      ],
+    },
+    {
+      id: 'stretchlab',
+      company: 'StretchLab',
+      role: 'Sales Manager & Flexologist',
+      period: '2023 – 2024',
+      description:
+        'Managed $1.2M annual sales across two studios. Led 7-person team and achieved 75% close rate—highest in district.',
+      metrics: [
+        { label: '$1.2M Revenue', type: 'primary' },
+        { label: 'District Leader', type: 'secondary' },
+      ],
+    },
+    {
+      id: 'otis',
+      company: 'Otis Elevator Company',
+      role: 'Senior Account Manager',
+      period: '2016 – 2020',
+      description:
+        'Top 3 performer in Midwest region. Managed 633 elevators, sold $4.3M in upgrades, maintained 95% customer retention.',
+      metrics: [
+        { label: '$4.3M Sales', type: 'primary' },
+        { label: '95% Retention', type: 'secondary' },
+        { label: 'Top 3 Regional', type: 'secondary' },
+      ],
+    },
+  ];
 
   onMounted(() => {
+    // Trigger entrance animations
+    setTimeout(() => {
+      isVisible.value = true;
+    }, 100);
+
+    // Initialize stat animations
     animateYearsExp();
     animateRevenue();
     animateCloseRate();
     animateAppsRate();
+
+    // Setup intersection observer for scroll animations
+    setupScrollAnimations();
   });
 
   const animateNumber = (
@@ -18,7 +72,7 @@
     if (!element) return;
 
     let current = 0;
-    const increment = target / 30;
+    const increment = target / 40;
     const timer = setInterval(() => {
       current += increment;
       if (current >= target) {
@@ -38,9 +92,10 @@
       }
 
       element.textContent = displayValue;
-    }, 50);
+    }, 40);
   };
 
+  // Optimized animation functions
   const animateYearsExp = throttle(() => animateNumber('years-exp', 10), 2000, {
     leading: true,
     trailing: false,
@@ -62,185 +117,190 @@
     },
   );
   const animateAppsRate = throttle(
-    () => animateNumber('apps-rate', 500, '+'),
+    () => animateNumber('apps-rate', 125, '+'),
     2000,
     {
       leading: true,
       trailing: false,
     },
   );
+
+  const setupScrollAnimations = () => {
+    // Animate all panels on load
+    const panels = document.querySelectorAll(
+      '.content-card, .site-footer, .glass-card:not(.animate-fade-in)',
+    );
+    panels.forEach((panel, index) => {
+      panel.classList.add('animate-fade-in');
+    });
+  };
+
+  function expandHeroDescription() {
+    document.getElementById('short-text').style.display = 'none';
+    document.getElementById('full-text').style.display = 'inline';
+  }
+
+  function collapseHeroDescription() {
+    document.getElementById('short-text').style.display = 'inline';
+    document.getElementById('full-text').style.display = 'none';
+  }
 </script>
 
 <template>
-  <!-- Hero Section -->
-  <section class="relative px-6 py-8">
+  <!-- Enhanced Hero Section -->
+  <section class="relative py-4 md:py-8">
     <div class="mx-auto max-w-6xl">
-      <div class="glass-card mx-auto p-12 text-center">
-        <h1 class="hero-title mb-4 text-5xl font-light text-slate-800">
+      <div
+        class="glass-card mx-auto p-6 text-center md:p-12"
+        :class="{ 'animate-fade-in': isVisible }"
+      >
+        <h1
+          class="hero-title mb-2 text-3xl font-light text-slate-800 sm:text-4xl md:mb-5 lg:text-5xl"
+        >
           Henry Proctor IV
         </h1>
-        <p
-          class="mb-8 flex items-center justify-center gap-3 text-xl text-slate-600"
+        <div class="title-rotator mb-4 md:mb-8">
+          <div class="title-slide">
+            Sales Leader
+            <span
+              class="status-dot inline-block h-1 w-1 animate-pulse rounded-full bg-blue-500"
+            ></span>
+            Commercial Pilot
+            <svg
+              class="float-animation h-4 w-4 text-blue-500 md:h-5 md:w-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+              ></path>
+            </svg>
+          </div>
+          <div class="title-slide">
+            Territory Manager
+            <span
+              class="status-dot inline-block h-1 w-1 animate-pulse rounded-full bg-blue-500"
+            ></span>
+            Client Relations
+          </div>
+          <div class="title-slide">Strategic Business Growth</div>
+        </div>
+        <!-- Enhanced Stats Grid -->
+        <div
+          class="stats-grid mx-auto mb-5 grid max-w-[360px] grid-cols-2 items-center justify-center gap-3 sm:max-w-[450px] md:mb-8 md:max-w-full md:grid-cols-4 md:gap-5"
         >
-          Sales Leader
-          <span
-            class="inline-block h-1 w-1 animate-pulse rounded-full bg-blue-500"
-          ></span>
-          Commercial Pilot
-          <svg
-            class="float-animation h-5 w-5 text-blue-500"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
-            ></path>
-          </svg>
-        </p>
-        <!-- Colorful Stats Grid -->
-        <div class="mb-8 grid grid-cols-2 gap-6 md:grid-cols-4">
           <div
-            class="stat-bubble-blue transition-all duration-300 hover:scale-105"
+            class="stat-bubble stat-bubble-blue group"
             @mouseenter="animateYearsExp"
           >
-            <div
-              class="font-mono text-2xl font-bold text-blue-700"
-              id="years-exp"
-            >
-              10+
-            </div>
-            <div class="text-sm text-blue-600">years exp</div>
+            <div class="stat-number text-blue-700" id="years-exp">10+</div>
+            <div class="stat-label text-blue-600">years exp</div>
           </div>
           <div
-            class="stat-bubble-green transition-all duration-300 hover:scale-105"
+            class="stat-bubble stat-bubble-green group"
             @mouseenter="animateRevenue"
           >
-            <div
-              class="font-mono text-2xl font-bold text-green-700"
-              id="revenue"
-            >
-              $7M
-            </div>
-            <div class="text-sm text-green-600">monthly revenue</div>
+            <div class="stat-number text-green-700" id="revenue">$7M</div>
+            <div class="stat-label text-green-600">monthly revenue</div>
           </div>
           <div
-            class="stat-bubble-purple transition-all duration-300 hover:scale-105"
+            class="stat-bubble stat-bubble-purple group"
             @mouseenter="animateCloseRate"
           >
-            <div
-              class="font-mono text-2xl font-bold text-purple-700"
-              id="close-rate"
-            >
-              75%
-            </div>
-            <div class="text-sm text-purple-600">close rate</div>
+            <div class="stat-number text-purple-700" id="close-rate">75%</div>
+            <div class="stat-label text-purple-600">close rate</div>
           </div>
           <div
-            class="stat-bubble-orange transition-all duration-300 hover:scale-105"
+            class="stat-bubble stat-bubble-orange group"
             @mouseenter="animateAppsRate"
           >
-            <div
-              class="font-mono text-2xl font-bold text-orange-700"
-              id="apps-rate"
-            >
-              500+
-            </div>
-            <div class="text-sm text-orange-600">apps in 6 months</div>
+            <div class="stat-number text-orange-700" id="apps-rate">125+</div>
+            <div class="stat-label text-orange-600">accounts</div>
           </div>
         </div>
-        <p class="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600">
-          Strategic sales leader with 10+ years driving growth across FinTech,
-          aviation, and wellness sectors. Military spouse bringing analytical
-          precision and relationship-focused leadership to scale high-performing
-          teams and execute revenue-generating strategies across diverse
-          markets.
+        <p
+          class="hero-description mx-auto max-w-2xl px-4 text-sm leading-snug text-slate-600 sm:max-w-lg md:max-w-3xl md:text-lg md:leading-relaxed"
+        >
+          <span id="short-text" class="inline-block md:hidden">
+            Strategic sales leader with 10+ years driving growth across FinTech,
+            aviation, elevator, and wellness sectors.
+            <button
+              @click="expandHeroDescription"
+              class="text-blue-600 underline"
+            >
+              More
+            </button>
+          </span>
+          <span id="full-text" class="hidden md:inline-block">
+            Strategic sales leader with 10+ years driving growth across FinTech,
+            aviation, elevator, and wellness sectors.
+            <br class="inline-block md:hidden" />
+            <br class="inline-block md:hidden" />
+            Military spouse bringing analytical precision and
+            relationship-focused leadership to scale high-performing teams and
+            execute revenue-generating strategies across diverse markets.
+            <button
+              @click="collapseHeroDescription"
+              class="inline-block text-blue-600 underline md:hidden"
+            >
+              Less
+            </button>
+          </span>
         </p>
       </div>
     </div>
   </section>
-  <!-- Main Content Grid -->
-  <section id="experience" class="relative px-6 py-8">
+  <!-- Enhanced Main Content Grid -->
+  <section id="experience" class="relative py-4 md:py-8">
     <div class="mx-auto max-w-6xl">
-      <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
-        <!-- Main Experience Content -->
+      <div class="grid grid-cols-1 gap-8 md:gap-12 lg:grid-cols-3">
+        <!-- Enhanced Experience Content -->
         <div class="lg:col-span-2">
-          <div class="content-card p-12">
-            <!-- Section Header -->
+          <div class="content-card p-6 md:p-12">
             <h2 class="section-title">Experience</h2>
-            <!-- Timeline Container -->
+            <!-- Original Timeline (Reverted) -->
             <div class="timeline-container">
               <div class="timeline-line"></div>
-              <!-- Experience Items -->
-              <div class="experience-item">
+              <!-- Experience Items (Back to Original) -->
+              <div
+                class="experience-item"
+                v-for="experience in experiences"
+                :key="experience.id"
+              >
                 <div class="timeline-dot"></div>
                 <div class="mb-4 flex items-start justify-between">
                   <div class="flex-1">
-                    <div class="company-name">PorchPass</div>
-                    <h3 class="role-title">Senior Customer Success Manager</h3>
+                    <h4
+                      class="mb-1 text-sm font-semibold uppercase tracking-wide text-blue-500"
+                    >
+                      {{ experience.company }}
+                    </h4>
+                    <h3 class="role-title">{{ experience.role }}</h3>
                   </div>
-                  <div class="time-period">2024 – 2025</div>
+                  <div class="time-period">{{ experience.period }}</div>
                 </div>
                 <p class="description">
-                  Drove loan volume from $3M to $7M monthly in 90 days. Managing
-                  125+ dealership accounts across Texas and Oklahoma with
-                  full-cycle partnership ownership.
+                  {{ experience.description }}
                 </p>
                 <div class="metrics-container">
-                  <span class="metric-tag metric-primary">133% Growth</span>
-                  <span class="metric-tag metric-secondary">125+ Accounts</span>
-                </div>
-              </div>
-              <div class="experience-item">
-                <div class="timeline-dot"></div>
-                <div class="mb-4 flex items-start justify-between">
-                  <div class="flex-1">
-                    <div class="company-name">StretchLab</div>
-                    <h3 class="role-title">Sales Manager & Flexologist</h3>
-                  </div>
-                  <div class="time-period">2023 – 2024</div>
-                </div>
-                <p class="description">
-                  Managed $1.2M annual sales across two studios. Led 7-person
-                  team and achieved 75% close rate—highest in district.
-                </p>
-                <div class="metrics-container">
-                  <span class="metric-tag metric-primary">$1.2M Revenue</span>
-                  <span class="metric-tag metric-secondary">
-                    District Leader
-                  </span>
-                </div>
-              </div>
-              <div class="experience-item">
-                <div class="timeline-dot"></div>
-                <div class="mb-4 flex items-start justify-between">
-                  <div class="flex-1">
-                    <div class="company-name">Otis Elevator Company</div>
-                    <h3 class="role-title">Senior Account Manager</h3>
-                  </div>
-                  <div class="time-period">2016 – 2020</div>
-                </div>
-                <p class="description">
-                  Top 3 performer in Midwest region. Managed 633 elevators, sold
-                  $4.3M in upgrades, maintained 95% customer retention.
-                </p>
-                <div class="metrics-container">
-                  <span class="metric-tag metric-primary">$4.3M Sales</span>
-                  <span class="metric-tag metric-secondary">95% Retention</span>
-                  <span class="metric-tag metric-secondary">
-                    Top 3 Regional
+                  <span
+                    :class="`metric-tag metric-${metric.type}`"
+                    v-for="metric in experience.metrics"
+                  >
+                    {{ metric.label }}
                   </span>
                 </div>
               </div>
             </div>
-            <!-- Download Resume Button -->
+            <!-- Enhanced Download Button -->
             <div class="mt-16 text-center">
               <a
                 href="/docs/Resume-Henry Proctor IV 2025.pdf"
                 download
-                class="download-btn"
+                class="download-btn group"
               >
                 <svg
-                  class="download-icon h-5 w-5"
+                  class="download-icon h-5 w-5 transition-transform duration-300 group-hover:translate-y-1"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -251,111 +311,85 @@
                   ></path>
                 </svg>
                 Download Resume
+                <div class="download-pulse"></div>
               </a>
             </div>
           </div>
         </div>
-        <!-- Unified Sidebar -->
-        <div class="content-card space-y-8 p-8">
-          <!-- Profile -->
+        <!-- Enhanced Sidebar -->
+        <div class="content-card space-y-8 p-6 md:p-8">
+          <!-- Profile Section -->
           <div class="text-center">
             <div
-              class="relative mx-auto mb-6 h-32 w-32 overflow-hidden rounded-full"
+              class="profile-image-container relative mx-auto mb-8 h-40 w-40 overflow-hidden rounded-full"
             >
               <img
                 src="/images/henry-headshot.jpg"
                 alt="Henry Proctor IV"
                 class="h-full w-full object-cover grayscale transition-all duration-500 hover:scale-105 hover:grayscale-0"
+                loading="lazy"
               />
+              <div
+                class="absolute inset-0 rounded-full ring-2 ring-white/20 ring-offset-2 ring-offset-transparent"
+              ></div>
             </div>
-            <h3 class="mb-2 font-medium text-slate-800">Henry Proctor IV</h3>
-            <p class="text-sm text-slate-600">
-              Sales Leader & Commercial Pilot
-            </p>
           </div>
-
-          <!-- Contact -->
+          <!-- Enhanced Contact Section -->
           <div class="sidebar-section">
             <h3
-              class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+              class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
             >
               <span class="text-xl">📞</span>
               Contact
             </h3>
             <div class="space-y-3 text-sm">
-              <a
-                href="mailto:hproc725@gmail.com"
-                class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
-              >
-                📧 hproc725@gmail.com
+              <a href="mailto:hproc725@gmail.com" class="contact-link group">
+                <span class="contact-icon">📧</span>
+                <span class="contact-text">hproc725@gmail.com</span>
               </a>
-              <a
-                href="tel:216-633-8470"
-                class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
-              >
-                📞 (216) 633-8470
+              <a href="#" class="contact-link group">
+                <span class="contact-icon">💼</span>
+                <span class="contact-text">linkedin.com/in/henry-proctor</span>
               </a>
-              <a
-                href="#"
-                class="contact-link flex items-center gap-2 text-slate-600 transition-colors hover:text-blue-600"
-              >
-                💼 linkedin.com/in/henry-proctor
-              </a>
-              <p class="flex items-center gap-2 text-slate-600">
-                📍 San Antonio, Texas
-              </p>
+              <div class="contact-item">
+                <span class="contact-icon">📍</span>
+                <span class="contact-text">San Antonio, Texas</span>
+              </div>
             </div>
           </div>
-
-          <!-- Flight + Media -->
+          <!-- Enhanced Flight + Media Section -->
           <div class="sidebar-section">
             <h3
-              class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+              class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
             >
               <span class="text-xl">✈️</span>
               Flight + Media
             </h3>
             <div class="space-y-4">
-              <!-- Aviation credentials -->
               <div class="space-y-3 text-sm">
-                <div class="flex items-center justify-between">
+                <div class="credential-item">
                   <span class="text-slate-600">Private Pilot</span>
-                  <span
-                    class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
-                  >
-                    2021
-                  </span>
+                  <span class="credential-badge">2021</span>
                 </div>
-                <div class="flex items-center justify-between">
+                <div class="credential-item">
                   <span class="text-slate-600">Instrument Rating</span>
-                  <span
-                    class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
-                  >
-                    2022
-                  </span>
+                  <span class="credential-badge">2022</span>
                 </div>
-                <div class="flex items-center justify-between">
+                <div class="credential-item">
                   <span class="text-slate-600">Commercial SE</span>
-                  <span
-                    class="rounded bg-blue-100 px-2 py-1 font-mono text-xs text-blue-700"
-                  >
-                    2023
-                  </span>
+                  <span class="credential-badge">2023</span>
                 </div>
               </div>
             </div>
-
-            <!-- Philosophy -->
-            <div class="sidebar-section sidebar-card">
+            <!-- Enhanced Philosophy Section -->
+            <div class="sidebar-card">
               <h3
-                class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+                class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
               >
                 <span class="text-xl">🎯</span>
                 Philosophy
               </h3>
-              <div
-                class="hover-expand rounded-lg border border-green-100 bg-white/60 p-4 backdrop-blur-sm"
-              >
+              <div class="philosophy-card">
                 <p class="text-sm leading-relaxed text-slate-600">
                   Blending the grit of sport, precision of flight, and strategy
                   of business—with wisdom and a hunger to learn, growth is my
@@ -363,18 +397,15 @@
                 </p>
               </div>
             </div>
-
-            <!-- Education -->
-            <div class="sidebar-section sidebar-card">
+            <!-- Enhanced Education Section -->
+            <div class="sidebar-card">
               <h3
-                class="mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+                class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
               >
                 <span class="text-xl">🎓</span>
                 Education
               </h3>
-              <div
-                class="hover-expand rounded-lg border border-green-100 bg-white/60 p-4 text-sm backdrop-blur-sm"
-              >
+              <div class="education-card">
                 <p class="font-medium text-slate-800">B.S. Exercise Science</p>
                 <p class="text-slate-600">Bowling Green State University</p>
                 <p class="font-mono text-slate-600">2016</p>
@@ -385,18 +416,17 @@
       </div>
     </div>
   </section>
-
-  <!-- Drone Photography Section -->
-  <section class="relative px-6 py-8">
+  <!-- Enhanced Photography Section -->
+  <section class="relative py-4 md:py-8">
     <div class="mx-auto">
-      <div class="content-card glass-card p-8">
+      <div class="content-card glass-card p-6 md:p-12">
         <h2
-          class="mb-6 flex items-center gap-3 text-2xl font-light text-slate-800"
+          class="photography-title mb-6 flex items-center gap-3 text-2xl font-light text-slate-800"
         >
           aerial photography
         </h2>
-        <div class="grid items-center gap-6 md:grid-cols-2">
-          <div>
+        <div class="grid items-center gap-8 md:grid-cols-2">
+          <div class="photography-content">
             <p class="mb-4 text-lg leading-relaxed text-slate-600">
               Combining commercial pilot precision with creative vision to
               capture unique perspectives from above. Specializing in real
@@ -406,12 +436,14 @@
               Licensed drone operator applying the same attention to detail from
               aviation to aerial media production.
             </p>
-            <a
-              href="/photography"
-              class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-blue-700"
-            >
-              📷 View Portfolio
-              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+            <a href="/photography" class="photography-btn group">
+              <span class="btn-icon">📷</span>
+              <span>View Portfolio</span>
+              <svg
+                class="btn-arrow h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
                 <path
                   fill-rule="evenodd"
                   d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
@@ -420,15 +452,15 @@
               </svg>
             </a>
           </div>
-          <div class="relative">
-            <div
-              class="flex aspect-square items-center justify-center rounded-lg bg-gradient-to-br from-blue-100 to-purple-100"
-            >
+          <div class="photography-image-container relative">
+            <div class="image-wrapper">
               <img
                 src="/images/dji_fly_20240218_123500_93_1708290047743_photo_optimized.jpg"
                 alt="Aerial real estate photography"
-                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                class="photography-image h-full w-full object-cover"
+                loading="lazy"
               />
+              <div class="image-overlay"></div>
             </div>
           </div>
         </div>
@@ -437,61 +469,194 @@
   </section>
 </template>
 
-<style>
-  /* Download Button Animation */
-  .download-btn {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .download-btn:hover .download-icon {
-    animation: downloadBounce 0.6s ease-in-out;
-  }
-
-  .download-pulse {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.6s ease;
-  }
-
-  .download-btn:hover .download-pulse {
-    width: 200px;
-    height: 200px;
-    opacity: 0;
-  }
-
-  @keyframes downloadBounce {
-    0%,
-    100% {
+<style scoped>
+  /* Enhanced Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    to {
+      opacity: 1;
       transform: translateY(0);
     }
-    50% {
-      transform: translateY(4px);
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(-3px);
     }
+    50% {
+      transform: translateY(3px);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
   .float-animation {
     animation: float 3s ease-in-out infinite;
   }
 
-  @keyframes float {
+  .title-rotator {
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    @apply h-6 overflow-y-hidden overflow-x-visible py-2 md:h-8;
+  }
+
+  .title-slide {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transform: translateY(100%);
+    animation: slideTitles 12s infinite;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    @apply flex items-center justify-center gap-2 overflow-x-visible whitespace-nowrap text-sm text-slate-600 sm:text-base md:gap-3 md:text-xl;
+  }
+
+  /* Offset the start of each slide */
+  .title-slide:nth-child(2) {
+    animation-delay: 4s;
+  }
+  .title-slide:nth-child(3) {
+    animation-delay: 8s;
+  }
+
+  @keyframes slideTitles {
     0% {
-      transform: translateY(-2px);
+      transform: translateY(100%);
+      opacity: 0;
     }
-    50% {
-      transform: translateY(2px);
+    5% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    32% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    37% {
+      transform: translateY(-100%);
+      opacity: 0;
     }
     100% {
-      transform: translateY(-2px);
+      transform: translateY(-100%);
+      opacity: 0;
     }
   }
-  /* Timeline Styles */
+
+  /* Enhanced Glass Morphism */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(24px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.12),
+      0 1px 4px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    @apply overflow-x-visible;
+  }
+
+  .glass-card:hover {
+    box-shadow:
+      0 16px 64px rgba(0, 0, 0, 0.15),
+      0 4px 16px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transform: translateY(-4px);
+  }
+
+  /* Enhanced Typography */
+  .hero-title {
+    background: linear-gradient(135deg, #26344c 0%, #3b82f6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.02em;
+  }
+
+  .section-title {
+    @apply mb-8 text-3xl font-medium tracking-tight text-slate-800;
+  }
+
+  /* Enhanced Stat Bubbles */
+  .stat-bubble {
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    @apply py-3 md:py-5;
+  }
+
+  .stat-bubble::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.05)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .stat-bubble:hover::before {
+    opacity: 1;
+  }
+
+  .stat-bubble-blue {
+    background: rgba(239, 246, 255, 0.8);
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
+  }
+
+  .stat-bubble-green {
+    background: rgba(240, 253, 244, 0.8);
+    border: 2px solid rgba(16, 185, 129, 0.3);
+    box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15);
+  }
+
+  .stat-bubble-purple {
+    background: rgba(250, 245, 255, 0.8);
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
+  }
+
+  .stat-bubble-orange {
+    background: rgba(255, 247, 237, 0.8);
+    border: 2px solid rgba(249, 115, 22, 0.3);
+    box-shadow: 0 8px 32px rgba(249, 115, 22, 0.15);
+  }
+
+  .stat-bubble:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+  }
+
+  .stat-number {
+    @apply font-mono text-lg font-bold sm:text-2xl;
+  }
+
+  .stat-label {
+    @apply whitespace-nowrap text-xs sm:text-sm;
+  }
+
+  /* Enhanced Timeline (Reverted to Original Style) */
   .timeline-container {
     position: relative;
   }
@@ -525,7 +690,6 @@
     box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
   }
 
-  /* Experience Item Styles */
   .experience-item {
     position: relative;
     padding-left: 40px;
@@ -541,15 +705,191 @@
     transform: translateX(8px);
   }
 
-  /* Company and Role Hierarchy */
-  .company-name {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #3b82f6;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
+  /* Enhanced Contact Links */
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #64748b;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
   }
+
+  .contact-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(59, 130, 246, 0.1),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  .contact-link:hover::before {
+    left: 100%;
+  }
+
+  .contact-link:hover {
+    background: rgba(59, 130, 246, 0.05);
+    color: #3b82f6;
+    transform: translateX(4px);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: #64748b;
+  }
+
+  .contact-icon {
+    font-size: 16px;
+    min-width: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-link:hover .contact-icon {
+    transform: scale(1.1);
+  }
+
+  .contact-text {
+    transition: color 0.3s ease;
+  }
+
+  /* Enhanced Credential Items */
+  .credential-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+  }
+
+  .credential-badge {
+    background: rgba(239, 246, 255, 0.6);
+    color: #1e40af;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .credential-item:hover .credential-badge {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+  }
+
+  /* Enhanced Sidebar Cards */
+  .sidebar-section {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .sidebar-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .sidebar-title {
+    position: relative;
+  }
+
+  .sidebar-card {
+    margin-top: 1.5rem;
+  }
+
+  .philosophy-card,
+  .education-card {
+    background: rgba(248, 250, 252, 0.9);
+    border: 2px solid rgba(226, 232, 240, 0.4);
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .philosophy-card::before,
+  .education-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #10b981, #f59e0b);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .philosophy-card:hover::before,
+  .education-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .philosophy-card:hover,
+  .education-card:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Enhanced Metric Tags */
+  .metrics-container {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .metric-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 24px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .metric-primary {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    color: #1e40af;
+    border: 2px solid rgba(59, 130, 246, 0.2);
+  }
+
+  .metric-secondary {
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    color: #475569;
+    border: 2px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .metric-tag:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Enhanced Company and Role Styling (Reverted) */
 
   .role-title {
     font-size: 1.25rem;
@@ -573,277 +913,181 @@
     margin: 16px 0 20px 0;
   }
 
-  /* Unified Metric Tags */
-  .metrics-container {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .metric-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.025em;
-    transition: all 0.3s ease;
-  }
-
-  /* Primary metrics (revenue, growth) */
-  .metric-primary {
-    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-    color: #1e40af;
-    border: 1px solid rgba(59, 130, 246, 0.2);
-  }
-
-  /* Secondary metrics (accounts, retention) */
-  .metric-secondary {
-    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-    color: #475569;
-    border: 1px solid rgba(148, 163, 184, 0.2);
-  }
-
-  .metric-tag:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Download Button */
+  /* Enhanced Download Button */
   .download-btn {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-    border-radius: 12px;
-    padding: 16px 32px;
+    background: #3b82f6;
+    border-radius: 16px;
+    padding: 20px 40px;
     color: white;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+    gap: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 8px 32px rgba(59, 130, 246, 0.3),
+      0 1px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .download-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .download-btn:hover .download-pulse {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
   }
 
   .download-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+      0 16px 48px rgba(59, 130, 246, 0.4),
+      0 4px 16px rgba(0, 0, 0, 0.2);
     background: linear-gradient(135deg, #1d4ed8, #1e40af);
   }
 
-  .download-icon {
-    transition: transform 0.3s ease;
-  }
-
-  .download-btn:hover .download-icon {
-    transform: translateY(2px);
-  }
-
-  /* Section Header */
-  .section-title {
-    font-size: 1.75rem;
-    font-weight: 300;
-    color: #1e293b;
-    margin-bottom: 32px;
-    letter-spacing: -0.025em;
-  }
-  /* Sidebar Section Spacing */
-  .sidebar-section {
-    padding-bottom: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(226, 232, 240, 0.3);
-  }
-
-  .sidebar-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  /* Sidebar Enhancements */
-  .sidebar-card .hover-expand {
-    transition: all 0.3s ease;
-    cursor: pointer;
-    background: rgba(248, 250, 252, 0.8);
-    border: 1px solid rgba(226, 232, 240, 0.4);
-  }
-
-  .sidebar-card .hover-expand:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-color: rgba(59, 130, 246, 0.3);
-    background: rgba(255, 255, 255, 0.9);
-  }
-
-  /* Footer CTA Animation */
-  .footer-cta:hover {
-    transform: translateX(3px);
-  }
-
-  /* Quote Block Serif Font */
-  .quote-block p {
-    font-family: Georgia, 'Times New Roman', serif;
-  }
-
-  /* Frosted Glass Effect - Reserved for Hero */
-  .glass-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .glass-card:hover {
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  }
-
-  /* Subdued Colorful Stat Bubbles */
-  .stat-bubble-blue {
-    background: rgba(239, 246, 255, 0.6);
-    backdrop-filter: blur(15px);
-    border-radius: 16px;
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    padding: 1.5rem 1rem;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.1);
-  }
-
-  .stat-bubble-green {
-    background: rgba(240, 253, 244, 0.6);
-    backdrop-filter: blur(15px);
-    border-radius: 16px;
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    padding: 1.5rem 1rem;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.1);
-  }
-
-  .stat-bubble-purple {
-    background: rgba(250, 245, 255, 0.6);
-    backdrop-filter: blur(15px);
-    border-radius: 16px;
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    padding: 1.5rem 1rem;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(139, 92, 246, 0.1);
-  }
-
-  .stat-bubble-orange {
-    background: rgba(255, 247, 237, 0.6);
-    backdrop-filter: blur(15px);
-    border-radius: 16px;
-    border: 1px solid rgba(249, 115, 22, 0.3);
-    padding: 1.5rem 1rem;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(249, 115, 22, 0.1);
-  }
-
-  .stat-bubble-blue:hover,
-  .stat-bubble-green:hover,
-  .stat-bubble-purple:hover,
-  .stat-bubble-orange:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-  }
-
-  /* Achievement Tags */
-  .achievement-tag {
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
-  }
-
-  .achievement-tag:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  /* Contact Links */
-  .contact-link {
-    padding: 0.5rem 0;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-
-  .contact-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateX(4px);
-  }
-
-  /* Hero Title */
-  .hero-title {
-    background: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Navigation */
-  .nav-link {
+  /* Enhanced Photography Section */
+  .photography-title {
     position: relative;
+    display: inline-block;
   }
 
-  .nav-link::after {
+  .photography-title::after {
     content: '';
     position: absolute;
     bottom: -4px;
     left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #10b981, #f59e0b);
-    transition: width 0.3s ease;
-  }
-
-  .nav-link:hover::after {
     width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 1px;
   }
 
-  /* Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  .photography-btn {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 16px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .photography-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(59, 130, 246, 0.3);
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  }
+
+  .btn-icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  .photography-btn:hover .btn-icon {
+    transform: scale(1.1);
+  }
+
+  .photography-image-container {
+    position: relative;
+  }
+
+  .image-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .image-wrapper:hover {
+    transform: scale(1.02);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
+  }
+
+  .photography-image {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .image-wrapper:hover .photography-image {
+    transform: scale(1.05);
+  }
+
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      45deg,
+      rgba(59, 130, 246, 0.1),
+      rgba(139, 92, 246, 0.1)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-wrapper:hover .image-overlay {
+    opacity: 1;
+  }
+
+  /* Enhanced Profile Image */
+  .profile-image-container {
+    transition: transform 0.3s ease;
+  }
+
+  .profile-image-container:hover {
+    transform: scale(1.05);
+  }
+
+  /* Performance Optimizations */
+  * {
+    will-change: auto;
+  }
+
+  .stat-bubble:hover,
+  .experience-item:hover,
+  .contact-link:hover,
+  .download-btn:hover,
+  .photography-btn:hover {
+    will-change: transform;
+  }
+
+  /* Accessibility Enhancements */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
   }
 
-  .glass-card {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .hero-title {
-      font-size: 2.5rem;
-    }
-
-    .glass-card {
-      padding: 1.5rem;
-    }
-
-    .timeline-connector {
-      left: 6px;
-    }
-
-    .timeline-dot {
-      left: 0;
-    }
-
-    .company-icon {
-      width: 32px;
-      height: 32px;
-      font-size: 10px;
-    }
-
-    .experience-item .ml-12 {
-      margin-left: 2.5rem;
-    }
+  /* Focus States */
+  .download-btn:focus,
+  .photography-btn:focus,
+  .contact-link:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
   }
 </style>
