@@ -389,7 +389,12 @@
                   />
                   <span class="contact-text">hproc725@gmail.com</span>
                 </a>
-                <a href="#" class="contact-link group" tabindex="0">
+                <a
+                  href="https://www.linkedin.com/in/henry-proctor-iv-47431489/"
+                  class="contact-link group"
+                  target="_blank"
+                  tabindex="0"
+                >
                   <Icon
                     icon="mdi:linkedin"
                     class="-mt-[1px] text-xl text-blue-700"
@@ -451,7 +456,7 @@
               >
                 <Icon
                   icon="mdi:airplane"
-                  class="-mt-[1px] text-xl text-purple-700"
+                  class="-mt-[1px] text-xl text-sky-500"
                 />
                 Flight + Media
               </h3>
