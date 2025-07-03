@@ -3,29 +3,28 @@ import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
     path: '/',
-    name: 'Portfolio1',
+    name: "Henry's Portfolio",
     component: () =>
       import(
-        /* webpackChunkName: "portfolio1" */ 'src/views/PortfolioPage1.vue'
+        /* webpackChunkName: "portfolio" */ 'src/views/HenryPortfolio.vue'
       ),
   },
   {
     path: '/photography',
-    name: 'Photography1',
+    name: "Henry's Photography",
     component: () =>
       import(
-        /* webpackChunkName: "photography1" */ 'src/views/PhotographyPage1.vue'
+        /* webpackChunkName: "photography" */ 'src/views/HenryPhotography.vue'
       ),
   },
   { path: '/:catchAll(.*)', redirect: '/' },
 ];
 
-const history = createWebHistory();
-
 const router = createRouter({
-  history,
+  history: createWebHistory(),
   routes,
-  scrollBehavior() {
+  scrollBehavior(to, from, savedPosition) {
+    document.getElementById('app')?.scrollTo({ top: 0, behavior: 'auto' });
     return { top: 0 };
   },
 });

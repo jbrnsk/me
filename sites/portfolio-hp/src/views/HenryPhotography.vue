@@ -1,36 +1,10 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  import { HenryPage } from 'src/components';
+  import { onMounted } from 'vue';
+</script>
 
 <template>
-  <!-- Navigation Header -->
-  <!-- Navigation Header -->
-  <nav
-    class="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm"
-  >
-    <div class="mx-auto max-w-4xl px-6 py-4">
-      <div class="flex items-center justify-between">
-        <a
-          href="/"
-          class="font-mono text-lg font-medium text-slate-800 transition-colors hover:text-blue-600"
-        >
-          ← henry.proctor
-        </a>
-        <div class="flex items-center gap-2 text-sm text-gray-600">
-          <svg
-            class="h-4 w-4 text-blue-500"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-            ></path>
-          </svg>
-          aerial photography
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <main class="mx-auto max-w-4xl px-6 py-16">
+  <HenryPage has-back-button back-link="/">
     <!-- Header Section -->
     <section class="animate-slide mb-16 text-center">
       <h1 class="mb-4 text-4xl font-light text-gray-900">Aerial Photography</h1>
@@ -38,7 +12,6 @@
         A personal passion project combining my love of flight with creative
         photography. Exploring unique perspectives from above in my free time.
       </p>
-
       <!-- Quick Stats -->
       <div class="mt-8 flex justify-center gap-8 text-sm">
         <div class="text-center">
@@ -55,7 +28,6 @@
         </div>
       </div>
     </section>
-
     <!-- Services Section -->
     <section class="fade-in-up mb-16">
       <h2
@@ -87,7 +59,6 @@
             scale from above.
           </p>
         </div>
-
         <div
           class="rounded-lg border border-gray-200 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
         >
@@ -105,7 +76,6 @@
             for aerial shots.
           </p>
         </div>
-
         <div
           class="rounded-lg border border-gray-200 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
         >
@@ -125,7 +95,6 @@
         </div>
       </div>
     </section>
-
     <!-- Portfolio Gallery -->
     <section class="fade-in-up-delayed mb-16">
       <h2
@@ -136,7 +105,6 @@
           class="h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent"
         ></div>
       </h2>
-
       <!-- Gallery Grid -->
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         <!-- Placeholder images - replace with Henry's actual photos -->
@@ -157,7 +125,6 @@
             </div>
           </div>
         </div>
-
         <div
           class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
         >
@@ -175,7 +142,6 @@
             </div>
           </div>
         </div>
-
         <div
           class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
         >
@@ -193,7 +159,6 @@
             </div>
           </div>
         </div>
-
         <div
           class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
         >
@@ -211,7 +176,6 @@
             </div>
           </div>
         </div>
-
         <div
           class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
         >
@@ -229,7 +193,6 @@
             </div>
           </div>
         </div>
-
         <div
           class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
         >
@@ -247,7 +210,6 @@
             </div>
           </div>
         </div>
-
         <div
           class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
         >
@@ -265,7 +227,6 @@
             </div>
           </div>
         </div>
-
         <div
           class="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:shadow-xl"
         >
@@ -285,7 +246,6 @@
         </div>
       </div>
     </section>
-
     <!-- Contact Section -->
     <section
       class="fade-in-up-delayed-2 rounded-lg border border-blue-100 bg-gradient-to-br from-blue-50 to-indigo-50 p-8 text-center"
@@ -318,16 +278,7 @@
         <p>Just a pilot who loves taking photos from unique perspectives</p>
       </div>
     </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="mt-16 border-t border-gray-200 bg-white py-8">
-    <div class="mx-auto max-w-4xl px-6 text-center">
-      <p class="font-mono text-xs text-gray-500">
-        © 2025 henry.proctor • aerial photography • built by joseph.baranoski
-      </p>
-    </div>
-  </footer>
+  </HenryPage>
 </template>
 
 <style>

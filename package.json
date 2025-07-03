@@ -48,6 +48,8 @@
     "portfolio:build": "pnpm --filter @me/portfolio run build",
     "portfolio-hp": "pnpm --filter @me/portfolio-hp run dev",
     "portfolio-hp:build": "pnpm --filter @me/portfolio-hp run build",
+    "portfolio-hs": "pnpm --filter @me/portfolio-hs run dev",
+    "portfolio-hs:build": "pnpm --filter @me/portfolio-hs run build",
     "api": "pnpm --filter @me/api run dev"
   }
 }
