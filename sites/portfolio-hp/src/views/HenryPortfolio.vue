@@ -491,15 +491,19 @@
                 </svg>
               </a>
             </div>
-            <div class="photography-image-container relative">
-              <div class="image-wrapper">
+            <div
+              class="duration-400 relative rounded-2xl shadow-2xl transition ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-[0_24px_80px_rgba(0,0,0,0.2)]"
+            >
+              <div class="aspect-[3/2] overflow-hidden rounded-2xl">
                 <img
-                  src="/images/dji_fly_20240218_123500_93_1708290047743_photo_optimized.jpg"
+                  src="/images/dji_fly_20241030_172628_519_1730331388591_photo.jpg"
                   alt="Aerial real estate photography"
-                  class="photography-image h-full w-full object-cover"
+                  class="duration-600 h-full w-full object-cover object-[center_80%] transition-transform ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105"
                   loading="lazy"
                 />
-                <div class="image-overlay"></div>
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 transition-opacity duration-300 hover:opacity-100"
+                ></div>
               </div>
             </div>
           </div>
