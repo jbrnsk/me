@@ -178,8 +178,8 @@
 
 <template>
   <HenryPage :nav-items="navItems" key="portfolio">
-    <!-- Enhanced Hero Section -->
-    <section class="relative py-4 md:py-8">
+    <!-- Hero Section -->
+    <section class="relative py-4 lg:py-8">
       <div class="mx-auto max-w-6xl">
         <div
           class="glass-card mx-auto p-6 text-center md:p-12"
@@ -216,7 +216,7 @@
             </div>
             <div class="title-slide">Strategic Business Growth</div>
           </div>
-          <!-- Enhanced Stats Grid -->
+          <!-- Stats Grid -->
           <div
             class="stats-grid mx-auto mb-5 grid max-w-[360px] grid-cols-2 items-center justify-center gap-3 sm:max-w-[450px] md:mb-8 md:max-w-full md:grid-cols-4 md:gap-5"
           >
@@ -281,51 +281,53 @@
         </div>
       </div>
     </section>
-    <!-- Enhanced Main Content Grid -->
-    <section id="experience" class="relative py-4 md:py-8">
+    <!-- Main Content Grid -->
+    <section id="experience" class="relative py-4 lg:py-8">
       <div class="mx-auto max-w-6xl">
-        <div class="grid grid-cols-1 gap-8 md:gap-12 lg:grid-cols-3">
-          <!-- Enhanced Experience Content -->
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-8">
+          <!-- Experience Content -->
           <div class="grow lg:col-span-2">
             <div
               class="content-card relative flex h-full flex-col overflow-hidden p-6 md:p-12"
             >
-              <h2 class="font-base mb-8 text-3xl tracking-tight text-slate-700">
-                Experience
-              </h2>
-              <!-- Original Timeline (Reverted) -->
-              <div class="timeline-container mb-20">
+              <h2 class="section-heading">Experience</h2>
+              <div class="timeline-container mb-[68px] sm:mb-32 lg:mb-28">
                 <div class="timeline-line"></div>
-                <!-- Experience Items (Back to Original) -->
                 <div
                   v-for="(experience, expIndex) in experiences"
                   :key="experience.id"
-                  class="group relative mb-12 pl-10 last:mb-0"
+                  class="group relative mb-8 pl-10 last:mb-0 lg:mb-12"
                 >
                   <div
                     :class="timelineDotClass(expIndex)"
                     class="absolute left-[6px] top-[5px] z-10 h-[14px] w-[14px] rounded-full bg-white transition-all duration-300 ease-in-out"
                   ></div>
-                  <div class="mb-4 flex items-start justify-between">
+                  <div
+                    class="mb-1 flex items-start justify-between sm:mb-2 lg:mb-4"
+                  >
                     <div class="flex-1">
                       <h4
                         :class="timelineCompHeadingClass(expIndex)"
-                        class="text-md mb-1 font-light uppercase tracking-wide"
+                        class="mb-1 text-sm font-light uppercase tracking-wide lg:text-base"
                       >
                         {{ experience.company }}
                       </h4>
                       <h3
-                        class="font-base mb-2 text-xl leading-snug text-slate-700"
+                        class="mb-2 text-lg leading-snug text-slate-700 lg:text-xl"
                       >
                         {{ experience.role }}
                       </h3>
                     </div>
-                    <div class="time-period">{{ experience.period }}</div>
+                    <div class="time-period text-sm lg:text-base">
+                      {{ experience.period }}
+                    </div>
                   </div>
-                  <p class="description font-light">
+                  <p
+                    class="mb-4 flex flex-wrap gap-3 text-sm font-light leading-relaxed text-slate-600 sm:text-base lg:mb-5"
+                  >
                     {{ experience.description }}
                   </p>
-                  <div class="mt-5 flex flex-wrap gap-3">
+                  <div class="flex flex-wrap gap-3">
                     <span
                       v-for="metric in experience.metrics"
                       :class="metricClass(metric.type)"
@@ -336,25 +338,26 @@
                   </div>
                 </div>
               </div>
-              <div class="z-10 mt-auto flex justify-center">
+              <div
+                class="download-container absolute bottom-0 z-10 -mx-6 flex w-full justify-center justify-self-end py-4 sm:py-8 md:-mx-12 lg:py-12"
+              >
                 <a
                   href="/docs/Resume-Henry Proctor IV 2025.pdf"
                   download
                   tabindex="0"
-                  class="z-10 inline-flex items-center gap-2 rounded-md border border-blue-700/30 bg-blue-600 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-blue-700 hover:shadow-lg"
+                  class="primary-button"
                 >
                   <Icon icon="tabler:download" class="h-5 w-5" />
                   Download Resume
                 </a>
               </div>
-              <div
-                class="absolute bottom-0 left-1/2 h-[300px] w-[160%] -translate-x-1/2 translate-y-1/2 rounded-full bg-blue-100 opacity-50"
-              ></div>
             </div>
           </div>
           <!-- Sidebar -->
-          <div class="content-card space-y-4 p-6 md:p-8">
-            <!-- Profile Section -->
+          <div
+            class="content-card flex flex-col gap-4 p-6 sm:grid-cols-2 md:p-8 lg:flex lg:flex-col"
+          >
+            <!-- Profile Image -->
             <div
               class="relative mx-auto mb-8 h-40 max-w-40 overflow-hidden rounded-xl"
             >
@@ -362,117 +365,125 @@
                 src="/images/henry-headshot.png"
                 alt="Henry Proctor IV"
                 style="transform: translateZ(0.1px)"
-                class="h-full w-full object-fill grayscale transition-all duration-500 hover:scale-105 hover:grayscale-0"
+                class="h-full w-full object-fill grayscale transition-all duration-500 hover:scale-125 hover:grayscale-0"
                 loading="lazy"
               />
             </div>
-            <!-- Enhanced Contact Section -->
-            <div class="sidebar-section pb-3">
-              <h3
-                class="sidebar-title mb-3 flex items-center gap-2 text-lg font-medium text-slate-700"
-              >
-                <Icon
-                  icon="mdi:account-box"
-                  class="-mt-[1px] text-xl text-slate-700"
-                />
-                Contact
-              </h3>
-              <div class="space-y-4 text-sm">
-                <a
-                  href="mailto:hproc725@gmail.com"
-                  class="contact-link group"
-                  tabindex="0"
+            <div
+              class="mx-auto grid w-full max-w-[800px] grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-4 lg:flex lg:flex-col lg:gap-6"
+            >
+              <!-- Contact Section -->
+              <div class="sidebar-section order-1 pb-3">
+                <h3
+                  class="sidebar-title mb-3 flex items-center gap-2 text-lg font-medium text-slate-700"
                 >
                   <Icon
-                    icon="mdi:email-outline"
+                    icon="mdi:account-box"
                     class="-mt-[1px] text-xl text-slate-700"
                   />
-                  <span class="contact-text">hproc725@gmail.com</span>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/henry-proctor-iv-47431489/"
-                  class="contact-link group"
-                  target="_blank"
-                  tabindex="0"
-                >
-                  <Icon
-                    icon="mdi:linkedin"
-                    class="-mt-[1px] text-xl text-blue-700"
-                  />
-                  <span class="contact-text">
-                    linkedin.com/in/henry-proctor
-                  </span>
-                </a>
-                <div class="contact-item">
-                  <Icon
-                    icon="mdi:map-marker"
-                    class="-mt-[1px] text-xl text-rose-600"
-                  />
-                  <span class="contact-text">San Antonio, Texas</span>
+                  Contact
+                </h3>
+                <div class="space-y-4 text-sm">
+                  <a
+                    href="mailto:hproc725@gmail.com"
+                    class="contact-link group"
+                    tabindex="0"
+                  >
+                    <Icon
+                      icon="mdi:email-outline"
+                      class="-mt-[1px] text-xl text-slate-700"
+                    />
+                    <span class="contact-text">hproc725@gmail.com</span>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/henry-proctor-iv-47431489/"
+                    class="contact-link group"
+                    target="_blank"
+                    tabindex="0"
+                  >
+                    <Icon
+                      icon="mdi:linkedin"
+                      class="-mt-[1px] text-xl text-blue-700"
+                    />
+                    <span class="contact-text">
+                      linkedin.com/in/henry-proctor
+                    </span>
+                  </a>
+                  <div class="contact-item">
+                    <Icon
+                      icon="mdi:map-marker"
+                      class="-mt-[1px] text-xl text-rose-600"
+                    />
+                    <span class="contact-text">San Antonio, Texas</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- Enhanced Philosophy Section -->
-            <div class="sidebar-card pb-2">
-              <h3
-                class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
-              >
-                <Icon
-                  icon="mdi:leaf"
-                  class="-mt-[1px] text-xl text-emerald-600"
-                />
+              <!-- Philosophy Section -->
+              <div class="order-2 pb-2 sm:order-4 lg:order-2">
+                <h3
+                  class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+                >
+                  <Icon
+                    icon="mdi:leaf"
+                    class="-mt-[1px] text-xl text-emerald-600"
+                  />
 
-                Philosophy
-              </h3>
-              <div class="philosophy-card">
-                <p class="text-sm leading-relaxed text-slate-600">
-                  Blending the grit of sport, precision of flight, and strategy
-                  of business—with wisdom and a hunger to learn, growth is my
-                  constant pursuit.
-                </p>
+                  Philosophy
+                </h3>
+                <div class="philosophy-card">
+                  <p class="text-sm leading-relaxed text-slate-600">
+                    Blending the grit of sport, precision of flight, and
+                    strategy of business—with wisdom and a hunger to learn,
+                    growth is my constant pursuit.
+                  </p>
+                </div>
               </div>
-            </div>
-            <!-- Enhanced Education Section -->
-            <div class="sidebar-card pb-2">
-              <h3
-                class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
-              >
-                <Icon
-                  icon="mdi:school"
-                  class="-mt-[1px] text-xl text-slate-700"
-                />
-                Education
-              </h3>
-              <div class="education-card">
-                <p class="font-medium text-slate-800">B.S. Exercise Science</p>
-                <p class="text-slate-600">Bowling Green State University</p>
-                <p class="font-mono text-slate-600">2016</p>
+              <!-- Education Section -->
+              <div class="order-3 pb-2 sm:order-4 lg:order-3">
+                <h3
+                  class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+                >
+                  <Icon
+                    icon="mdi:school"
+                    class="-mt-[1px] text-xl text-slate-700"
+                  />
+                  Education
+                </h3>
+                <div class="education-card">
+                  <p class="font-medium text-slate-800">
+                    B.S. Exercise Science
+                  </p>
+                  <p class="text-slate-600">Bowling Green State University</p>
+                  <p class="font-mono text-slate-600">2016</p>
+                </div>
               </div>
-            </div>
-            <!-- Enhanced Flight + Media Section -->
-            <div class="sidebar-section">
-              <h3
-                class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+              <!-- Flight + Media Section -->
+              <div
+                class="sidebar-section order-4 !border-none !pb-2 sm:order-2 sm:!border-solid sm:!pb-4 lg:order-4 lg:!border-none lg:!pb-2"
               >
-                <Icon
-                  icon="mdi:airplane"
-                  class="-mt-[1px] text-xl text-sky-500"
-                />
-                Flight + Media
-              </h3>
-              <div class="space-y-4 pl-4">
-                <div class="space-y-3 text-sm">
-                  <div class="credential-item">
-                    <span class="text-slate-600">Private Pilot</span>
-                    <span class="credential-badge">2021</span>
-                  </div>
-                  <div class="credential-item">
-                    <span class="text-slate-600">Instrument Rating</span>
-                    <span class="credential-badge">2022</span>
-                  </div>
-                  <div class="credential-item">
-                    <span class="text-slate-600">Commercial SE</span>
-                    <span class="credential-badge">2023</span>
+                <h3
+                  class="sidebar-title mb-4 flex items-center gap-2 text-lg font-medium text-slate-800"
+                >
+                  <Icon
+                    icon="mdi:airplane"
+                    class="-mt-[1px] text-xl text-sky-500"
+                  />
+                  Flight + Media
+                </h3>
+                <div class="space-y-4 pl-4">
+                  <div class="space-y-3 text-sm">
+                    <div class="credential-item">
+                      <span class="text-slate-600">Private Pilot</span>
+                      <span class="credential-badge">2021</span>
+                    </div>
+                    <div class="credential-item">
+                      <span class="text-slate-600">Instrument Rating</span>
+                      <span class="credential-badge">2022</span>
+                    </div>
+                    <div class="credential-item">
+                      <span class="text-slate-600">Commercial SE</span>
+                      <span class="credential-badge">2023</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -481,32 +492,32 @@
         </div>
       </div>
     </section>
-    <!-- Enhanced Photography Section -->
-    <section class="relative py-4 md:py-8">
+    <!-- Photography Section -->
+    <section class="relative py-4 lg:py-8">
       <div class="mx-auto">
         <div class="content-card glass-card p-6 md:p-12">
-          <h2
-            class="photography-title mb-6 flex items-center gap-3 text-2xl font-light text-slate-800"
+          <h2 class="section-heading sm:!mb-6">Aerial Photography</h2>
+          <div
+            class="mb-4 grid items-center gap-6 sm:mb-0 sm:gap-8 lg:grid-cols-2"
           >
-            aerial photography
-          </h2>
-          <div class="grid items-center gap-8 md:grid-cols-2">
-            <div class="photography-content">
-              <p class="mb-4 text-lg leading-relaxed text-slate-600">
-                Combining commercial pilot precision with creative vision to
-                capture unique perspectives from above. Specializing in real
-                estate photography and event coverage across Texas.
+            <div class="flex h-full flex-col items-start gap-3 lg:gap-6">
+              <p
+                class="text-sm text-slate-600 sm:text-base sm:text-slate-700 lg:mt-4"
+              >
+                Commercial pilot meets creative eye - combining aviation
+                precision with a passion for unique perspectives, I specialize
+                in real estate and event photography across Texas.
               </p>
-              <p class="mb-6 text-slate-600">
+              <p class="text-xs italic text-slate-600 sm:text-sm">
                 Licensed drone operator applying the same attention to detail
-                from aviation to aerial media production.
+                from flight to aerial media production.
               </p>
               <RouterLink
                 to="/photography"
-                class="photography-btn group"
+                class="primary-button mx-auto mt-2 sm:mt-4"
                 tabindex="0"
               >
-                <span class="btn-icon">📷</span>
+                <Icon icon="mdi:camera" class="h-5 w-5" />
                 <span>View Portfolio</span>
                 <svg
                   class="btn-arrow h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
@@ -521,14 +532,14 @@
                 </svg>
               </RouterLink>
             </div>
-            <div
-              class="duration-400 relative rounded-2xl shadow-2xl transition ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-[0_24px_80px_rgba(0,0,0,0.2)]"
-            >
-              <div class="aspect-[3/2] overflow-hidden rounded-2xl">
+            <div class="duration-400 relative mx-auto rounded-2xl shadow-2xl">
+              <div
+                class="aspect-[3/2] max-h-[280px] overflow-hidden rounded-2xl"
+              >
                 <img
                   src="/images/dji_fly_20241030_172628_519_1730331388591_photo.jpg"
                   alt="Aerial real estate photography"
-                  class="duration-600 h-full w-full object-cover object-[center_40%] transition-transform ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105"
+                  class="h-full w-full object-cover object-[center_40%] transition-transform duration-1000 ease-in-out hover:-translate-y-5 hover:translate-x-10 hover:scale-125"
                   loading="lazy"
                   style="will-change: transform"
                 />
@@ -542,7 +553,16 @@
 </template>
 
 <style scoped>
-  /* Enhanced Animations */
+  /* Reused main components */
+  .section-heading {
+    @apply mb-6 text-xl tracking-tight text-slate-700 sm:mb-8 sm:text-2xl lg:text-3xl;
+  }
+
+  .primary-button {
+    @apply z-10 inline-flex items-center gap-2 rounded-md border border-blue-700/30 bg-blue-600 px-6 py-2 text-sm font-semibold text-white shadow-md transition hover:bg-blue-700 hover:shadow-lg sm:py-3 sm:text-base;
+  }
+
+  /* Animations */
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -622,7 +642,7 @@
     }
   }
 
-  /* Enhanced Glass Morphism */
+  /* Glass Morphism */
   .glass-card {
     background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(24px);
@@ -645,7 +665,7 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.8);
   }
 
-  /* Enhanced Typography */
+  /* Typography */
   .hero-title {
     background: linear-gradient(135deg, #26344c 0%, #3b82f6 100%);
     background-clip: text;
@@ -655,7 +675,7 @@
     letter-spacing: -0.02em;
   }
 
-  /* Enhanced Stat Bubbles */
+  /* Stat Bubbles */
   .stat-bubble {
     backdrop-filter: blur(20px);
     border-radius: 20px;
@@ -723,7 +743,7 @@
     @apply whitespace-nowrap text-xs font-light sm:text-sm;
   }
 
-  /* Enhanced Timeline (Reverted to Original Style) */
+  /* Timeline */
   .timeline-container {
     position: relative;
   }
@@ -738,7 +758,7 @@
     opacity: 0.3;
   }
 
-  /* Enhanced Contact Links */
+  /* Contact Links */
   .contact-link {
     display: flex;
     align-items: center;
@@ -763,17 +783,11 @@
     color: #64748b;
   }
 
-  .contact-icon {
-    font-size: 16px;
-    min-width: 20px;
-    transition: transform 0.3s ease;
-  }
-
   .contact-text {
     transition: color 0.3s ease;
   }
 
-  /* Enhanced Credential Items */
+  /* Credential Items */
   .credential-item {
     display: flex;
     align-items: center;
@@ -797,24 +811,15 @@
     box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
   }
 
-  /* Enhanced Sidebar Cards */
+  /* Sidebar Cards */
   .sidebar-section {
     border-bottom: 1px solid rgba(226, 232, 240, 0.4);
-    transition: all 0.3s ease;
+    @apply pb-4;
   }
 
-  .sidebar-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .sidebar-title {
-    position: relative;
-  }
-
-  .sidebar-card {
-    margin-top: 1.5rem;
+  .download-container {
+    background: rgba(239, 245, 250, 0.9);
+    border: 1px solid rgba(226, 232, 240, 0.4);
   }
 
   .philosophy-card,
@@ -854,124 +859,12 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
 
-  /* Enhanced Company and Role Styling (Reverted) */
-
+  /* Company and Role Styling (Reverted) */
   .time-period {
     font-family: ui-monospace, SFMono-Regular, monospace;
     font-size: 0.875rem;
     color: #64748b;
     font-weight: 500;
-  }
-
-  .description {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #475569;
-    margin: 16px 0 20px 0;
-  }
-
-  /* Enhanced Photography Section */
-  .photography-title {
-    position: relative;
-    display: inline-block;
-  }
-
-  .photography-title::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-    border-radius: 1px;
-  }
-
-  .photography-btn {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-    color: white;
-    padding: 16px 32px;
-    border-radius: 16px;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-weight: 600;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .photography-btn:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 16px 48px rgba(59, 130, 246, 0.3);
-    background: linear-gradient(135deg, #1d4ed8, #1e40af);
-  }
-
-  .btn-icon {
-    font-size: 18px;
-    transition: transform 0.3s ease;
-  }
-
-  .photography-btn:hover .btn-icon {
-    transform: scale(1.1);
-  }
-
-  .photography-image-container {
-    position: relative;
-  }
-
-  .image-wrapper {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.15);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .image-wrapper:hover {
-    transform: scale(1.02);
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.2);
-  }
-
-  .photography-image {
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .image-wrapper:hover .photography-image {
-    transform: scale(1.05);
-  }
-
-  .image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      45deg,
-      rgba(59, 130, 246, 0.1),
-      rgba(139, 92, 246, 0.1)
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .image-wrapper:hover .image-overlay {
-    opacity: 1;
-  }
-
-  /* Enhanced Profile Image */
-  .profile-image {
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    transform: translateX(-12px) translateZ(0.01px) scale(125%);
-  }
-
-  .profile-image:hover {
-    transform: translateX(-12px) translateZ(0.01px) scale(135%);
   }
 
   /* Performance Optimizations */
@@ -980,9 +873,7 @@
   }
 
   .stat-bubble:hover,
-  .experience-item:hover,
-  .contact-link:hover,
-  .photography-btn:hover {
+  .contact-link:hover {
     will-change: transform;
   }
 
@@ -996,7 +887,6 @@
   }
 
   /* Focus States */
-  .photography-btn:focus,
   .contact-link:focus {
     outline: 2px solid #3b82f6;
     outline-offset: 2px;

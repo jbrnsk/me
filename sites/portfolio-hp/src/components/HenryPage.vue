@@ -132,24 +132,31 @@
     >
       <slot></slot>
       <!-- Enhanced Footer -->
-      <footer class="site-footer relative pt-3 lg:pt-8">
+      <footer class="site-footer relative pt-4 lg:pt-8">
         <div class="mx-auto max-w-6xl">
           <div class="content-card p-6">
             <div class="flex items-center justify-between">
-              <p class="font-mono text-xs text-slate-500">
-                © 2025 henry.proctor • built by
-                <a
-                  tabindex="0"
-                  href="#"
-                  class="footer-link text-blue-600 transition-colors"
-                >
-                  joseph.baranoski
-                </a>
+              <p
+                class="flex flex-col gap-1 font-mono text-xs text-slate-500 sm:flex-row sm:gap-2"
+              >
+                <span>© 2025 henry.proctor</span>
+                <span class="hidden sm:inline">•</span>
+                <span>
+                  built by
+                  <a
+                    tabindex="0"
+                    href="https://github.com/jbrnsk/me/blob/main/sites/portfolio-hp/README.md"
+                    target="_blank"
+                    class="footer-link text-blue-600 transition-colors"
+                  >
+                    joseph.baranoski
+                  </a>
+                </span>
               </p>
               <a
                 tabindex="0"
-                href="#contact"
-                class="footer-cta group flex items-center gap-2 font-medium text-blue-600 transition-all duration-300 hover:text-blue-700"
+                href="mailto:hproc725@gmail.com"
+                class="footer-cta font-base group ml-auto flex items-center gap-2 text-blue-600 transition-all duration-300 hover:text-blue-700 sm:ml-0"
               >
                 Let's talk.
                 <span
