@@ -565,7 +565,7 @@
   </HenryPage>
 </template>
 
-<style scoped>
+<style>
   /* Animations */
   @keyframes fadeIn {
     from {
