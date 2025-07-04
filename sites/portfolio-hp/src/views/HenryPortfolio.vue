@@ -36,6 +36,18 @@
       ],
     },
     {
+      id: 'f45',
+      company: 'F45 Training',
+      role: 'Sales Manager & Coach',
+      period: '2020 – 2023',
+      description:
+        'Directed sales across three gyms, adding $1.7M revenue and growing membership 45% in six months. Managed retention for 650+ active members.',
+      metrics: [
+        { label: '45% Growth', type: 'primary' },
+        { label: '$1.7M Sales', type: 'secondary' },
+      ],
+    },
+    {
       id: 'otis',
       company: 'Otis Elevator Company',
       role: 'Senior Account Manager',
@@ -152,13 +164,20 @@
     const colors = [
       'border-4 border-blue-400 shadow-[0_0_0_4px_rgba(59,130,246,0.2)]',
       'border-4 border-green-400 shadow-[0_0_0_4px_rgba(16,185,129,0.2)]',
+      'border-4 border-purple-400 shadow-[0_0_0_4px_rgba(168,85,247,0.2)]',
       'border-4 border-orange-400 shadow-[0_0_0_4px_rgba(249,115,22,0.2)]',
     ];
     return colors[index % colors.length];
   }
 
   function timelineCompHeadingClass(index: number) {
-    const colors = ['text-blue-600', 'text-green-600', 'text-orange-600'];
+    const colors = [
+      'text-blue-600',
+      'text-green-600',
+
+      'text-purple-600',
+      'text-orange-600',
+    ];
     return colors[index % colors.length];
   }
 
@@ -185,11 +204,7 @@
           class="glass-card mx-auto p-6 text-center md:p-12"
           :class="{ 'animate-fade-in': isVisible }"
         >
-          <h1
-            class="hero-title mb-2 text-3xl font-light text-slate-800 sm:text-4xl md:mb-5 lg:text-5xl"
-          >
-            Henry Proctor IV
-          </h1>
+          <h1 class="hero-title">Henry Proctor IV</h1>
           <div class="title-rotator mb-4 md:mb-8">
             <div class="title-slide">
               Sales Leader
@@ -296,15 +311,13 @@
                 <div
                   v-for="(experience, expIndex) in experiences"
                   :key="experience.id"
-                  class="group relative mb-8 pl-10 last:mb-0 lg:mb-12"
+                  class="group relative mb-8 pl-10 last:mb-0 md:pl-12 lg:mb-12"
                 >
                   <div
                     :class="timelineDotClass(expIndex)"
                     class="absolute left-[6px] top-[5px] z-10 h-[14px] w-[14px] rounded-full bg-white transition-all duration-300 ease-in-out"
                   ></div>
-                  <div
-                    class="mb-1 flex items-start justify-between sm:mb-2 lg:mb-4"
-                  >
+                  <div class="flex items-start justify-between sm:mb-2 lg:mb-2">
                     <div class="flex-1">
                       <h4
                         :class="timelineCompHeadingClass(expIndex)"
@@ -313,7 +326,7 @@
                         {{ experience.company }}
                       </h4>
                       <h3
-                        class="mb-2 text-lg leading-snug text-slate-700 lg:text-xl"
+                        class="text-lg leading-snug text-slate-700 lg:text-xl"
                       >
                         {{ experience.role }}
                       </h3>
@@ -339,7 +352,7 @@
                 </div>
               </div>
               <div
-                class="download-container absolute bottom-0 z-10 -mx-6 flex w-full justify-center justify-self-end py-4 sm:py-8 md:-mx-12 lg:py-12"
+                class="download-container absolute bottom-0 z-10 -mx-6 flex w-full justify-center justify-self-end py-4 sm:py-8 md:-mx-12 lg:py-10"
               >
                 <a
                   href="/docs/Resume-Henry Proctor IV 2025.pdf"
@@ -359,7 +372,7 @@
           >
             <!-- Profile Image -->
             <div
-              class="relative mx-auto mb-8 h-40 max-w-40 overflow-hidden rounded-xl"
+              class="relative mx-auto mb-8 h-48 max-w-48 overflow-hidden rounded-xl"
             >
               <img
                 src="/images/henry-headshot.png"
@@ -370,10 +383,10 @@
               />
             </div>
             <div
-              class="mx-auto grid w-full max-w-[800px] grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-4 lg:flex lg:flex-col lg:gap-6"
+              class="mx-auto grid w-full max-w-[800px] grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-4 lg:flex lg:flex-col lg:gap-8"
             >
               <!-- Contact Section -->
-              <div class="sidebar-section order-1 pb-3">
+              <div class="sidebar-section order-1 !pb-3 lg:!pb-7">
                 <h3
                   class="sidebar-title mb-3 flex items-center gap-2 text-lg font-medium text-slate-700"
                 >
@@ -518,7 +531,7 @@
                 tabindex="0"
               >
                 <Icon icon="mdi:camera" class="h-5 w-5" />
-                <span>View Portfolio</span>
+                <span>View Photography</span>
                 <svg
                   class="btn-arrow h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                   fill="currentColor"
@@ -553,15 +566,6 @@
 </template>
 
 <style scoped>
-  /* Reused main components */
-  .section-heading {
-    @apply mb-6 text-xl tracking-tight text-slate-700 sm:mb-8 sm:text-2xl lg:text-3xl;
-  }
-
-  .primary-button {
-    @apply z-10 inline-flex items-center gap-2 rounded-md border border-blue-700/30 bg-blue-600 px-6 py-2 text-sm font-semibold text-white shadow-md transition hover:bg-blue-700 hover:shadow-lg sm:py-3 sm:text-base;
-  }
-
   /* Animations */
   @keyframes fadeIn {
     from {
@@ -640,39 +644,6 @@
       transform: translateY(-100%);
       opacity: 0;
     }
-  }
-
-  /* Glass Morphism */
-  .glass-card {
-    background: rgba(255, 255, 255, 0.97);
-    backdrop-filter: blur(24px);
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    box-shadow:
-      0 8px 40px rgba(0, 0, 0, 0.12),
-      0 1px 4px rgba(0, 0, 0, 0.04),
-      inset 0 1px 0 rgba(255, 255, 255, 0.6);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    @apply overflow-x-visible;
-  }
-
-  .glass-card:hover {
-    box-shadow:
-      0 16px 64px rgba(0, 0, 0, 0.15),
-      0 4px 16px rgba(0, 0, 0, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  }
-
-  /* Typography */
-  .hero-title {
-    background: linear-gradient(135deg, #26344c 0%, #3b82f6 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    letter-spacing: -0.02em;
   }
 
   /* Stat Bubbles */
