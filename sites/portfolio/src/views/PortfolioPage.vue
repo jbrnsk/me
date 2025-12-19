@@ -177,13 +177,13 @@
             class="text-cyber-teal hover:underline"
             tabindex="0"
           >
-            {{ 'Archived review →' }}
+            Archived review →
           </a>
         </div>
       </div>
     </section>
     <PixelDivider index="c" />
-    <!-- GAME DEV & TEACHING (kept, lightly tightened) -->
+    <!-- GAME DEV & TEACHING -->
     <section>
       <h2
         class="font-cyber text-cyber-teal mb-8 text-xl uppercase tracking-widest"
@@ -205,7 +205,7 @@
           >
             {{ 'Hello World' }}
           </a>
-          (2022)
+          (2022).
         </SectionCard>
         <SectionCard component="li">
           Prototype:
@@ -233,7 +233,9 @@
           —award-winning grad project at ACM SIGGRAPH.
         </SectionCard>
         <SectionCard component="li">
-          Master’s thesis on digital prototyping tools for board games:
+          <span>
+            Master’s thesis on digital prototyping tools for board games:
+          </span>
           <a
             href="https://researchdiscovery.drexel.edu/esploro/outputs/graduate/Prototype-Gamer-Effects-of-Digital-Prototyping/991014632327104721"
             target="_blank"
@@ -243,7 +245,7 @@
           >
             {{ 'Prototype Gamer' }}
           </a>
-          .
+          <span>.</span>
         </SectionCard>
         <SectionCard component="li">
           Accredited playtester (5 published games); founded
@@ -310,9 +312,7 @@
         </ul>
       </SectionCard>
     </section>
-
     <PixelDivider index="a" />
-
     <!-- HUMAN BIT -->
     <section class="human-bit">
       <h2
